@@ -1,0 +1,79 @@
+login page
+1. returns the boolean value of whether the user exists.
+
+signup page 
+1. inserts a new record to the users entity. Information: username, password, no. of pets...
+2. inserts new records to the pets entity. Information: name, owner, size....
+
+my account
+1. deletes pet record
+2. edits pet record
+3. adds pet record --> change the no. of pets in the users form
+4. change password via verification question
+5. delete account
+
+favourite account
+selects a list of care takers
+
+Main page -- post listing page -- all the host listing 
+1. selects all the post records with bundled information
+capable to order by next min bidding, care taker rating, favourite care takers
+filter by startTime && endTime, hostCapacity, lowPrice && highPrice
+
+my listing -- all the host listing of this care taker
+1. selects all the post records with the care taker's name
+2. inserts a new post record
+
+my bidding
+1. selects all the post the user is bidding 
+
+history
+2 tables shall be displayed
+1. selects all the sent-out transections ordered by time
+2. selects all the hosting transections ordered by time
+
+pet owner view -- post information
+1. time domain
+2. location
+3. capacity
+3.5 user name
+4. next min bidding
+5. host provider
+6. select the current bidding information with $, time domain, rating, no. of pets to be hosted ordered by SORTING ALGO
+7. update a new bidding recording -|
+8. insert a new bidding recording -|--> with information of pet name(s), $, start time, end time
+9. boolean value of whether it is the favourite user
+10. inserts the post to the wishlist
+
+care taker view -- post information
+1. time domain
+2. user name
+3. selects all the bidders with bundled information bidder name, $, start time, end time, rating
+4. finialize the winner of bidding and change corresponding forms
+5. cancel biddings with same pet names and time domain for other posts
+
+wishlist
+1. lists all the liked hosting post
+
+remarks on database[30 March 2019]:
+1. add the verification question and ans to the user profile
+2. add the post entity linked to the care taker entity, which shall include the time frame infomation
+3. housetype will only be regarded as the information for display
+4. quantify the size of pets: large for 3 units, medium for 2 units and small for 1 unit.
+5. qunatify the capacity in units
+6. record the time of each bidding 
+7. add the wishlist entity
+
+
+sorting algo:
+ordered by 
+1. max $
+2. min total time
+3. min pets
+4. highest rating
+5. bidding time
+
+possible further functions:
+1. decline a offer
+2. double views of profile for others and the user
+3. commments (new entity)
