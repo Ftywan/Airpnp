@@ -58,10 +58,8 @@ wishlist
 remarks on database[30 March 2019]:
 1. add the verification question and ans to the user profile
 2. add the post entity linked to the care taker entity, which shall include the time frame infomation
-3. housetype will only be regarded as the information for display
-4. quantify the size of pets: large for 3 units, medium for 2 units and small for 1 unit.
-5. qunatify the capacity in units
-6. record the time of each bidding 
+3. housetype will only be regarded as the information for display solved!!!!
+6. record the time of each bidding s
 7. add the wishlist entity
 
 
@@ -77,3 +75,8 @@ possible further functions:
 1. decline a offer
 2. double views of profile for others and the user
 3. commments (new entity)
+
+30/3
+1. change to numeric
+2. fix time domain and caoacity for single post
+3. search for how to delete comflict 
