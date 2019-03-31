@@ -4,6 +4,11 @@ CREATE TYPE bidding_status AS ENUM(
 	'fail'
 
 );
+CREATE TYPE pet_status 	AS ENUM(
+	'home',
+	'outside'
+
+);
 
 create table Users(
 	username	VARCHAR(100),
@@ -21,6 +26,7 @@ create table Pets(
 	petName		VARCHAR(100),
 	petType		VARCHAR(100) NOT NULL,
 	ownerName	VARCHAR(100),
+	status pet_status DEFAULT 'home',
 	PRIMARY KEY (PetName, ownerName),
 	FOREIGN KEY (ownerName) REFERENCES PetOwners(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -122,9 +128,12 @@ create table BiddingStatus(
 	petName 	VARCHAR(100),
 	created_at timestamp DEFAULT current_timestamp,
 	status     bidding_status DEFAULT 'pending',
+	startdate	DATE,
+	enddate		DATE,
 	PRIMARY KEY (ownerName, hostName, bids, petName),
 	FOREIGN KEY (ownerName) REFERENCES PetOwners(username),
 	FOREIGN KEY (hostName) REFERENCES CareTakers(username),
 	FOREIGN KEY (petName) REFERENCES Pets(PetName)
+	FOREIGN KEY (startdate,enddate) REFERENCES services
 );
 
