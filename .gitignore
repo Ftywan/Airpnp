@@ -6,5 +6,3 @@ App/\.DS_Store
 App/views/\.DS_Store
 
 \.DS_Store
-
-App/node_modules
