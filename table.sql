@@ -4,11 +4,7 @@ CREATE TYPE bidding_status AS ENUM(
 	'fail'
 
 );
-CREATE TYPE pet_status 	AS ENUM(
-	'home',
-	'outside'
 
-);
 
 create table Users(
 	username	VARCHAR(100),
@@ -26,10 +22,10 @@ create table Pets(
 	petName		VARCHAR(100),
 	petType		VARCHAR(100) NOT NULL,
 	ownerName	VARCHAR(100),
-	status pet_status DEFAULT 'home',
 	PRIMARY KEY (PetName, ownerName),
 	FOREIGN KEY (ownerName) REFERENCES PetOwners(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 -- The ISA satisfies overlap constraints but does not stisfies convering constraints
 create table CareTakers(
 	username	VARCHAR(100),
@@ -106,19 +102,20 @@ create table Services(
 	minBid		NUMERIC NOT NULL,
 	startdate	DATE ,
 	enddate		DATE ,
+	capacity  	INTEGER,
 	PRIMARY KEY (hostName, startdate, enddate),
 	FOREIGN KEY (hostName) REFERENCES CareTakers(username),
 	CONSTRAINT "Service end time must be after start time." CHECK (enddate > startdate)
 );
 
 -- to store the capacity of pets
-create table Capacity(
-	hostName	VARCHAR(100) REFERENCES CareTakers(username),
-	num		INTEGER NOT NULL,
-	PRIMARY KEY (hostName),
-	CONSTRAINT "Capacity has to be grater than 0" CHECK (num > 0)
+--create table Capacity(
+--	hostName	VARCHAR(100) REFERENCES CareTakers(username),
+--	num		INTEGER NOT NULL,
+--	PRIMARY KEY (hostName),
+--	CONSTRAINT "Capacity has to be grater than 0" CHECK (num > 0)
 
-);
+--);
 
 ---to store the all the valid biddding history with status shown as pending, fail, success.
 create table BiddingStatus(

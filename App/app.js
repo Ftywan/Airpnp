@@ -9,7 +9,7 @@ var listingsRouter = require('./routes/listings');
 var accountRouter = require('./routes/account');
 var biddingsRoter = require('./routes/biddings');
 var loginRouter = require('./routes/login');
-var signupRouter = require('./routes/singup');
+var signupRouter = require('./routes/signup');
 var historyRouter = require('./routes/history');
 var ownerviewRouter = require('./routes/ownerview');
 var takerviewRouter = require('./routes/takerview');
@@ -29,12 +29,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/index', indexRouter);
 app.use('/listings', listingsRouter);
 app.use('/account', accountRouter);
-app.use('./biddings', biddingsRoter);
-app.use('./login', loginRouter);
-app.use('./signup', signupRouter);
-app.use('./history', historyRouter);
-app.use('./ownerview', ownerviewRouter);
-app.use('./takerview', takerviewRouter);
+app.use('/biddings', biddingsRoter);
+app.use('/login', loginRouter);
+app.use('/signup', signupRouter);
+app.use('/history', historyRouter);
+app.use('/ownerview', ownerviewRouter);
+app.use('/takerview', takerviewRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
