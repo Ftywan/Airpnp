@@ -5,9 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var listingRouter = require('./routes/listings');
+var listingsRouter = require('./routes/listings');
 var accountRouter = require('./routes/account');
+var biddingsRoter = require('./routes/biddings');
+var loginRouter = require('./routes/login');
+var signupRouter = require('./routes/singup');
+var historyRouter = require('./routes/history');
+var ownerviewRouter = require('./routes/ownerview');
+var takerviewRouter = require('./routes/takerview');
 
 var app = express();
 
@@ -22,17 +27,22 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/index', indexRouter);
-app.use('/users', usersRouter);
-app.use('/listings', listingRouter);
+app.use('/listings', listingsRouter);
 app.use('/account', accountRouter);
+app.use('./biddings', biddingsRoter);
+app.use('./login', loginRouter);
+app.use('./signup', signupRouter);
+app.use('./history', historyRouter);
+app.use('./ownerview', ownerviewRouter);
+app.use('./takerview', takerviewRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
