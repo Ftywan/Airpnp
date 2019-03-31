@@ -31,6 +31,14 @@ history
 2 tables shall be displayed
 1. selects all the sent-out transections ordered by time
 2. selects all the hosting transections ordered by time
+3. need a confirm payment function
+
+chain of update & delete
+1. create post
+2. caretaker assgins a petowner
+3. update status in biddingHistory
+4. update not_completed_accommodation
+5. when the payment is made, delete from con_completed_accommodation & update accommodated
 
 pet owner view -- post information
 1. time domain
