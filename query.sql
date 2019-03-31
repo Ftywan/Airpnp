@@ -143,10 +143,21 @@ select * from Services
 
 
 --2. the specific view about a particular service after they select a specific services
-
-select s.hostName, s.startdate, s.enddate, s.minBid, u.location, s.capacity, 
-from Services s join Users u on s.hostName = u.username
+with maxBid as(
+	select hostName, max(bids) as max_bid, count(*) as total_num
+	from BiddingStatus
+	where hostname=%s
+	and startdate=%s
+	and enddate=%s
+)
+select s.hostName, s.startdate, s.enddate, s.minBid, u.location, 
+	s.capacity, M.max_bid, M.total_num
+from (Services s left join Users u on s.hostName = u.username) 
+	left join maxBid M on M.hostName = s.hostname
 where s.hostName = %s
+and s.startdate=%s
+and s.enddate=%s;
+
 
 
 --display a petOwner's current bidding information
@@ -202,8 +213,12 @@ where S.hostName=%s;
 select username from Users where username=%s;
 
 -- select all bidders with their information
-select ownername, bids, rating 
+select distinct ownername, bids, rating 
 from Not_completed_accommodation N left join Users U 
 	on N.hostName=U.username
-where N.hostName=%s;
+where N.hostName=%s
+and N.startdate=%s
+and enddate=%s;
+
+
 
