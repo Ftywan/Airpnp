@@ -1,56 +1,66 @@
-create table Users(
-	username	VARCHAR(100),
-	rating		INTEGER,
-	password	VARCHAR(100),
-	numPets		INTEGER,
-	PRIMARY KEY (username),
-	UNIQUE NOT NULL(password)
+CREATE TYPE bidding_status AS ENUM(
+	'pending',
+	'succeed',
+	'fail'
+
 );
 
+create table Users(
+	username	VARCHAR(100),
+	rating		NUMERIC,,
+	password	VARCHAR(100) NOT NULL,
+	numPets		INTEGER,
+	location 	VARCHAR(500),
+	cantact_number INTEGER,
+	verification_qn VARCHAR(500),
+	answer 		VARCHAR(500),
+	PRIMARY KEY (username)
+);
+--- A week entity
 create table Pets(
 	petName		VARCHAR(100),
 	petType		VARCHAR(100) NOT NULL,
 	ownerName	VARCHAR(100),
 	PRIMARY KEY (PetName, ownerName),
-	FOREIGN KEY (ownerName) REFERENCES PetOwners(username) ON DELETE CASCADE
+	FOREIGN KEY (ownerName) REFERENCES PetOwners(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
+-- The ISA satisfies overlap constraints but does not stisfies convering constraints
 create table CareTakers(
 	username	VARCHAR(100),
-	location	VARCHAR(100),
-	PRIMARY KEY(username) 
-	FOREIGN KEY (username) REFERENCES Users(username)
+	PRIMARY KEY(username),
+	FOREIGN KEY (username) REFERENCES Users(username) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
 
 CREATE TABLE PetOwners(
 	username 	varchar(100),
 	PRIMARY KEY 	(username),
-	FOREIGN KEY 	(username) REFERENCES Users(username)
+	FOREIGN KEY 	(username) REFERENCES Users(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- keep track of the petOwner's successful bidding history
-CREATE TABLE BiddedHosts(
-	ownerName		varchar(100),
-	hostName		varchar(100),
-	petName			varchar(100),
-	biddingPoint	INTEGER,
-	startdate		DATE REFERENCES TimeFrame,
-	enddate			DATE REFERENCES TimeFrame,
-	PRIMARY KEY		(ownerName, hostName, petName, startdate, enddate),
-	FOREIGN KEY		hostName REFERENCES CareTakers(username),
-	FOREIGN KEY		petName REFERENCES Pets(petName),
-	FOREIGN KEY		ownerName REFERENCES PetOwners(username),
-	FOREIGN KEY		(hostName,biddingPoint) REFERENCES Bidders(caretakers, bids)
-);
 
--- username = username of the hosts
-CREATE TABLE Favorites(
+
+CREATE TABLE Favorite(
 	ownerName		varchar(100),
 	hostName		varchar(100),
 	PRIMARY KEY		(ownerName, hostName),
-	FOREIGN KEY		(ownerName) REFERENCES PetOwners(username) ON DELETE CASCADE,
-	FOREIGN KEY		(hostName)  REFERENCES CareTakers(username) ON DELETE CASCADE
+	FOREIGN KEY		(ownerName) REFERENCES PetOwners(username) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY		(hostName)  REFERENCES CareTakers(username) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- to store the services that the petOwner is interested in
+CREATE TABLE Wishlist(
+	ownerName		VARCHAR(100),
+	hostName		VARCHAR(100),
+	minBid			NUMERIC,
+	startdate		DATE,
+	enddate			DATE
+	PRIMARY KEY     (ownerName, hostName), 
+	FOREIGN KEY		(ownerName) REFERENCES PetOwners(username) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY		(hostName)  REFERENCES CareTakers(username) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY  	(minBid, startdate, enddate)	REFERENCES	Services(minBid, startdate, enddate) ON DELETE CASCADE ON UPDATE CASCADE
+
+
 );
 
 
@@ -59,12 +69,13 @@ create table Accommodated(
 	hostName	VARCHAR(100),
 	petName		VARCHAR(100),
 	ownerName	VARCHAR(100),
-	startdate	DATE REFERENCES TimeFrame,
-	enddate		DATE REFERENCES TimeFrame,
+	startdate	DATE,
+	enddate		DATE,
 	PRIMARY KEY (ownerName, petName, startdate, enddate),
 	FOREIGN KEY (petName) REFERENCES Pets(petName),
 	FOREIGN KEY (ownerName) REFERENCES PetOwners(username),
-	FOREIGN KEY (hostName) REFERENCES CareTakers(username)
+	FOREIGN KEY (hostName) REFERENCES CareTakers(username),
+	FOREIGN KEY (startdate, enddate) REFERENCES Services
 );
 
 
@@ -73,23 +84,23 @@ create table Not_completed_accommodation(
 	hostName	VARCHAR(100),
 	petName		VARCHAR(100),
 	ownerName	VARCHAR(100),
-	startdate	DATE REFERENCES TimeFrame,
-	enddate		DATE REFERENCES TimeFrame,
+	startdate	DATE,
+	enddate		DATE,
 	PRIMARY KEY (ownerName, petName, startdate, enddate),
 	FOREIGN KEY (petName) REFERENCES Pets(petName),
 	FOREIGN KEY (ownerName) REFERENCES PetOwners(username),
 	FOREIGN KEY (hostName) REFERENCES CareTakers(username)
-
+	FOREIGN KEY (startdate, enddate) REFERENCES Services
 )
 
 
 -- to store the availability of careTakers
-create table TimeFrame(
+create table Services(
 	hostName 	VARCHAR(100),
-	minBid		INTEGER NOT NULL,
+	minBid		NUMERIC NOT NULL,
 	startdate	DATE ,
 	enddate		DATE ,
-	PRIMARY KEY(hostName, startdate, enddate),
+	PRIMARY KEY (hostName, startdate, enddate),
 	FOREIGN KEY (hostName) REFERENCES CareTakers(username),
 	CONSTRAINT "Service end time must be after start time." CHECK (enddate > startdate)
 );
@@ -103,13 +114,14 @@ create table Capacity(
 
 );
 
----to store the valid daily bidding history. clear at the end of the day. 
----max is selected to update Not_completed_accommodation and BiddedHosts.
-create table Bidders(
+---to store the all the valid biddding history with status shown as pending, fail, success.
+create table BiddingStatus(
 	ownerName 	VARCHAR(100),
 	hostName	VARCHAR(100),
-	bids		INTEGER,
+	bids		NUMERIC,
 	petName 	VARCHAR(100),
+	created_at timestamp DEFAULT current_timestamp,
+	status     bidding_status DEFAULT 'pending',
 	PRIMARY KEY (ownerName, hostName, bids, petName),
 	FOREIGN KEY (ownerName) REFERENCES PetOwners(username),
 	FOREIGN KEY (hostName) REFERENCES CareTakers(username),
