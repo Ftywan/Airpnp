@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('login', { title: 'Log in here' });
+  res.render('login', { title: 'Airpnp-Login' });
 });
 
 module.exports = router;
