@@ -81,7 +81,7 @@ create table Services(
 CREATE TABLE Wishlist(
 	ownerName		VARCHAR(100),
 	hostName		VARCHAR(100),
-	minBid			NUMERIC,
+	--minBid			NUMERIC,
 	startdate		DATE,
 	enddate			DATE,
 	PRIMARY KEY     (ownerName, hostName), 
@@ -97,7 +97,6 @@ create table Accommodated(
 	ownerName	VARCHAR(100),
 	startdate	DATE,
 	enddate		DATE,
-	minBid 		NUMERIC,
 	PRIMARY KEY (ownerName, petName, startdate, enddate),
 	FOREIGN KEY (ownerName, petName) REFERENCES Pets(ownerName,petName),
 	FOREIGN KEY (hostName, startdate, enddate) REFERENCES Services(hostName, startdate, enddate)
