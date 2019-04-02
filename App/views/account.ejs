@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html>
+
 <head>
     <title>Airpnp-My account</title>
     <meta charset="UTF-8">
@@ -35,7 +38,7 @@
             <h3>Here are all your pets</h3>
         </div>
     </footer>
-    <!--List all pets here-->
+    <!--List all pets here   pause of footer-->
 
     <div class="table-wrapper" , style="padding-left:5%; padding-right:5%">
         <br />
@@ -76,23 +79,28 @@
             </tbody>
         </table>
     </div>
-    <!--add or delete pet here-->
+    
+    <!--add or delete pet here    start of footer-->
     <footer id="footer">
         <div class="inner">
             <h3>Add a new pet here</h3>
-            <div class="field half">
-                <label for="petName">Pet Name</label>
-                <input name="petName" id="petName" type="text" placeholder="Pet name">
-            </div>
+            <form action="#" method="post">
+                <div class="field half">
+                    <label for="petName">Pet Name</label>
+                    <input name="petName" id="petName" type="text" placeholder="Pet name">
+                </div>
 
-            <div class="field half">
-                <label for="type">Type</label>
-                <input name="type" id="type" type="text" placeholder="Type of your pet. e.g. Cat, Dog">
-            </div>
-            <br />
-            <ul class="actions">
-                <li><input value="Add" class="button alt" type="submit"></li>
-            </ul>
+                <div class="field half">
+                    <label for="type">Type</label>
+                    <input name="type" id="type" type="text" placeholder="Type of your pet. e.g. Cat, Dog">
+                </div>
+
+                <br />
+                <ul class="actions">
+                    <li><input value="Add" class="button alt" type="submit"></li>
+                </ul>
+            </form>
+
             <br /><br />
             <h3>Or, remove a pet from your account</h3>
             <div class="12u$">
@@ -107,28 +115,60 @@
                     </select>
                 </div>
             </div>
+
             <br />
             <ul class="actions">
                 <li><input value="Confirm" class="button alt" type="submit"></li>
             </ul>
+
             <br /><br />
+
             <!--Change and forget password-->
             <h3>Change your password here</h3>
-            <div class="field half">
-                <label for="oldPassword">Old password</label>
-                <input name="oldPassword" id="oldPassword" type="text" placeholder="Old password">
-            </div>
+            <form action="#" method="post">
+                <div class="field half">
+                    <label for="oldPassword">Old password</label>
+                    <input name="oldPassword" id="oldPassword" type="text" placeholder="Old password">
+                </div>
 
-            <div class="field half">
-                <label for="newPassword">Type</label>
-                <input name="newPassword" id="newPassword" type="text" placeholder="New password">
-            </div>
-            <br />
-            <ul class="actions">
-                <li><input value="Change" class="button alt" type="submit"></li>
-            </ul>
+                <div class="field half">
+                    <label for="newPassword">New password</label>
+                    <input name="newPassword" id="newPassword" type="text" placeholder="New password">
+                </div>
+
+                <br />
+                <ul class="actions">
+                    <li><input value="Change" class="button alt" type="submit"></li>
+                </ul>
+            </form>
             <br /><br />
+
+
+            <!--Reset password-->
+            <h3>Reset your password with verification question</h3>
+            <form action="#" method="post">
+                <div class="field half">
+                    <label for="verification question">Verification question</label>
+                    <input name="question" id="question" type="text" placeholder="Verification question">
+                </div>
+
+                <div class="field half">
+                    <label for="answer">Answer</label>
+                    <input name="answer" id="answer" type="text" placeholder="Answer">
+                </div>
+
+                <div class="field">
+                    <label for="newPassword">New password</label>
+                    <input name="newPassword" id="newPassword" type="text" placeholder="New password">
+                </div>
+
+                <br />
+                <ul class="actions">
+                    <li><input value="Reset" class="button alt" type="submit"></li>
+                </ul>
+            </form>
         </div>
     </footer>
+</body>
 
 </html>
