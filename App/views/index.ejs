@@ -4,17 +4,20 @@
 <head>
 	<title>Airpnp</title>
 	<meta charset="UTF-8">
-<!--   <meta name="discription" content="Something about pets">
+	<!--   <meta name="discription" content="Something about pets">
 	<title>Login Page</title> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 
 </head>
 <!--comments here-->
+
 <body class="subpage">
 	<header id="header">
 		<div class="inner">
-			<a href="index" class="logo"><font size="+3"><strong>Airpnp</strong></font></a>
+			<a href="index" class="logo">
+				<font size="+3"><strong>Airpnp</strong></font>
+			</a>
 			<nav id="nav">
 				<a href="login">Login</a>
 				<a href="signup">Signup</a>
@@ -25,22 +28,79 @@
 			</nav>
 			<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 		</div>
+
 	</header>
 
-	<section id="three" class="wrapper align-left">
+	<footer id="footer">
 		<div class="inner">
-				<p>Order by: </p>
-				<ul class="actions small">
-					<li><a href="#" class="button small">Price High to Low</a></li>
+			<h3>Find out a second home for your pet</h3>
+			<h2>when you are on leave</h2>
+		</div>
+	</footer>
 
-					<li><a href="#" class="button small">Price Low to High</a></li>
+	<section id="three">
+		<div class="inner">
 
-					<li><a href="#" class="button small">Rating</a></li>
 
-					<li><a href="#" class="button small">Favourite</a></li>
+			<!-- filtering information -->
+			<h3>Filter</h3>
+			<form method="post" action="#">
+				<div class="row">
+					<!-- sorting information -->
+					<div class="align-center">
+						<input type="checkbox" id="priceHighToLow" name="priceHighToLow">
+						<label for="priceHighToLow">Price High to Low</label>
+					</div>
+
+					<div class="align-center">
+						<input type="checkbox" id="priceLowToHigh" name="priceLowToHigh">
+						<label for="priceLowToHigh">Price Low to High</label>
+					</div>
+
+					<div class="align-center">
+						<input type="checkbox" id="rating" name="rating">
+						<label for="rating">Rating</label>
+					</div>
+
+					<div class="align-center">
+						<input type="checkbox" id="favourite" name="favourite">
+						<label for="favourite">Favourite</label>
+					</div>
+				</div>
+
+				<!-- filtering information -->
+				<div class="field half first">
+					<label>Low Price</label>
+					<input type="text" name="lowPrice" id="lowPrice" placeholder="Low Price" />
+				</div>
+
+				<div class="field half">
+					<label>High Price</label>
+					<input type="text" name="highPrice" id="highPrice" placeholder="High Price" />
+				</div>
+
+				<div class="field half first">
+					<label>Start Time</label>
+					<input type="text" name="startTime" id="startTime" placeholder="Start Time" />
+				</div>
+
+				<div class="field half">
+					<label>End Time</label>
+					<input type="text" name="endTime" id="endTime" placeholder="End Time" />
+				</div>
+
+				<div class="field">
+					<label>Minimum Capacity</label>
+					<input type="text" name="capacity" id="capacity" placeholder="Capacity" />
+				</div>
+
+				<!-- search button -->
+				<ul class="actions">
+					<li><input type="submit" value="Send Message" /></li>
+					<li><input class="button special" type="reset" value="Reset" /></li>
 				</ul>
+			</form>
 
-			<br/>
 
 			<div class="table-wrapper">
 				<table>
@@ -90,4 +150,4 @@
 	</section>
 
 
-	</html>
+</html>
