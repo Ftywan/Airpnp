@@ -4,17 +4,20 @@
 <head>
 	<title>Airpnp-Bidding details</title>
 	<meta charset="UTF-8">
-<!--   <meta name="discription" content="Something about pets">
+	<!--   <meta name="discription" content="Something about pets">
 	<title>Login Page</title> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 
 </head>
 <!--comments here-->
+
 <body class="subpage">
 	<header id="header">
 		<div class="inner">
-			<a href="index" class="logo"><font size="+3"><strong>Airpnp</strong></font></a>
+			<a href="index" class="logo">
+				<font size="+3"><strong>Airpnp</strong></font>
+			</a>
 			<nav id="nav">
 				<a href="login">Login</a>
 				<a href="signup">Signup</a>
@@ -27,4 +30,55 @@
 		</div>
 	</header>
 
-	</html>
+	<footer id="footer">
+		<div class="inner">
+			<h3>Take a look</h3>
+			<h2>Your pet may in love with it</h2>
+		</div>
+	</footer>
+
+	<section id="three" class="wrapper align-left">
+		<div class="inner">
+			<h3>Host information</h3>
+			<br />
+			<a>Favourite Host:</a>
+			<br />
+			<a>Host Name:</a>
+			<br />
+			<a>Host Address:</a>
+			<br />
+			<a>Host Capacity:</a>
+			<br />
+			<a>Minimum Bidding:</a>
+			<br />
+
+		</div>
+		<div class="wrapper align-center">
+			<form method="post" action="#">
+				<ul class="actions">
+					<li><input type="submit" value="Add to Wishlist" /></li>
+				</ul>
+			</form>
+		</div>
+
+
+	</section>
+
+	<footer id="footer">
+		<div class="inner">
+			<h3>Place your bidding</h3>
+		</div>
+		<form method="post" action="#">
+			<div class="field half">
+				<label>Place your bidding here:</label>
+				<input type="text" name="bidding" id="bidding" placeholder="Bidding" />
+			</div>
+
+			<ul class="actions">
+				<li><input value="Place bidding" class="button alt" type="submit"></li>
+			</ul>
+
+		</form>
+	</footer>
+
+</html>
