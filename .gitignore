@@ -6,3 +6,5 @@ App/\.DS_Store
 App/views/\.DS_Store
 
 \.DS_Store
+
+airpnp\.code-workspace
