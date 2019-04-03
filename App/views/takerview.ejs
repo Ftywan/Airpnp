@@ -25,32 +25,18 @@
 				<a href="history">My history</a>
 			</nav>
 			<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
 		</div>
 	</header>
 
 	<footer id="footer">
 		<div class="inner">
-			<h3>Select the listing you want to see</h3>
-			<div class="12u$">
-				<!--If using list is too difficult then let the user input the name-->
-				<div class="select-wrapper">
-					<select name="demo-category" id="demo-category">
-						<option value="">- Your Listings -</option>
-						<option value="1">Manufacturing</option>
-						<option value="1">Shipping</option>
-						<option value="1">Administration</option>
-						<option value="1">Human Resources</option>
-					</select>
-				</div>
-			</div>
-
-			<br />
-			<ul class="actions">
-				<li><input value="Confirm" class="button alt" type="submit"></li>
-			</ul>
+			<h3>
+				<font size="+3">Bidding information</font>
+			</h3>
 		</div>
 	</footer>
-	
+
 	<div class="table-wrapper" , style="padding-left:5%; padding-right:5%">
 		<br />
 		<table>
@@ -59,6 +45,115 @@
 					<th>Ranking</th>
 					<th>Price</th>
 					<th>Time of bidding</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Item 1</td>
+					<td>Ante turpis integer aliquet porttitor.</td>
+					<td>29.99</td>
+				</tr>
+				<tr>
+					<td>Item 2</td>
+					<td>Vis ac commodo adipiscing arcu aliquet.</td>
+					<td>19.99</td>
+				</tr>
+				<tr>
+					<td>Item 4</td>
+					<td> Morbi faucibus arcu accumsan lorem.</td>
+					<td>29.99</td>
+				</tr>
+				<tr>
+					<td>Item 8</td>
+					<td>Vitae integer tempus condimentum.</td>
+					<td>19.99</td>
+				</tr>
+				<tr>
+					<td>Item 16</td>
+					<td>Ante turpis integer aliquet porttitor.</td>
+					<td>29.99</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>
+
+</html>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Airpnp-My listings</title>
+	<meta charset="UTF-8">
+	<!--   <meta name="discription" content="Something about pets">
+    <title>Login Page</title> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+
+</head>
+
+<body class="subpage">
+	<header id="header">
+		<div class="inner">
+			<a href="index" class="logo">
+				<font size="+3"><strong>Airpnp</strong></font>
+			</a>
+			<nav id="nav">
+				<a href="login">Login</a>
+				<a href="signup">Signup</a>
+				<a href="listings">My listings</a>
+				<a href="biddings">My biddings</a>
+				<a href="account">My account</a>
+				<a href="history">My history</a>
+			</nav>
+			<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+		</div>
+	</header>
+
+	<footer id="footer">
+		<div class="inner">
+			<h3>
+				<font size="+3">Create a new listing</font>
+			</h3>
+
+			<form action="#" method="post">
+				<div class="field half">
+					<label for="Start date">Start date</label>
+					<input name="startDate" id="startDate" type="text" placeholder="Start date">
+				</div>
+
+				<div class="field half">
+					<label for="End date">End date</label>
+					<input name="endDate" id="endDate" type="text" placeholder="End date">
+				</div>
+
+				<div class="field">
+					<label for="Min bid">Min bid</label>
+					<input name="minBid" id="minBid" type="text" placeholder="Min bid">
+				</div>
+
+				<br />
+				<ul class="actions">
+					<li><input value="Create listing" class="button alt" type="submit"></li>
+				</ul>
+			</form>
+			<br /><br />
+			<h3>
+				<font size="+3">Your active listings</font>
+			</h3>
+		</div>
+	</footer>
+
+	<div class="table-wrapper" , style="padding-left:5%; padding-right: 5%">
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Price</th>
 				</tr>
 			</thead>
 			<tbody>
