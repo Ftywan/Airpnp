@@ -13,6 +13,7 @@ var signupRouter = require('./routes/signup');
 var historyRouter = require('./routes/history');
 var ownerviewRouter = require('./routes/ownerview');
 var takerviewRouter = require('./routes/takerview');
+var wishlistRouter = require('./routes/wishlist');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use('/signup', signupRouter);
 app.use('/history', historyRouter);
 app.use('/ownerview', ownerviewRouter);
 app.use('/takerview', takerviewRouter);
+app.use('/wishlist', wishlistRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
