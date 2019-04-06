@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS BiddingStatus CASCADE;
 
 CREATE TYPE bidding_status AS ENUM(
 	'pending',
-	'succeed',
+	'success',
 	'fail'
 
 );
@@ -24,9 +24,9 @@ create table Users(
 	username	VARCHAR(100),
 	rating		NUMERIC,
 	password	VARCHAR(100) NOT NULL,
-	numPets		INTEGER,
+	numPets		INTEGER DEFAULT 0,
 	location 	VARCHAR(500),
-	cantact_number INTEGER,
+	contact_number DECIMAL(10,0),
 	verification_qn VARCHAR(500),
 	answer 		VARCHAR(500),
 	PRIMARY KEY (username)
@@ -93,26 +93,26 @@ CREATE TABLE Wishlist(
 -- store all the completed services
 create table Accommodated(
 	hostName	VARCHAR(100),
-	petName		VARCHAR(100),
+	--petName		VARCHAR(100),
 	ownerName	VARCHAR(100),
 	startdate	DATE,
 	enddate		DATE,
-	PRIMARY KEY (ownerName, petName, startdate, enddate),
-	FOREIGN KEY (ownerName, petName) REFERENCES Pets(ownerName,petName),
-	FOREIGN KEY (hostName, startdate, enddate) REFERENCES Services(hostName, startdate, enddate)
+	PRIMARY KEY (ownerName, startdate, enddate)
+	--FOREIGN KEY (ownerName, petName) REFERENCES Pets(ownerName,petName)
+	--FOREIGN KEY (hostName, startdate, enddate) REFERENCES Services(hostName, startdate, enddate)
 );
 
 
 -- store the services that are about to happen and the ones that are currently going on
 create table Not_completed_accommodation(
 	hostName	VARCHAR(100),
-	petName		VARCHAR(100),
+	--petName		VARCHAR(100),
 	ownerName	VARCHAR(100),
 	startdate	DATE,
 	enddate		DATE,
-	PRIMARY KEY (ownerName, petName, startdate, enddate),
-	FOREIGN KEY (ownerName, petName) REFERENCES Pets(ownerName,petName),
-	FOREIGN KEY (hostName, startdate, enddate) REFERENCES Services(hostName, startdate, enddate) 
+	PRIMARY KEY (ownerName, startdate, enddate)
+	--FOREIGN KEY (ownerName, petName) REFERENCES Pets(ownerName,petName)
+	--FOREIGN KEY (hostName, startdate, enddate) REFERENCES Services(hostName, startdate, enddate) 
 );
 
 -- to store the capacity of pets
@@ -129,13 +129,13 @@ create table BiddingStatus(
 	ownerName 	VARCHAR(100),
 	hostName	VARCHAR(100),
 	bids		NUMERIC,
-	petName 	VARCHAR(100),
+	--petName 	VARCHAR(100),
 	created_at timestamp DEFAULT current_timestamp,
 	status     bidding_status DEFAULT 'pending',
 	startdate	DATE,
 	enddate		DATE,
-	PRIMARY KEY (ownerName, hostName, bids, petName),
-	FOREIGN KEY (ownerName, petName) REFERENCES Pets(ownerName, petName),
-	FOREIGN KEY (hostName, startdate,enddate) REFERENCES Services(hostName, startdate,enddate)
+	PRIMARY KEY (ownerName, hostName, bids)
+	--FOREIGN KEY (ownerName, petName) REFERENCES Pets(ownerName, petName)
+	--FOREIGN KEY (hostName, startdate,enddate) REFERENCES Services(hostName, startdate,enddate)
 );
 
