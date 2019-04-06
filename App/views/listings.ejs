@@ -35,7 +35,7 @@
 			<h3> Create a new listing </h3>
 
 			<form action="#" method="post">
-				<div class="field half first">
+				<div class="first field half">
 					<label for="Start date">Start date</label>
 					<input name="startDate" id="startDate" type="text" placeholder="Start date">
 				</div>
@@ -78,7 +78,7 @@
 					<% for(var i=0; i<data.length; i++) { %>
 					<tr>
 						<td><%= data[i].minbid%></td>
-						<td>convert(data[i].startdate)</td>
+						<td><%= data[i].startdate%></td>
 						<td><%= data[i].enddate%></td>
 						<td><%= data[i].capacity%></td>
 					</tr>
@@ -86,6 +86,7 @@
 				</tbody>
 			</table>
 		</div>
+	</div>
 </body>
 
 </html>
