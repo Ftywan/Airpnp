@@ -91,51 +91,51 @@ insert into CareTakers (username) values ('Bran');
 
 
 
----Services
+---Services(done)
 insert into Services (hostName, minBid, startdate, enddate, capacity) values ('JonSnow', 920, '4/17/2019', '4/21/2019', 5);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('JonSnow', 497, '5/3/2018', '7/10/2018', 5);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('JonSnow', 681, '12/31/2018', '2/24/2019', 3);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Arya', 956.95, '4/5/2018', '12/16/2018', 2);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Arya', 877.58, '10/24/2018', '11/15/2018', 2);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Ceisei', 214.78, '4/22/2018', '9/13/2018', 2);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Tyrion', 355.96, '8/30/2018', '5/19/2018', 6);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Tyrion', 455.7, '3/17/2019', '2/16/2019', 6);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Tyrion', 910.9, '1/6/2019', '8/1/2018', 4);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Jamie', 286.93, '5/9/2018', '9/30/2018', 1);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Jamie', 565.05, '1/20/2019', '1/14/2019', 10);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Jamie', 596.98, '1/29/2019', '6/25/2018', 3);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Brienne', 777.33, '1/28/2019', '6/9/2018', 2);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Brienne', 153.69, '9/17/2018', '10/27/2018', 1);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Khal', 260.83, '6/14/2018', '10/1/2018', 1);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Theon', 355.37, '4/30/2018', '8/1/2018', 1);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Jorah', 528.38, '10/7/2018', '1/24/2019', 7);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Jorah', 61.14, '4/17/2018', '11/6/2018', 3);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Jorah', 219.14, '12/9/2018', '2/20/2019', 7);
-insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Jorah', 669.57, '4/1/2018', '8/4/2018', 3);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('JonSnow', 497, '5/3/2019', '5/10/2019', 5);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('JonSnow', 681, '5/15/2019', '5/24/2019', 3);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Arya', 956.95, '5/5/2019', '5/16/2019', 2);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Arya', 877.58, '5/24/2019', '5/25/2019', 2);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Ceisei', 214.78, '4/22/2019', '4/25/2019', 2);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Tyrion', 355.96, '5/30/2019', '6/19/2019', 6);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Tyrion', 455.7, '4/17/2019', '4/26/2019', 6);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Tyrion', 910.9, '6/6/2019', '6/19/2019', 4);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Jamie', 286.93, '5/5/2019', '5/30/2019', 1);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Jamie', 565.05, '5/20/2019', '5/24/2019', 10);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Jamie', 596.98, '4/29/2019', '5/1/2019', 3);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Brienne', 777.33, '4/28/2019', '4/30/2019', 2);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Brienne', 153.69, '5/17/2019', '5/27/2019', 1);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Khal', 260.83, '6/14/2019', '6/20/2019', 1);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Theon', 355.37, '4/30/2019', '5/1/2019', 1);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Jorah', 528.38, '5/7/2019', '5/24/2019', 7);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Jorah', 61.14, '4/27/2019', '5/6/2019', 3);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Jorah', 219.14, '5/9/2019', '5/20/2019', 7);
+insert into Services (hostName, minBid, startdate, enddate, capacity) values ('Jorah', 669.57, '4/20/2019', '4/24/2019', 3);
 
 
 
--- Wishlist
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Alice', 'JonSnow', '11/13/2018', '4/28/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Bob', 'JonSnow', '8/22/2018', '6/8/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Catherine', 'JonSnow', '11/18/2018', '7/16/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Catherine', 'JonSnow', '3/31/2019', '8/19/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Daisy', 'Arya', '2/17/2019', '1/22/2019');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Emma', 'Arya', '9/12/2018', '12/25/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Ashley', 'Arya', '2/28/2019', '1/16/2019');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Bob', 'Jamie', '11/8/2018', '12/10/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Linda', 'Jamie', '5/10/2018', '10/15/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Linda', 'Khal', '8/7/2018', '8/22/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Mary', 'Khal', '1/31/2019', '5/13/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Mary', 'Khal', '1/4/2019', '7/13/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Sansa', 'Khal', '4/15/2018', '1/4/2019');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Sansa', 'Jorah', '12/9/2018', '2/21/2019');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Sansa', 'Jorah', '7/15/2018', '3/21/2019');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Emma', 'Jorah', '3/12/2019', '12/25/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Emma', 'Jorah', '2/27/2019', '9/6/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Catherine', 'Theon', '5/1/2018', '6/30/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Bob', 'Theon', '7/11/2018', '12/5/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Bob', 'Theon', '4/12/2018', '9/19/2018');
+-- Wishlist(done)
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Alice', 'JonSnow', '4/17/2019', '4/21/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Bob', 'JonSnow', '4/17/2019', '4/21/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Catherine', 'JonSnow', '5/3/2019', '5/10/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Catherine', 'JonSnow', '5/3/2019', '5/10/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Daisy', 'Arya', '5/5/2019', '5/16/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Emma', 'Arya', '5/5/2019', '5/16/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Ashley', 'Arya', '5/5/2019', '5/16/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Bob', 'Jamie', '5/5/2019', '5/30/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Linda', 'Jamie', '5/5/2019', '5/30/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Linda', 'Khal', '6/14/2019', '6/20/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Mary', 'Khal', '6/14/2019', '6/20/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Mary', 'Khal', '6/14/2019', '6/20/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Sansa', 'Khal', '6/14/2019', '6/20/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Sansa', 'Jorah', '4/27/2019', '5/6/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Sansa', 'Jorah', '4/27/2019', '5/6/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Emma', 'Jorah', '4/27/2019', '5/6/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Emma', 'Jorah', '4/27/2019', '5/6/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Catherine', 'Theon', '4/30/2019', '5/1/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Bob', 'Theon', '4/30/2019', '5/1/2019');
+insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Bob', 'Theon', '4/30/2019', '5/1/2019');
 
 -- Pets
 insert into Pets (petName, petType, ownerName) values ('Alice1', 'A', 'Alice');
@@ -159,54 +159,34 @@ insert into Pets (petName, petType, ownerName) values ('Sansa2', 'Y', 'Sansa');
 insert into Pets (petName, petType, ownerName) values ('Sansa3', 'I', 'Sansa');
 insert into Pets (petName, petType, ownerName) values ('Daenerys1', 'P', 'Daenerys');
 
----accommodated
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('JonSnow', 'Alice1', 'Alice', '12/17/2018', '5/5/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('JonSnow', 'Alice2', 'Alice', '2/18/2019', '9/4/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Arya', 'Alice2', 'Alice', '10/4/2018', '8/22/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Ceisei', 'Bob3', 'Bob', '9/6/2018', '5/25/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Ceisei', 'Bob2', 'Bob', '12/13/2018', '3/7/2019');
+---accommodated(done)
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('JonSnow', 'Alice1', 'Alice', '12/17/2018', '12/31/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('JonSnow', 'Alice2', 'Alice', '2/18/2019', '2/24/2019');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Arya', 'Alice2', 'Alice', '10/4/2018', '14/4/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Ceisei', 'Bob3', 'Bob', '9/6/2018', '9/20/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Ceisei', 'Bob2', 'Bob', '3/1/2019', '3/7/2019');
 insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Tyrion', 'Catherine1', 'Catherine', '4/29/2018', '7/30/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jamie', 'Daisy1', 'Daisy', '11/27/2018', '7/28/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jamie', 'Emma1', 'Emma', '3/12/2019', '11/18/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jamie', 'Emma2', 'Emma', '3/24/2019', '4/13/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jamie', 'Emma3', 'Emma', '7/30/2018', '5/3/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jamie', 'Ashley1', 'Ashley', '11/12/2018', '7/16/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jamie', 'Ashley1', 'Ashley', '5/1/2018', '1/22/2019');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Brienne', 'Linda1', 'Linda', '9/11/2018', '6/3/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Brienne', 'Mary1', 'Mary', '10/13/2018', '4/23/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Khal', 'Mary2', 'Mary', '9/22/2018', '9/8/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Khal', 'Sansa1', 'Sansa', '1/4/2019', '4/24/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Khal', 'Sansa3', 'Sansa', '3/6/2019', '6/11/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Theon', 'Sansa2', 'Sansa', '4/3/2018', '9/28/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jorah', 'Daenerys1', 'Daenerys', '10/4/2018', '6/4/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Bran', 'Daenerys1', 'Daenerys', '7/10/2018', '8/30/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jamie', 'Daisy1', 'Daisy', '11/27/2018', '11/28/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jamie', 'Emma1', 'Emma', '3/12/2018', '3/18/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jamie', 'Emma2', 'Emma', '3/24/2018', '3/27/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jamie', 'Emma3', 'Emma', '7/30/2018', '8/3/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jamie', 'Ashley1', 'Ashley', '11/12/2018', '11/16/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jamie', 'Ashley1', 'Ashley', '5/1/2018', '6/22/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Brienne', 'Linda1', 'Linda', '9/11/2018', '9/15/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Brienne', 'Mary1', 'Mary', '10/13/2018', '10/23/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Khal', 'Mary2', 'Mary', '9/22/2018', '9/23/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Khal', 'Sansa1', 'Sansa', '1/4/2018', '1/24/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Khal', 'Sansa3', 'Sansa', '3/6/2018', '3/11/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Theon', 'Sansa2', 'Sansa', '4/3/2018', '4/28/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jorah', 'Daenerys1', 'Daenerys', '10/4/2018', '10/6/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Bran', 'Daenerys1', 'Daenerys', '7/10/2018', '7/15/2018');
 
 -- not_completed_accommodation
-insert into Not_completed_accommodation (hostName, petName, ownerName, startdate, enddate) values ('JonSnow', 'Alice2', 'Alice', '7/6/2018', '5/12/2018');
-insert into Not_completed_accommodation (hostName, petName, ownerName, startdate, enddate) values ('Arya', 'Bob3', 'Bob', '12/6/2018', '12/1/2018');
-insert into Not_completed_accommodation (hostName, petName, ownerName, startdate, enddate) values ('Ceisei', 'Emma4', 'Emma', '11/5/2018', '11/5/2018');
+insert into Not_completed_accommodation (hostName, petName, ownerName, startdate, enddate) values ('JonSnow', 'Alice2', 'Alice', '7/6/2019', '7/12/2019');
+insert into Not_completed_accommodation (hostName, petName, ownerName, startdate, enddate) values ('Arya', 'Bob3', 'Bob', '12/1/2018', '12/3/2018');
+insert into Not_completed_accommodation (hostName, petName, ownerName, startdate, enddate) values ('Ceisei', 'Emma4', 'Emma', '11/5/2018', '11/7/2018');
 
--- Wishlist
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Alice', 'JonSnow', '11/13/2018', '4/28/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Bob', 'JonSnow', '8/22/2018', '6/8/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Catherine', 'JonSnow', '11/18/2018', '7/16/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Catherine', 'JonSnow', '3/31/2019', '8/19/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Daisy', 'Arya', '2/17/2019', '1/22/2019');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Emma', 'Arya', '9/12/2018', '12/25/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Ashley', 'Arya', '2/28/2019', '1/16/2019');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Bob', 'Jamie', '11/8/2018', '12/10/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Linda', 'Jamie', '5/10/2018', '10/15/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Linda', 'Khal', '8/7/2018', '8/22/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Mary', 'Khal', '1/31/2019', '5/13/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Mary', 'Khal', '1/4/2019', '7/13/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Sansa', 'Khal', '4/15/2018', '1/4/2019');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Sansa', 'Jorah', '12/9/2018', '2/21/2019');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Sansa', 'Jorah', '7/15/2018', '3/21/2019');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Emma', 'Jorah', '3/12/2019', '12/25/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Emma', 'Jorah', '2/27/2019', '9/6/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Catherine', 'Theon', '5/1/2018', '6/30/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Bob', 'Theon', '7/11/2018', '12/5/2018');
-insert into Wishlist (ownerName, hostName, startdate, enddate) values ('Bob', 'Theon', '4/12/2018', '9/19/2018');
+
 
 
 --Bidding Status
