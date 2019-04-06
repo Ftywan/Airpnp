@@ -37,6 +37,9 @@ app.use('/history', historyRouter);
 app.use('/ownerview', ownerviewRouter);
 app.use('/takerview', takerviewRouter);
 app.use('/wishlist', wishlistRouter);
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
