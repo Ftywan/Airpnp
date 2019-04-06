@@ -160,9 +160,8 @@ insert into Pets (petName, petType, ownerName) values ('Sansa3', 'I', 'Sansa');
 insert into Pets (petName, petType, ownerName) values ('Daenerys1', 'P', 'Daenerys');
 
 ---accommodated(done)
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('JonSnow', 'Alice1', 'Alice', '12/17/2018', '12/31/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('JonSnow', 'Alice2', 'Alice', '2/18/2019', '2/24/2019');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Arya', 'Alice2', 'Alice', '10/4/2018', '14/4/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('JonSnow', 'Alice2', 'Alice', '12/17/2018', '12/31/2018');
+insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Arya', 'Alice2', 'Alice', '10/4/2018', '10/14/2018');
 insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Ceisei', 'Bob3', 'Bob', '9/6/2018', '9/20/2018');
 insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Ceisei', 'Bob2', 'Bob', '3/1/2019', '3/7/2019');
 insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Tyrion', 'Catherine1', 'Catherine', '4/29/2018', '7/30/2018');
@@ -174,39 +173,54 @@ insert into Accommodation (hostName, petName, ownerName, startdate, enddate) val
 insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jamie', 'Ashley1', 'Ashley', '5/1/2018', '6/22/2018');
 insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Brienne', 'Linda1', 'Linda', '9/11/2018', '9/15/2018');
 insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Brienne', 'Mary1', 'Mary', '10/13/2018', '10/23/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Khal', 'Mary2', 'Mary', '9/22/2018', '9/23/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Khal', 'Sansa1', 'Sansa', '1/4/2018', '1/24/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Khal', 'Sansa3', 'Sansa', '3/6/2018', '3/11/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Theon', 'Sansa2', 'Sansa', '4/3/2018', '4/28/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jorah', 'Daenerys1', 'Daenerys', '10/4/2018', '10/6/2018');
-insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Bran', 'Daenerys1', 'Daenerys', '7/10/2018', '7/15/2018');
+-- insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Khal', 'Mary2', 'Mary', '9/22/2018', '9/23/2018');
+-- insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Khal', 'Sansa1', 'Sansa', '1/4/2018', '1/24/2018');
+-- insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Khal', 'Sansa3', 'Sansa', '3/6/2018', '3/11/2018');
+-- insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Theon', 'Sansa2', 'Sansa', '4/3/2018', '4/28/2018');
+-- insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Jorah', 'Daenerys1', 'Daenerys', '10/4/2018', '10/6/2018');
+-- insert into Accommodation (hostName, petName, ownerName, startdate, enddate) values ('Bran', 'Daenerys1', 'Daenerys', '7/10/2018', '7/15/2018');
 
 -- not_completed_accommodation
 insert into Not_completed_accommodation (hostName, petName, ownerName, startdate, enddate) values ('JonSnow', 'Alice2', 'Alice', '7/6/2019', '7/12/2019');
-insert into Not_completed_accommodation (hostName, petName, ownerName, startdate, enddate) values ('Arya', 'Bob3', 'Bob', '12/1/2018', '12/3/2018');
-insert into Not_completed_accommodation (hostName, petName, ownerName, startdate, enddate) values ('Ceisei', 'Emma4', 'Emma', '11/5/2018', '11/7/2018');
+insert into Not_completed_accommodation (hostName, petName, ownerName, startdate, enddate) values ('Arya', 'Bob3', 'Bob', '5/1/2019', '5/3/2018');
+insert into Not_completed_accommodation (hostName, petName, ownerName, startdate, enddate) values ('Ceisei', 'Emma4', 'Emma', '5/5/2018', '5/7/2018');
 
 
 
 
 --Bidding Status
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status, startdate, enddate) values ('Alice', 'JonSnow', 714.06, 'Alice2', '5:01', 'fail','7/6/2018', '8/17/2018');
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Bob', 'JonSnow', 699.18, 'Bob3', '19:03', 'success','9/17/2018', '2/4/2019');
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Catherine', 'JonSnow', 529.84, 'Catherine1', 'fail','7:58', '10/1/2018', '11/17/2018');
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Daisy', 'Arya', 85.53, 'Daisy1', '3:18', 'fail','7/17/2018', '5/23/2018');
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Ashley', 'Arya', 308.37, 'Ashley1', '23:34', 'success','4/23/2018', '7/31/2018');
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Mary', 'Jamie', 444.2, 'Mary2', '13:14', 'fail','5/25/2018', '1/23/2019');
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Emma', 'Jamie', 69.78, 'Emma4', '17:02', 'success','11/21/2018', '6/30/2018');
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Bob', 'Jamie', 78.09, 'Bob2', '9:40', 'fail','11/16/2018', '8/18/2018');
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Linda', 'Khal', 197.61, 'Linda1', '1:14', 'success','2/26/2019', '4/4/2018');
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Linda', 'Jorah', 312.27, 'Linda1', '5:05', 'success','2/24/2019', '11/26/2018');
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Emma', 'Jorah', 276.87, 'Emma3', '22:20', 'fail','5/28/2018', '1/24/2019');
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Emma', 'Theon', 856.67, 'Emma2', '13:56', 'fail','9/8/2018', '6/9/2018');
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Sansa', 'Ceisei', 105.77, 'Sansa3', '9:47', 'success','9/29/2018', '8/4/2018');
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Catherine', 'Ceisei', 222.95, 'Catherine2', '4:55', 'fail','8/24/2018', '1/16/2019');
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Ashley', 'Theon', 471.98, 'Ashley1', '11:41', 'fail','8/12/2018', '5/14/2018');
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Ashley', 'Jorah', 676.34, 'Ashley1', '12:50', 'fail','10/13/2018', '10/22/2018');
-insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Daenerys', 'Theon', 195.19, 'Daenerys1', '12:29', 'fail','12/26/2018', '10/1/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Alice', 'JonSnow', 714.06, 'Alice2', '5:01', 'success','12/17/2018', '12/31/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Bob', 'JonSnow', 699.18, 'Bob3', '19:03', 'fail','12/17/2018', '12/31/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Catherine', 'JonSnow', 529.84, 'Catherine1', 'fail','7:58', '12/17/2018', '12/31/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Daisy', 'Arya', 85.53, 'Daisy1', '3:18', 'fail','10/4/2018', '10/14/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Alice', 'Arya', 308.37, 'Alice2', '23:34', 'success','10/4/2018', '10/14/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Mary', 'Jamie', 144.2, 'Mary2', '13:14', 'fail','3/12/2018', '3/18/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Linda', 'Jamie', 97.61, 'Linda1', '1:14', 'fail','3/12/2018', '3/18/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Linda', 'Arya', 300.27, 'Linda1', '5:05', 'fail','10/4/2019', '10/14/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Emma', 'Jamie', 76.87, 'Emma3', '22:20', 'fail','11/12/2018', '11/16/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Emma', 'Brienne', 856.67, 'Emma2', '13:56', 'fail','10/13/2018', '10/23/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Sansa', 'Ceisei', 400.77, 'Sansa3', '9:47', 'fail','9/6/2018', '9/20/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Catherine', 'Ceisei', 322.95, 'Catherine2', '4:55', 'fail','9/6/2018', '9/20/2019');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Ashley', 'Jamie', 271.98, 'Ashley1', '11:41', 'fail','11/27/2018', '11/28/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Ashley', 'Brienne', 676.34, 'Ashley1', '12:50', 'fail','10/13/2018', '10/23/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Daenerys', 'Brienne', 195.19, 'Daenerys1', '12:29', 'fail','10/13/2018', '10/23/2018');
+
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Bob', 'Ceisei', 567.89, 'Bob3', '5:31', 'success','9/6/2018', '9/20/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Bob', 'Ceisei', 378.90, 'Bob2', '6.21', 'success','3/1/2019', '3/7/2019');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Catherine', 'Tyrion', 123.56, 'Catherine1', '19:25', 'success', '4/29/2018', '7/30/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Daisy', 'Jamie', 358.09, 'Daisy1', '1:42', 'success','11/27/2018', '11/28/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Emma', 'Jamie',  257.98, 'Emma1', '18:14', 'success','3/12/2018', '3/18/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Emma', 'Jamie', 145.32, 'Emma2', '19:43' , 'success','3/24/2018', '3/27/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Emma', 'Jamie', 367.81, 'Emma3', '15:32', 'success','7/30/2018', '8/3/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Ashley', 'Jamie', 168.70, 'Ashley1', '21:23', 'success', '11/12/2018', '11/16/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Ashley', 'Jamie', 246.80, 'Ashley1', '21:34', 'success', '5/1/2018', '6/22/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Linda', 'Brienne', 137.42, 'Linda1', '20:32', 'success', '9/11/2018', '9/15/2018');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Mary', 'Brienne', 931.80, 'Mary1', '21:45','success','10/13/2018', '10/23/2018');
+
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Mary', 'JonSnow', 1000, 'Mary1', '21:24', 'pending', '4/17/2019', '4/21/2019');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Linda', 'JonSnow', 1000, 'Linda1', '21:24', 'pending', '4/17/2019', '4/21/2019');
+insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('Ashley', 'JonSnow', 513.21, 'Ashley1', '16:32', 'pending', '5/3/2019', '5/10/2019');
+
 --- 下面的还没写
 ---insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('mkerseyh', 'mshanksterh', 753.35, 'aaa', '4:14', '11/25/2018', '5/27/2018');
 ---insert into BiddingStatus (owerName, hostName, bids, petName, create_at, status,startdate, enddate) values ('ltytcombi', 'sfishbiei', 681.54, 'cheimsi', '18:41', '6/18/2018', '6/11/2018');
