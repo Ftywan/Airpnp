@@ -119,7 +119,7 @@
 				<tr>
 					<td><%= data[i].hostname%></td>
 					<td><%= data[i].minbid%></td>
-					<td>convert(data[i].startdate)</td>
+					<td><%= data[i].startdate%></td>
 					<td><%= data[i].enddate%></td>
 					<td><%= data[i].capacity%></td>
 				</tr>
@@ -128,12 +128,6 @@
 				</table>
 			</div>
 		</div>
-		<script>
-			function convert(str) {
-				var new = str.split(" ", 4).toString().replace(/, /g, " ");
-				return new;
-			}
-		</script>
 </body>
 
 
