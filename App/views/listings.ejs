@@ -64,45 +64,28 @@
 		<h3>
 			<font size="+3">Your active listings</font>
 		</h3>
-	</div>
-	<div class="table-wrapper" , style="padding-left:5%; padding-right: 5%">
-		<table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Price</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Item 1</td>
-					<td>Ante turpis integer aliquet porttitor.</td>
-					<td>29.99</td>
-				</tr>
-				<tr>
-					<td>Item 2</td>
-					<td>Vis ac commodo adipiscing arcu aliquet.</td>
-					<td>19.99</td>
-				</tr>
-				<tr>
-					<td>Item 4</td>
-					<td> Morbi faucibus arcu accumsan lorem.</td>
-					<td>29.99</td>
-				</tr>
-				<tr>
-					<td>Item 8</td>
-					<td>Vitae integer tempus condimentum.</td>
-					<td>19.99</td>
-				</tr>
-				<tr>
-					<td>Item 16</td>
-					<td>Ante turpis integer aliquet porttitor.</td>
-					<td>29.99</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+		<div class="table-wrapper" , style="padding-left: 100px; padding-right: 100px">
+			<table>
+				<thead>
+					<tr>
+						<th scope="col">Minimum Bid</th>
+						<th scope="col">Start Date</th>
+						<th scope="col">End Date</th>
+						<th scope="col">Capacity</th>
+					</tr>
+				</thead>
+				<tbody style: align="left">
+					<% for(var i=0; i<data.length; i++) { %>
+					<tr>
+						<td><%= data[i].minbid%></td>
+						<td>convert(data[i].startdate)</td>
+						<td><%= data[i].enddate%></td>
+						<td><%= data[i].capacity%></td>
+					</tr>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
 </body>
 
 </html>
