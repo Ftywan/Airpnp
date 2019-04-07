@@ -18,9 +18,14 @@ var sql_query = 'INSERT INTO Services VALUES';
 var initial_query = "select * from Services S where S.hostName = 'hi';";
 router.get('/', function (req, res, next) {
   pool.query(initial_query, (err, data) => {
-    res.render('listings', { title: 'My listings', data: data.rows });
+    res.render('listings', { title: 'My listings', data: data.rows});
   });
 });
+// router.get('/:user', function (req, res, next) {
+//   var user = req.params.user;
+//   //res.render('login', { user })
+//   res.send(user);
+// });
 
 router.post('/', function (req, res, next) {
   var startDate = req.body.startDate;
