@@ -16,22 +16,32 @@ const pool = new Pool({
 router.get('/', function (req, res, next) {
   res.render('login', { title: 'Airpnp-Login' });
 });
+// router.get('/:user', function (req, res, next) {
+//   var user = req.params.user;
+//   //res.render('login', { user })
+//   res.send(user);
+// });
 
 
 /* POST login */
 router.post('/', function (req, res, next) {
   const username = req.body.username;
   const password = sha256(req.body.password);
+  var flag = 0;
   var initial_query = "select username, password from users;"
   pool.query(initial_query, (err, data) => {
     for (var i = 0; i < data.rows.length; i++) {
       if (data.rows[i]["username"] == username) {
-        if (data.rows[i]["password"] == password) console.log("logged in as " + username);
+        if (data.rows[i]["password"] == password) {
+          flag = 1;
+          res.redirect('/account');
+        }
       }
     }
+    if (!flag) res.redirect('login');
   });
 
-  res.redirect('/account')
+
 })
 
 module.exports = router;
