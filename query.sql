@@ -42,6 +42,9 @@ select * from Favourite;
 select * from Services
 order by minBid asc;
 
+select * from Services
+order by minBid desc;
+
 select * from Services S left join Users U 
 	on S.hostName=U.username
 order by U.rating
