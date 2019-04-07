@@ -48,22 +48,38 @@
 					<div class="row">
 						<!-- sorting information -->
 						<div class="align-center">
+<<<<<<< HEAD
 							<input type="checkbox" id="priceHighToLow" name="priceHighToLow">
+=======
+							<input type="checkbox" id="priceOrder" name="priceOrder" value="asc">
+>>>>>>> master
 							<label for="priceHighToLow">Price High to Low</label>
 						</div>
 
 						<div class="align-center">
+<<<<<<< HEAD
 							<input type="checkbox" id="priceLowToHigh" name="priceLowToHigh">
+=======
+							<input type="checkbox" id="priceOrder" name="priceOrder" value="desc">
+>>>>>>> master
 							<label for="priceLowToHigh">Price Low to High</label>
 						</div>
 
 						<div class="align-center">
+<<<<<<< HEAD
 							<input type="checkbox" id="rating" name="rating">
+=======
+							<input type="checkbox" id="rating" name="rating" value="checked">
+>>>>>>> master
 							<label for="rating">Rating</label>
 						</div>
 
 						<div class="align-center">
+<<<<<<< HEAD
 							<input type="checkbox" id="favourite" name="favourite">
+=======
+							<input type="checkbox" id="favourite" name="favoutite" value="checked">
+>>>>>>> master
 							<label for="favourite">Favourite</label>
 						</div>
 					</div>
@@ -102,7 +118,10 @@
 				</form>
 				<br><br>
 				<h3>All listings</h3>
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 				<div class="table-wrapper">
 					<table>
 						<thead>
@@ -117,12 +136,20 @@
 						<tbody>
 							<% for(var i=0; i<data.length; i++) { %>
 							<tr>
+<<<<<<< HEAD
 								<td><%= data[i].hostname%></td>
+=======
+								<td><a href= <%= "ownerview?user=" + data[i].hostname + "&start=" + data[i].startdate + "&end=data[i].enddate" %>><%= data[i].hostname%></a></td>
+>>>>>>> master
 								<td><%= data[i].minbid%></td>
 								<td><%= data[i].startdate%></td>
 								<td><%= data[i].enddate%></td>
 								<td><%= data[i].capacity%></td>
 							</tr>
+<<<<<<< HEAD
+=======
+							
+>>>>>>> master
 							<% } %>
 						</tbody>
 					</table>

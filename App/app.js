@@ -15,7 +15,14 @@ var ownerviewRouter = require('./routes/ownerview');
 var takerviewRouter = require('./routes/takerview');
 var wishlistRouter = require('./routes/wishlist');
 
+var flash = require('req-flash');
+var session = require('express-session');
+
 var app = express();
+
+app.use(session({ secret: '123' }));
+app.use(flash());
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

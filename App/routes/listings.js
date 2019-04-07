@@ -8,14 +8,33 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'airpnp',
-  password: 'aaaa990730',
+  password: 'launch',
   port: 5432,
 })
+
+var sql_query = 'INSERT INTO Services VALUES';
+
 /* GET home page. */
-var initial_query = "select * from Services";
+var initial_query = "select * from Services S where S.hostName = 'hi';";
 router.get('/', function (req, res, next) {
   pool.query(initial_query, (err, data) => {
-    res.render('listings', { title: 'My listings', data: data.rows });
+    res.render('listings', { title: 'My listings', data: data.rows});
+  });
+});
+// router.get('/:user', function (req, res, next) {
+//   var user = req.params.user;
+//   //res.render('login', { user })
+//   res.send(user);
+// });
+
+router.post('/', function (req, res, next) {
+  var startDate = req.body.startDate;
+  var endDate = req.body.endDate;
+  var minBid = req.body.minBid;
+
+  var insert_query = sql_query + "('" + "hi" + "','" + minBid + "','" + startDate + "','" + endDate + "','" + 5 + "')";
+  pool.query(insert_query, (err, data) => {
+    res.redirect('/listings')
   });
 });
 

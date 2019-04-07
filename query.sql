@@ -39,8 +39,10 @@ and verification_qn=%s;
 select * from Favourite;
 
 -- Main Page
+"select * from Services order by minBid asc";
+
 select * from Services
-order by minBid asc;
+order by minBid desc;
 
 select * from Services S left join Users U 
 	on S.hostName=U.username
