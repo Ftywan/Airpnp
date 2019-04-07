@@ -39,8 +39,7 @@ and verification_qn=%s;
 select * from Favourite;
 
 -- Main Page
-select * from Services
-order by minBid asc;
+"select * from Services order by minBid asc";
 
 select * from Services
 order by minBid desc;
