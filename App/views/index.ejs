@@ -7,128 +7,191 @@
 	<!--   <meta name="discription" content="Something about pets">
 
 		<title>Login Page</title> -->
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel='stylesheet' href='/stylesheets/style.css' />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel='stylesheet' href='/stylesheets/style.css' />
 
-	</head>
-	<!--comments here-->
+</head>
+<!--comments here-->
 
-	<body class="subpage">
-		<header id="header">
-			<div class="inner">
-				<a href="index" class="logo">
-					<font size="+3"><strong>Airpnp</strong></font>
-				</a>
-				<nav id="nav">
-					<a href="login">Login</a>
-					<a href="signup">Signup</a>
-					<a href="listings">My listings</a>
-					<a href="biddings">My biddings</a>
-					<a href="wishlist">My wishlist</a>
-					<a href="account">My account</a>
-					<a href="history">My history</a>
-				</nav>
-				<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
-			</div>
-		</header>
+<body class="subpage">
+	<header id="header">
+		<div class="inner">
+			<a href="index" class="logo">
+				<font size="+3"><strong>Airpnp</strong></font>
+			</a>
+			<nav id="nav">
+				<a href="login">Login</a>
+				<a href="signup">Signup</a>
+				<a href="listings">My listings</a>
+				<a href="biddings">My biddings</a>
+				<a href="wishlist">My wishlist</a>
+				<a href="account">My account</a>
+				<a href="history">My history</a>
+			</nav>
+			<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+		</div>
+	</header>
 
-		<footer id="footer">
-			<div class="inner">
-				<h3>Find out a second home for your pet</h3>
-				<h2>when you are on leave</h2>
-			</div>
-		</footer>
+	<footer id="footer">
+		<div class="inner">
+			<h3>Find out a second home for your pet</h3>
+			<h2>when you are on leave</h2>
+		</div>
+	</footer>
 
-		<section id="three">
-			<div class="inner">
-				<br><br>
-				<!-- filtering information -->
-				<h3>Filter</h3>
-				<form method="post" action="#">
-					<div class="row">
-						<!-- sorting information -->
-						<div class="align-center">
-							<input type="checkbox" id="priceOrder" name="priceOrder" value="asc">
-							<label for="priceHighToLow">Price High to Low</label>
-						</div>
-
-						<div class="align-center">
-							<input type="checkbox" id="priceOrder" name="priceOrder" value="desc">
-							<label for="priceLowToHigh">Price Low to High</label>
-						</div>
-
-						<div class="align-center">
-							<input type="checkbox" id="rating" name="rating" value="checked">
-							<label for="rating">Rating</label>
-						</div>
-
-						<div class="align-center">
-							<input type="checkbox" id="favourite" name="favoutite" value="checked">
-							<label for="favourite">Favourite</label>
-						</div>
+	<section id="three">
+		<div class="inner">
+			<br><br>
+			<!-- filtering information -->
+			<h3>Filter</h3>
+			<form method="post" action="#">
+				<div class="row">
+					<!-- sorting information -->
+					<div class="align-center">
+						<input type="checkbox" id="priceOrder" name="priceOrder" value="asc">
+						<label for="priceHighToLow">Price High to Low</label>
 					</div>
 
-					<!-- filtering information -->
-					<div class="field half first">
-						<label>Low Price</label>
-						<input type="text" name="lowPrice" id="lowPrice" placeholder="Low Price" />
+					<div class="align-center">
+						<input type="checkbox" id="priceOrder" name="priceOrder" value="desc">
+						<label for="priceLowToHigh">Price Low to High</label>
 					</div>
 
-					<div class="field half">
-						<label>High Price</label>
-						<input type="text" name="highPrice" id="highPrice" placeholder="High Price" />
+					<div class="align-center">
+						<input type="checkbox" id="rating" name="rating" value="checked">
+						<label for="rating">Rating</label>
 					</div>
 
-					<div class="field half first">
-						<label>Start Time</label>
-						<input type="text" name="startTime" id="startTime" placeholder="Start Time" />
+					<div class="align-center">
+						<input type="checkbox" id="favourite" name="favoutite" value="checked">
+						<label for="favourite">Favourite</label>
 					</div>
-
-					<div class="field half">
-						<label>End Time</label>
-						<input type="text" name="endTime" id="endTime" placeholder="End Time" />
-					</div>
-
-					<div class="field">
-						<label>Minimum Capacity</label>
-						<input type="text" name="capacity" id="capacity" placeholder="Capacity" />
-					</div>
-
-					<!-- search button -->
-					<ul class="actions">
-						<li><input type="submit" value="Send Message"/></li>
-						<li><input class="button special" type="reset" value="Reset" /></li>
-					</ul>
-				</form>
-				<br><br>
-				<h3>All listings</h3>
-				<div class="table-wrapper">
-					<table>
-						<thead>
-							<tr>
-								<th scope="col">Host Name</th>
-								<th scope="col">Minimum Bid</th>
-								<th scope="col">Start Date</th>
-								<th scope="col">End Date</th>
-								<th scope="col">Capacity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<% for(var i=0; i<data.length; i++) { %>
-							<tr>
-								<td><a href= <%= "ownerview?user=" + data[i].hostname + "&start=" + data[i].startdate + "&end=data[i].enddate" %>><%= data[i].hostname%></a></td>
-								<td><%= data[i].minbid%></td>
-								<td><%= data[i].startdate%></td>
-								<td><%= data[i].enddate%></td>
-								<td><%= data[i].capacity%></td>
-							</tr>
-							
-							<% } %>
-						</tbody>
-					</table>
 				</div>
+
+				<!-- filtering information -->
+				<div class="field half first">
+					<label>Low Price</label>
+					<input type="text" name="lowPrice" id="lowPrice" placeholder="Low Price" />
+				</div>
+
+				<div class="field half">
+					<label>High Price</label>
+					<input type="text" name="highPrice" id="highPrice" placeholder="High Price" />
+				</div>
+
+				<div class="field half first">
+					<label>Start Time</label>
+					<input type="text" name="startTime" id="startTime" placeholder="Start Time" />
+				</div>
+
+				<div class="field half">
+					<label>End Time</label>
+					<input type="text" name="endTime" id="endTime" placeholder="End Time" />
+				</div>
+
+				<div class="field">
+					<label>Minimum Capacity</label>
+					<input type="text" name="capacity" id="capacity" placeholder="Capacity" />
+				</div>
+
+				<!-- search button -->
+				<ul class="actions">
+					<li><input type="submit" value="Send Message" /></li>
+					<li><input class="button special" type="reset" value="Reset" /></li>
+				</ul>
+			</form>
+			<br><br>
+			<h3>All listings</h3>
+			<div class="table-wrapper">
+					<ul class="actions">
+							<li><input type="submit" value="Send Message" onclick="sortTable(1)"/></li>
+						</ul>
+				<table id="listings">
+					<thead>
+						<tr>
+							<th onclick="sortTable(0)" scope="col">Host Name</th>
+							<th scope="col">Minimum Bid</th>
+							<th scope="col">Start Date</th>
+							<th scope="col">End Date</th>
+							<th scope="col">Capacity</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% for(var i=0; i<data.length; i++) { %>
+						<tr>
+							<td><a
+									href=<%= "ownerview?user=" + data[i].hostname + "&start=" + data[i].startdate + "&end=data[i].enddate" %>><%= data[i].hostname%></a>
+							</td>
+							<td><%= data[i].minbid%></td>
+							<td><%= data[i].startdate%></td>
+							<td><%= data[i].enddate%></td>
+							<td><%= data[i].capacity%></td>
+						</tr>
+
+						<% } %>
+					</tbody>
+				</table>
+				<script>
+					function sortTable(n) {
+						var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+						table = document.getElementById("listings");
+						switching = true;
+						//Set the sorting direction to ascending:
+						dir = "asc";
+						/*Make a loop that will continue until
+						no switching has been done:*/
+						while (switching) {
+							//start by saying: no switching is done:
+							switching = false;
+							rows = table.rows;
+							/*Loop through all table rows (except the
+							first, which contains table headers):*/
+							for (i = 1; i < (rows.length - 1); i++) {
+								//start by saying there should be no switching:
+								shouldSwitch = false;
+								/*Get the two elements you want to compare,
+								one from current row and one from the next:*/
+								x = rows[i].getElementsByTagName("TD")[n];
+								y = rows[i + 1].getElementsByTagName("TD")[n];
+								/*check if the two rows should switch place,
+								based on the direction, asc or desc:*/
+								if (dir == "asc") {
+									if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+										//if so, mark as a switch and break the loop:
+										shouldSwitch = true;
+										break;
+									}
+								} else if (dir == "desc") {
+									if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+										//if so, mark as a switch and break the loop:
+										shouldSwitch = true;
+										break;
+									}
+								}
+							}
+							if (shouldSwitch) {
+								/*If a switch has been marked, make the switch
+								and mark that a switch has been done:*/
+								rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+								switching = true;
+								//Each time a switch is done, increase this count by 1:
+								switchcount++;
+							} else {
+								/*If no switching has been done AND the direction is "asc",
+								set the direction to "desc" and run the while loop again.*/
+								if (switchcount == 0 && dir == "asc") {
+									dir = "desc";
+									switching = true;
+								}
+							}
+						}
+					}
+				</script>
+			
 			</div>
-		</body>
+		</div>
+	</section>
+	
+</body>
 
-
-		</html>
+</html>
