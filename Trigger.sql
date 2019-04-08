@@ -34,7 +34,7 @@ RETURNS TRIGGER AS $$
 DECLARE
 		count integer;
 BEGIN 
-		SELECT COUNT(*) INTO count FROM Services s where s.startdate <= NEW.startdate and s.enddate >= NEW.enddate 
+		SELECT COUNT(*) INTO count FROM Services s where NEW.hostName = s.hostName and s.startdate = NEW.startdate and s.enddate = NEW.enddate 
 		and NEW.bids < s.minBid;
 		IF count > 0 THEN 
 				RAISE EXCEPTION 'This bid is too little to be made.';
