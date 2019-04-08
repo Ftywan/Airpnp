@@ -11,7 +11,7 @@ DECLARE
 		count integer;
 BEGIN
 		SELECT COUNT(*) INTO count FROM Not_completed_accommodation n where n.ownerName = NEW.ownerName 
-		 and ((n.startdate <= NEW.startdate and n.enddate >= NEW.enddate) or (n.startdate < NEW.enddate and NEW.enddate < n.enddate) or (NEW.startdate > n.startdate and NEW.startdate < n.enddate));
+		 and ((n.startdate <= NEW.startdate and n.enddate >= NEW.enddate) or (n.startdate < NEW.enddate and NEW.enddate <= n.enddate) or (NEW.startdate > n.startdate and NEW.startdate <= n.enddate));
 		If count > 0 THEN
 				RAISE EXCEPTION 'This service is confirmed. No further bidding on this service is allowed.';
 				RETURN NULL;
@@ -34,7 +34,7 @@ RETURNS TRIGGER AS $$
 DECLARE
 		count integer;
 BEGIN 
-		SELECT COUNT(*) INTO count FROM Services s where s.startdate <= NEW.startdate and s.enddate >= NEW.enddate 
+		SELECT COUNT(*) INTO count FROM Services s where NEW.hostName = s.hostName and s.startdate = NEW.startdate and s.enddate = NEW.enddate 
 		and NEW.bids < s.minBid;
 		IF count > 0 THEN 
 				RAISE EXCEPTION 'This bid is too little to be made.';
