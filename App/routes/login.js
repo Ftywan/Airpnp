@@ -12,7 +12,7 @@ const pool = new Pool({
   port: 5432,
 })
 
-var check_login_query = "select username from users where location = 'logged in again';";
+var check_login_query = "select username from login";
 /* GET home page. */
 router.get('/', function (req, res, next) {
   pool.query(check_login_query, (err, result) => {
@@ -33,7 +33,7 @@ router.post('/', function (req, res, next) {
   const password = sha256(req.body.password);
   var flag = 0;
   var initial_query = "select username, password, location from users;"
-  var set_login_query = "update users set location = 'logged in again' where username = '" + username + "';";
+  var set_login_query = "insert into login (username) values (" + username + ");"
   console.log(set_login_query);
   pool.query(initial_query, (err, data) => {
     for (var i = 0; i < data.rows.length; i++) {
@@ -41,7 +41,7 @@ router.post('/', function (req, res, next) {
         if (data.rows[i]["password"] == password) {
           flag = 1;
           pool.query(set_login_query, (err, data) => {
-            res.redirect("/account");
+            res.redirect("/login");
           });
           console.log(data.rows[i]["location"]);
         }
