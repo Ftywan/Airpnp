@@ -18,6 +18,10 @@
 				<font size="+3"><strong>Airpnp</strong></font>
 			</a>
 			<nav id="nav">
+				<% if (data.length) {%>
+				<!--if no one logged in, do not display-->
+				<a>Logged in as: <%= data[0].username%></a>
+				<% } %>
 				<a href="login">Login</a>
 				<a href="signup">Signup</a>
 				<a href="listings">My listings</a>
@@ -41,45 +45,24 @@
 		<table>
 			<thead>
 				<tr>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Price</th>
+					<th scope="col">Host Username</th>
+					<th scope="col">Start Date</th>
+					<th scope="col">End Date</th>
+					<th scope="col">Stutus</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody style: align="left">
+				<% for(var i=0; i<data.length; i++) { %>
 				<tr>
-					<td>Item 1</td>
-					<td>Ante turpis integer aliquet porttitor.</td>
-					<td>29.99</td>
+					<td><%= data[i].hostname%></td>
+					<td><%= data[i].startdate%></td>
+					<td><%= data[i].enddate%></td>
+					<td><%= data[i].status%></td>
 				</tr>
-				<tr>
-					<td>Item 2</td>
-					<td>Vis ac commodo adipiscing arcu aliquet.</td>
-					<td>19.99</td>
-				</tr>
-				<tr>
-					<td>Item 3</td>
-					<td> Morbi faucibus arcu accumsan lorem.</td>
-					<td>29.99</td>
-				</tr>
-				<tr>
-					<td>Item 4</td>
-					<td>Vitae integer tempus condimentum.</td>
-					<td>19.99</td>
-				</tr>
-				<tr>
-					<td>Item 5</td>
-					<td>Ante turpis integer aliquet porttitor.</td>
-					<td>29.99</td>
-				</tr>
+				<% } %>
 			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="2"></td>
-					<td>100.00</td>
-				</tr>
-			</tfoot>
 		</table>
 	</div>
+</body>
 
 </html>
