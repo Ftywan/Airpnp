@@ -35,6 +35,11 @@
 			<h3>Find out a second home for your pet</h3>
 			<h2>when you are on leave</h2>
 		</div>
+		<form method="POST" action="#"><input type="text" id='query'></form>
+		
+		<script>	
+		document.getElementById("query").value = getQuery();
+		</script>
 	</footer>
 
 	<section id="three">
@@ -111,10 +116,10 @@
 						<% } %>
 					</tbody>
 				</table>
+
 			</div>
 		</div>
 	</section>
-
 </body>
 
 </html>

@@ -81,17 +81,17 @@ function priceAddress() {
 
 
     var url = 'index?filter=price&low=' + low + '&high=' + high;
-    if(low == '' || high == '') {
+    if (low == '' || high == '') {
         alert("Please input value");
         return 0;
     }
 
-    else if(low > high) {
+    else if (low > high) {
         alert('Input invalid!');
         return 0;
     }
     else {
-        return location.href=url;
+        return location.href = url;
     }
 }
 
@@ -101,17 +101,17 @@ function dateAddress() {
 
 
     var url = 'index?filter=time&start=' + low + '&end=' + high;
-    if(low == '' || high == '') {
+    if (low == '' || high == '') {
         alert("Please input value");
         return 0;
     }
 
-    else if(new Date(low) > new Date(high)) {
+    else if (new Date(low) > new Date(high)) {
         alert('Input invalid!');
         return 0;
     }
     else {
-        return location.href=url;
+        return location.href = url;
     }
 }
 
@@ -120,20 +120,32 @@ function capacityAddress() {
 
 
     var url = 'index?filter=capacity&capacity=' + capacity;
-    if(capacity == '') {
+    if (capacity == '') {
         alert("Please input value");
         return 0;
     }
 
     else {
-        return location.href=url;
+        return location.href = url;
     }
 }
 
 function dateStartAddress() {
-    return location.href='index?filter=sort&value=start';
+    return location.href = 'index?filter=sort&value=start';
 }
 
 function dateEndAddress() {
-    return location.href='index?filter=sort&value=end';
+    return location.href = 'index?filter=sort&value=end';
+}
+
+
+// parsing function
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) { return pair[1]; }
+    }
+    return (false);
 }
