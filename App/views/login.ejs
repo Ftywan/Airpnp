@@ -4,20 +4,27 @@
 <head>
 	<title>Airpnp-Login</title>
 	<meta charset="UTF-8">
-<!--   <meta name="discription" content="Something about pets">
+	<!--   <meta name="discription" content="Something about pets">
 	<title>Login Page</title> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 
 </head>
 <!--comments here-->
+
 <body class="subpage">
 
 	<!-- header -->
 	<header id="header">
 		<div class="inner">
-			<a href="index" class="logo"><font size="+3"><strong>Airpnp</strong></font></a>
+			<a href="index" class="logo">
+				<font size="+3"><strong>Airpnp</strong></font>
+			</a>
 			<nav id="nav">
+				<% if (result.length) {%> <!--if no one logged in, do not display-->
+				<a><%= result[0].username%></a>
+				<% } %>
+				<button id="logout" class="button alt">Log out</button>
 				<a href="login">Login</a>
 				<a href="signup">Signup</a>
 				<a href="listings">My listings</a>
@@ -37,32 +44,32 @@
 
 			<h3>Log into your account</h3>
 
-			<form action="/listings" method="POST">
+			<form action="#" method="post">
 
-				<br/>
+				<br />
 
 				<div class="field half">
 					<label for="username">Username</label>
 					<input name="username" id="username" type="text" placeholder="Username">
 				</div>
 
-				<br/>
+				<br />
 
 				<div class="field half">
 					<label for="password">Password</label>
 					<input name="password" id="password" type="text" placeholder="Password">
 				</div>
 
-				<br/>
-				<br/>
-				<br/>
+				<br />
+				<br />
+				<br />
 
 				<ul class="actions">
 					<li><input value="Login" class="button alt" type="submit"></li>
 				</ul>
 			</form>
 		</div>
-		<br/><br/><br/><br/>
+		<br /><br /><br /><br />
 	</footer>
 
-	</html>
+</html>
