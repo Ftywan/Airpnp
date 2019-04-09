@@ -1,8 +1,8 @@
 -- https://stackoverflow.com/questions/12662534/how-to-filter-a-mysql-database-with-user-input-on-a-website-and-then-spit-the-fi
 
 -- login page
-select 1 from Users U
-where U.username=%s;
+select * from Login L;
+
 
 -- sign up page (without data)
 insert into Users
