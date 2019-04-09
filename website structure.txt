@@ -88,3 +88,17 @@ possible further functions:
 1. change to numeric
 2. fix time domain and caoacity for single post
 3. search for how to delete comflict 
+
+
+update
+login: alart box when wrong password and username, pool query to login relation in database, every other pages get login status
+account: deal with multiple query in one page ALT: divert to multiple pages
+index: searching and 美化
+signip: auto login after sign up, can do alaet box
+listing and bidding: get username form login relation from database
+my listing jumps to ownerview, my bidding jumps to takerview
+wishlist: only need username
+takerview need edit
+
+add logout button, display username in header
+// login in db: this relation should have only one record, clear when log out, ip address to be superkey in future
