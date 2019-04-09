@@ -23,6 +23,7 @@ where username=%s;
 
 -- when an owner adds his pet
 insert into Pets
+values (petName, petType, ownerName...)
 where ownerName=%s; 
 
 update Users
@@ -39,7 +40,8 @@ and verification_qn=%s;
 select * from Favourite;
 
 -- Main Page
-"select * from Services order by minBid asc";
+select * from Services
+order by minBid asc;
 
 select * from Services
 order by minBid desc;
@@ -55,16 +57,14 @@ where S.hostName in(
 	from Favourite
 	);
 
+-- select posts with time availability covers the required time slot
 select * from Services S
-where S.startdate=%s
-and S.enddate=%s;
+where S.startdate<=%s
+and S.enddate>=%s;
 
+-- select greater capacity
 select * from Services S
-where S.num=%s;
-
-select * from Services S
-where S.minBid=%s -- lowPrice
-and S.mindBid=%s; --highPrice
+where S.capacity>=%s;
 
 -- my listing
 select * from Services S
@@ -77,67 +77,59 @@ values (input1,input2,input3....);
 select * from BiddingStatus
 where status='succeed';
 
-select * from Accommodated A
-where A.hostName=%s; --input name 
+-- all the accommodation that he has provided
+select * from Accommodation A
+where A.hostName=%s; --input name
 
-select * from Not_completed_accommodation 
-where hostName=%s;
+-- completed service
+select * from Accommodation A
+where A.hostName=%s
+and A.status='completed';
 
--- update status in biddingHistory
+select * from Accommodation A
+where A.hostName=%s
+and A.status='sending';
+
+-- update status for the winning bidder
 update BiddingStatus
-set status='succeed'
+set status='success'
 where ownerName=%s 
 and hostName=%s
 and startdate=%s
-and enddate=%s;
+and enddate=%s
+and status='pending';
 
--- delete other biddings
+-- update other biddings status
 update BiddingStatus
 set status='fail'
 where hostName=%s
 and hostName<>%s
 and startdate=%s
-and enddate=%s;
+and enddate=%s
+and status='pending';
 
 -- delete posts
-delete from Services
-where hostName=%s
-and startdate=%s
-and enddate=%s;
-
-
+-- delete from Services
+-- where hostName=%s
+-- and startdate=%s
+-- and enddate=%s;
+-- 
+-- 
 -- cancel other biddings 
-delete from BiddingStatus 
-where ownerName=%s
-and hostName<>%s -- bidding winner's name
-and petName in 
-	(select petName from Pets where ownerName=%s)
-and status='pending'
-;
+-- delete from BiddingStatus 
+-- where ownerName=%s
+-- and hostName<>%s -- bidding winner's name
+-- and petName in 
+-- 	(select petName from Pets where ownerName=%s)
+-- and status='pending'
+-- ;
 
--- insert into not_completed_accommodation
-insert into not_completed_accommodation
-values (input1, input2, input3...);
 
 -- when payment is made
-delete from Not_completed_accommodation
-where hostName=%s
-and petName=%s
-and ownername=%s
-and startdate=%s
-and enddate=%s;
+update Accommodation A
+set status='completed'
+and id=%s;
 
-update Accommodated A
-where hostName=%s
-and petName=%s
-and ownername=%s
-and startdate=%s
-and enddate=%s;
-
-update Pets
-set status='home'
-where ownerName=%s
-and petName=%s;
 
 -- pet owner view
 --1. the overall view with all the services displayed.
@@ -203,12 +195,9 @@ where S.hostName=%s;
 select username from Users where username=%s;
 
 -- select all bidders with their information
-select distinct ownername, bids, rating 
-from Not_completed_accommodation N left join Users U 
-	on N.hostName=U.username
-where N.hostName=%s
-and N.startdate=%s
-and enddate=%s;
+select BS.ownername, bids, rating 
+from BiddingStatus BS left join Users U on BS.hostName=U.username
+where BS.id=%s;
 
 
 

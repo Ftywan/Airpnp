@@ -1,5 +1,5 @@
 function myfunction() {
-  alert("Hello! I am an alert box!");
+    alert("Hello! I am an alert box!");
 }
 
 function sortTable(n) {
@@ -73,4 +73,67 @@ function sortTable(n) {
             }
         }
     }
+}
+
+function priceAddress() {
+    var low = document.getElementById("lowPrice").value;
+    var high = document.getElementById("highPrice").value;
+
+
+    var url = 'index?filter=price&low=' + low + '&high=' + high;
+    if(low == '' || high == '') {
+        alert("Please input value");
+        return 0;
+    }
+
+    else if(low > high) {
+        alert('Input invalid!');
+        return 0;
+    }
+    else {
+        return location.href=url;
+    }
+}
+
+function dateAddress() {
+    var low = document.getElementById("startTime").value;
+    var high = document.getElementById("endTime").value;
+
+
+    var url = 'index?filter=time&start=' + low + '&end=' + high;
+    if(low == '' || high == '') {
+        alert("Please input value");
+        return 0;
+    }
+
+    else if(new Date(low) > new Date(high)) {
+        alert('Input invalid!');
+        return 0;
+    }
+    else {
+        return location.href=url;
+    }
+}
+
+function capacityAddress() {
+    var capacity = document.getElementById("capacity").value;
+
+
+    var url = 'index?filter=capacity&capacity=' + capacity;
+    if(capacity == '') {
+        alert("Please input value");
+        return 0;
+    }
+
+    else {
+        return location.href=url;
+    }
+}
+
+function dateStartAddress() {
+    return location.href='index?filter=sort&value=start';
+}
+
+function dateEndAddress() {
+    return location.href='index?filter=sort&value=end';
 }
