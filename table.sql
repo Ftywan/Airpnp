@@ -1,6 +1,6 @@
 DROP TYPE IF EXISTS bidding_status CASCADE;
 DROP TYPE IF EXISTS service_status CASCADE;
-DROP TYPE IF EXISTS requirement_types CASCADE;
+DROP TYPE IF EXISTS bonus_types CASCADE;
 DROP TYPE IF EXISTS accommodation_status CASCADE;
 
 DROP TABLE IF EXISTS Users CASCADE;
@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS Wishlist CASCADE;
 DROP TABLE IF EXISTS Accommodation CASCADE;
 DROP TABLE IF EXISTS Services CASCADE;
 DROP TABLE IF EXISTS BiddingStatus CASCADE;
-DROP TABLE IF EXISTS SpecialRequirements CASCADE;
+DROP TABLE IF EXISTS SpecialBonus CASCADE;
 DROP TABLE IF EXISTS Comment CASCADE;
 DROP TABLE IF EXISTS Login CASCADE;
 DROP TABLE IF EXISTS Area CASCADE;
@@ -175,6 +175,7 @@ create table Accommodation(
 ---to store the all the valid biddding history with status shown as pending, fail, success.
 create table BiddingStatus(
 	id 			SERIAL,
+	bids		NUMERIC,
 	ownerName 	VARCHAR(100),
 	created_at  timestamp DEFAULT current_timestamp,
 	status      bidding_status DEFAULT 'pending',
