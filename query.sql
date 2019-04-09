@@ -186,24 +186,12 @@ select * from Wishlist;
 -- list of bidders
 select ownerName, bids from BiddingStatus
 
--- sorting algo:
+-- sorting algo, used when caretaker use our algo to select the winning bidder
 select ownerName from BiddingStatus
-where hostName=%s
-and ownerName=%s
-and status='pending'
-and startdate=input3
-and enddate=%s;
-
-with Num as 
-	(select ownerName, count(petName) as petCount
-	 from BidingStatus
-	 group by ownerName, bids
-	 having hostName=%s
-	)
-select (Bidding BS left join Num N on BS.ownerName=N.ownerName) 
-		left join Users U on BS.ownerName=U.userName
-order by bids desc, petCount, U.rating desc, BS.created_at
+from BiddingStatus BS left join Users U on BS.ownerName=U.username
+order by BS.bids desc, U.numPets, U.rating desc, BS.created_at desc -- we are changing date data type???
 limit 1;
+
 
 -- care taker view:
 -- time domain
