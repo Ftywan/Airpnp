@@ -33,16 +33,18 @@ router.post('/', function (req, res, next) {
   const username = req.body.username;
   const password = sha256(req.body.password);
   var flag = 0;
-  var initial_query = "select username, password, location from users;"
+  var initial_query = "select username, password from users;"
   var set_login_query = "insert into login (username) values ('" + username + "');"
   pool.query(initial_query, (err, data) => {
-    for (var i = 0; i < data.rows.length; i++) {
-      if (data.rows[i]["username"] == username) {
-        if (data.rows[i]["password"] == password) {
-          flag = 1;
-          pool.query(set_login_query, (err, data) => {
-            res.redirect("/login");
-          });
+    if (data.rows.length) {
+      for (var i = 0; i < data.rows.length; i++) {
+        if (data.rows[i]["username"] == username) {
+          if (data.rows[i]["password"] == password) {
+            flag = 1;
+            pool.query(set_login_query, (err, data) => {
+              res.redirect("/login");
+            });
+          }
         }
       }
     }
