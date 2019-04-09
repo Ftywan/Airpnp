@@ -21,10 +21,10 @@
 				<font size="+3"><strong>Airpnp</strong></font>
 			</a>
 			<nav id="nav">
-				<% if (result.length) {%> <!--if no one logged in, do not display-->
-				<a><%= result[0].username%></a>
+				<% if (result.length) {%>
+				<!--if no one logged in, do not display-->
+				<a>Logged in as: <%= result[0].username%></a>
 				<% } %>
-				<button id="logout" class="button alt">Log out</button>
 				<a href="login">Login</a>
 				<a href="signup">Signup</a>
 				<a href="listings">My listings</a>

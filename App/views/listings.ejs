@@ -18,6 +18,10 @@
 				<font size="+3"><strong>Airpnp</strong></font>
 			</a>
 			<nav id="nav">
+				<% if (data.length) {%>
+				<!--if no one logged in, do not display-->
+				<a>Logged in as: <%= data[0].username%></a>
+				<% } %>
 				<a href="login">Login</a>
 				<a href="signup">Signup</a>
 				<a href="listings">My listings</a>
@@ -45,9 +49,14 @@
 					<input name="endDate" id="endDate" type="text" placeholder="End date">
 				</div>
 
-				<div class="field">
+				<div class="first field half">
 					<label for="Min bid">Min bid</label>
 					<input name="minBid" id="minBid" type="text" placeholder="Min bid">
+				</div>
+
+				<div class="field half">
+					<label for="Capacity">Capacity</label>
+					<input name="capacity" id="capacity" type="text" placeholder="Capacity of your home">
 				</div>
 
 				<br />
@@ -59,7 +68,7 @@
 	</footer>
 
 	<br><br>
-
+	<!-- Show listings here -->
 	<div class="wrapper align-center">
 		<h3>
 			<font size="+3">Your active listings</font>

@@ -12,13 +12,22 @@ const pool = new Pool({
   port: 5432,
 })
 
-var sql_query = 'INSERT INTO Services VALUES';
+var check_login_query = "select username from login";
+var become_caretaker_query = "INSERT INTO caretakers VALUES ('";  
+// Auto become a caretaker upon creating a listing
+var create_listing_query = 'INSERT INTO Services VALUES';
+var initial_query = "select *, username from Services S, login where S.hostName = username;";
+var username = '';
 
 /* GET home page. */
-var initial_query = "select * from Services S where S.hostName = 'hi';";
 router.get('/', function (req, res, next) {
-  pool.query(initial_query, (err, data) => {
-    res.render('listings', { title: 'My listings', data: data.rows});
+  pool.query(check_login_query, (err, result) => { // for the use of creating listings
+    pool.query(initial_query, (err, data) => {
+      if (result.rows.length) {
+        username = result.rows[0]["username"];
+      }
+      res.render('listings', { title: 'My listings', data: data.rows });
+    });
   });
 });
 // router.get('/:user', function (req, res, next) {
@@ -31,9 +40,11 @@ router.post('/', function (req, res, next) {
   var startDate = req.body.startDate;
   var endDate = req.body.endDate;
   var minBid = req.body.minBid;
+  var capacity = req.body.capacity;
 
-  var insert_query = sql_query + "('" + "hi" + "','" + minBid + "','" + startDate + "','" + endDate + "','" + 5 + "')";
+  var insert_query = become_caretaker_query + username + "');" + create_listing_query + "('" + username + "'," + minBid + ",'" + startDate + "','" + endDate + "'," + capacity + ")";
   pool.query(insert_query, (err, data) => {
+    console.log(insert_query);
     res.redirect('/listings')
   });
 });
