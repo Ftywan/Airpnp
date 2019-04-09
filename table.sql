@@ -32,7 +32,7 @@ CREATE TYPE service_status AS ENUM(
 );
 
 
-CREATE TYPE requirement_types AS ENUM(
+CREATE TYPE bonus_types AS ENUM(
 	'walk',
 	'shower',
 	'beauty'
@@ -45,7 +45,7 @@ CREATE TYPE accommodation_status AS ENUM(
 
 
 create table Users(
-	username	VARCHAR(100) NOT NULL,
+	username	VARCHAR(100),
 	rating		NUMERIC DEFAULT 10,
 	password	VARCHAR(100) NOT NULL,
 	numPets		INTEGER DEFAULT 0,
@@ -59,13 +59,13 @@ create table Users(
 create table Login(
 	username 	VARCHAR(100),
 	PRIMARY KEY (username),
-	FOREIGN KEY (username) REFERENCES Users(username)
+	FOREIGN KEY (username) REFERENCES Users(username) ON DELETE CASCADE
 );
 
 
 CREATE TABLE Area(
-	username	VARCHAR(100) NOT NULL,
-	areaName	VARCHAR(100) NOT NULL,
+	username	VARCHAR(100),
+	areaName	VARCHAR(100),
 	PRIMARY KEY (username, areaName),
 	FOREIGN KEY (username) REFERENCES Users(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -106,12 +106,12 @@ CREATE TABLE Favorite(
 
 -- to store the availability of careTakers
 create table Services(
-	id			INTEGER NOT NULL,
+	id			SERIAL,
 	hostName 	VARCHAR(100),
 	minBid		NUMERIC NOT NULL,
-	startdate	DATE ,
-	enddate		DATE ,
-	capacity  	INTEGER,
+	startdate	DATE NOT NULL,
+	enddate		DATE NOT NULL,
+	capacity  	INTEGER NOT NULL,
 	status		service_status DEFAULT 'available',
 	PRIMARY KEY (id),
 	FOREIGN KEY (hostName) REFERENCES CareTakers(username),
@@ -119,17 +119,18 @@ create table Services(
 );
 
 -- use normal form to explain why this table is required
-CREATE TABLE SpecialRequirements(
-	id				INTEGER,
-	requirement		requirement_types,
-	PRIMARY KEY		(id, requirement)
+CREATE TABLE SpecialBonus(
+	id				SERIAL,
+	bonus		bonus_types,
+	PRIMARY KEY		(id, bonus),
+	FOREIGN KEY 	(id) REFERENCES Services(id)
 );
 
 -- to store the services that the petOwner is interested in
 CREATE TABLE Wishlist(
 	ownerName		VARCHAR(100),
 	--minBid			NUMERIC,
-	id				INTEGER,
+	id				SERIAL,
 	PRIMARY KEY     (id, ownerName), 
 	FOREIGN KEY		(ownerName) REFERENCES PetOwners(username) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY  	(id)	REFERENCES	Services(id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -138,16 +139,16 @@ CREATE TABLE Wishlist(
 
 -- store all the completed services
 create table Accommodation(
+	id			SERIAL,
 	hostName	VARCHAR(100),
-	--petName		VARCHAR(100),
-	id			Integer,
 	ownerName	VARCHAR(100),
 	status      accommodation_status DEFAULT 'sending',
 	rating		NUMERIC,
 	PRIMARY KEY (id),
 	FOREIGN KEY (hostName) REFERENCES CareTakers(username),
 	FOREIGN KEY (ownerName) REFERENCES PetOwners(username),
-	FOREIGN KEY (id) REFERENCES Services(id)
+	FOREIGN KEY (id) REFERENCES Services(id),
+	CONSTRAINT "Rating must be on the scale of 1-10." CHECK (rating >= 1 and rating >= 10)
 );
 
 
@@ -173,21 +174,19 @@ create table Accommodation(
 
 ---to store the all the valid biddding history with status shown as pending, fail, success.
 create table BiddingStatus(
+	id 			SERIAL,
 	ownerName 	VARCHAR(100),
-	hostName	VARCHAR(100),
-	bids		NUMERIC,
-	--petName 	VARCHAR(100),
 	created_at  timestamp DEFAULT current_timestamp,
 	status      bidding_status DEFAULT 'pending',
-	startdate	DATE,
-	enddate		DATE,
-	PRIMARY KEY (ownerName, hostName, bids)
+	PRIMARY KEY (id, ownerName, bids),
+	FOREIGN KEY (id) REFERENCES Services(id),
+	FOREIGN KEY (ownerName) REFERENCES PetOwners(username)
 	--FOREIGN KEY (ownerName, petName) REFERENCES Pets(ownerName, petName)
 	--FOREIGN KEY (hostName, startdate,enddate) REFERENCES Services(hostName, startdate,enddate)
 );
 
 CREATE TABLE Comment(
-	id				Integer,
+	id				SERIAL,
 	ownerName		VARCHAR(100),
 	content			TEXT,
 	PRIMARY KEY 	(id, ownerName, content),
