@@ -32,6 +32,13 @@ create table Users(
 	PRIMARY KEY (username)
 );
 
+create table Login(
+	username 	VARCHAR(100),
+	PRIMARY KEY (username) REFERENCES Users(username)
+);
+
+
+
 CREATE TABLE PetOwners(
 	username 	varchar(100),
 	PRIMARY KEY 	(username),
