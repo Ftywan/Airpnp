@@ -10,9 +10,18 @@ RETURNS TRIGGER AS $$
 DECLARE
 		count integer;
 BEGIN
-		SELECT COUNT(*) INTO count FROM Not_completed_accommodation n where n.ownerName = NEW.ownerName 
-		 and ((n.startdate <= NEW.startdate and n.enddate >= NEW.enddate) or (n.startdate < NEW.enddate and NEW.enddate <= n.enddate) or (NEW.startdate > n.startdate and NEW.startdate <= n.enddate));
-		If count > 0 THEN
+		SELECT COUNT(*) INTO count 
+			--need to check the date of new bidding is not within the date of 
+				-- any service that an owner has bidden
+			FROM Accommodation a
+				WHERE a.ownerName=NEW.ownerName and 
+				exists(
+					select 1 from Services s where
+					((s.startdate <= NEW.startdate and s.enddate >= NEW.enddate) 
+						or (s.startdate < NEW.enddate and NEW.enddate <= s.enddate) 
+						or (NEW.startdate > s.startdate and NEW.startdate <= s.enddate))
+						);
+		If count>0 THEN
 				RAISE EXCEPTION 'This service is confirmed. No further bidding on this service is allowed.';
 				RETURN NULL;
 		END IF;
@@ -28,14 +37,15 @@ FOR EACH ROW
 EXECUTE PROCEDURE forbid_next_bidding();
 
 
+
+
 --Forbid any bids below the min_bids indicated by the caretaker for a particular time frame. 
 CREATE OR REPLACE FUNCTION  forbid_little_bids()
 RETURNS TRIGGER AS $$
 DECLARE
 		count integer;
 BEGIN 
-		SELECT COUNT(*) INTO count FROM Services s where NEW.hostName = s.hostName and s.startdate = NEW.startdate and s.enddate = NEW.enddate 
-		and NEW.bids < s.minBid;
+		SELECT COUNT(*) INTO count FROM Services s WHERE NEW.id=s.id and NEW.bids < s.minBid;
 		IF count > 0 THEN 
 				RAISE EXCEPTION 'This bid is too little to be made.';
 				RETURN NULL;
@@ -58,9 +68,9 @@ RETURNS TRIGGER AS $$
 DECLARE 
 		count integer;
 BEGIN
-		SELECT COUNT(*) INTO count FROM Services s, Users u where (
-			s.capacity < u.numPets and NEW.ownerName = u.username and s.hostName = NEW.hostName and s.startdate = NEW.startdate and s.enddate=NEW.enddate);
-		IF count > 0  THEN
+		SELECT COUNT(*) INTO count FROM Services s, Users u WHERE 
+			s.capacity < u.numPets and NEW.id = s.id;
+		IF count > 0 THEN
 				RAISE EXCEPTION 'cannot accommodate so many pets.';
 				RETURN NULL;
 		END IF;
