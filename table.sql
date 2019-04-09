@@ -1,14 +1,18 @@
 DROP TYPE IF EXISTS bidding_status CASCADE;
+DROP TYPE IF EXISTS service_status CASCADE;
+DROP TYPE IF EXISTS requirement_types CASCADE;
+DROP TYPE IF EXISTS accommodation_status CASCADE;
 DROP TABLE IF EXISTS Users CASCADE;
 DROP TABLE IF EXISTS Pets CASCADE;
 DROP TABLE IF EXISTS CareTakers CASCADE;
 DROP TABLE IF EXISTS PetOwners CASCADE;
 DROP TABLE IF EXISTS Favorite CASCADE;
 DROP TABLE IF EXISTS Wishlist CASCADE;
-DROP TABLE IF EXISTS Accommodated CASCADE;
-DROP TABLE IF EXISTS Not_completed_accommodation CASCADE;
+DROP TABLE IF EXISTS Accommodation CASCADE;
 DROP TABLE IF EXISTS Services CASCADE;
 DROP TABLE IF EXISTS BiddingStatus CASCADE;
+DROP TABLE IF EXISTS SpecialRequirements CASCADE;
+DROP TABLE IF EXISTS Comment CASCADE;
 
 
 
@@ -16,25 +20,51 @@ CREATE TYPE bidding_status AS ENUM(
 	'pending',
 	'success',
 	'fail'
+);
 
+
+CREATE TYPE service_status AS ENUM(
+	'bided'
+	'available'
+);
+
+
+CREATE TYPE requirement_types AS ENUM(
+	'walk'
+	'shower'
+	'beauty'
+);
+
+CREATE TYPE accommodation_status AS ENUM(
+	'completed'
+	'sending'
 );
 
 
 create table Users(
-	username	VARCHAR(100),
-	rating		NUMERIC,
+	username	VARCHAR(100) NOT NULL,
+	rating		NUMERIC DEFAULT 10,
 	password	VARCHAR(100) NOT NULL,
 	numPets		INTEGER DEFAULT 0,
-	location 	VARCHAR(500),
 	contact_number DECIMAL(10,0),
 	verification_qn VARCHAR(500),
 	answer 		VARCHAR(500),
 	PRIMARY KEY (username)
 );
 
+
 create table Login(
 	username 	VARCHAR(100),
-	PRIMARY KEY (username) REFERENCES Users(username)
+	PRIMARY KEY (username),
+	FOREIGN KEY (username) REFERENCES Users(username)
+);
+
+
+CREATE TABLE Area(
+	username	VARCHAR(100) NOT NULL,
+	areaName	VARCHAR(100) NOT NULL,
+	PRIMARY KEY (username, areaName),
+	FOREIGN KEY (username) REFERENCES Users(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -59,7 +89,6 @@ create table CareTakers(
 	username	VARCHAR(100),
 	PRIMARY KEY(username),
 	FOREIGN KEY (username) REFERENCES Users(username) ON DELETE CASCADE ON UPDATE CASCADE
-
 );
 
 
@@ -74,15 +103,24 @@ CREATE TABLE Favorite(
 
 -- to store the availability of careTakers
 create table Services(
+	id			INTEGER NOT NULL,
 	hostName 	VARCHAR(100),
 	minBid		NUMERIC NOT NULL,
 	startdate	DATE ,
 	enddate		DATE ,
 	capacity  	INTEGER,
-	PRIMARY KEY (hostName, startdate, enddate),
+	status		service_status DEFAULT 'available',
+	PRIMARY KEY (id),
 	FOREIGN KEY (hostName) REFERENCES CareTakers(username),
 	CONSTRAINT "Service end time must be after start time." CHECK (enddate > startdate)
 );
+
+-- use normal form to explain why this table is required
+CREATE TABLE SpecialRequirements(
+	id				INTEGER,
+	requirement		requirement_types
+	PRIMARY KEY		(id, requirement)
+)
 
 -- to store the services that the petOwner is interested in
 CREATE TABLE Wishlist(
@@ -98,29 +136,31 @@ CREATE TABLE Wishlist(
 
 
 -- store all the completed services
-create table Accommodated(
+create table Accommodation(
 	hostName	VARCHAR(100),
 	--petName		VARCHAR(100),
+	id			Integer,
 	ownerName	VARCHAR(100),
-	startdate	DATE,
-	enddate		DATE,
-	PRIMARY KEY (ownerName, startdate, enddate)
-	--FOREIGN KEY (ownerName, petName) REFERENCES Pets(ownerName,petName)
-	--FOREIGN KEY (hostName, startdate, enddate) REFERENCES Services(hostName, startdate, enddate)
+	status      accommondation_status DEFAULT 'sending',
+	rating		NUMERIC,
+	PRIMARY KEY (id)
+	FOREIGN KEY (hostName) REFERENCES CareTakers(username),
+	FOREIGN KEY (ownerName) REFERENCES PetOwners(username),
+	FOREIGN KEY (id) REFERENCES Services(id)
 );
 
 
 -- store the services that are about to happen and the ones that are currently going on
-create table Not_completed_accommodation(
-	hostName	VARCHAR(100),
-	--petName		VARCHAR(100),
-	ownerName	VARCHAR(100),
-	startdate	DATE,
-	enddate		DATE,
-	PRIMARY KEY (ownerName, startdate, enddate)
-	--FOREIGN KEY (ownerName, petName) REFERENCES Pets(ownerName,petName)
-	--FOREIGN KEY (hostName, startdate, enddate) REFERENCES Services(hostName, startdate, enddate) 
-);
+-- create table Not_completed_accommodation(
+-- 	hostName	VARCHAR(100),
+-- 	petName		VARCHAR(100),
+-- 	ownerName	VARCHAR(100),
+-- 	startdate	DATE,
+-- 	enddate		DATE,
+-- 	PRIMARY KEY (ownerName, startdate, enddate)
+-- 	FOREIGN KEY (ownerName, petName) REFERENCES Pets(ownerName,petName)
+-- 	FOREIGN KEY (hostName, startdate, enddate) REFERENCES Services(hostName, startdate, enddate) 
+-- );
 
 -- to store the capacity of pets
 --create table Capacity(
@@ -128,7 +168,6 @@ create table Not_completed_accommodation(
 --	num		INTEGER NOT NULL,
 --	PRIMARY KEY (hostName),
 --	CONSTRAINT "Capacity has to be grater than 0" CHECK (num > 0)
-
 --);
 
 ---to store the all the valid biddding history with status shown as pending, fail, success.
@@ -137,8 +176,8 @@ create table BiddingStatus(
 	hostName	VARCHAR(100),
 	bids		NUMERIC,
 	--petName 	VARCHAR(100),
-	created_at timestamp DEFAULT current_timestamp,
-	status     bidding_status DEFAULT 'pending',
+	created_at  timestamp DEFAULT current_timestamp,
+	status      bidding_status DEFAULT 'pending',
 	startdate	DATE,
 	enddate		DATE,
 	PRIMARY KEY (ownerName, hostName, bids)
@@ -146,3 +185,11 @@ create table BiddingStatus(
 	--FOREIGN KEY (hostName, startdate,enddate) REFERENCES Services(hostName, startdate,enddate)
 );
 
+CREATE TABLE Comment(
+	id				Integer,
+	ownerName		VARCHAR(100),
+	content			TEXT,
+	PRIMARY KEY 	(id, ownerName, content),
+	FOREIGN KEY (id) REFERENCES Services(id),
+	FOREIGN KEY (ownerName) REFERENCES PetOwners(username),
+);
