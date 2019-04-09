@@ -2,6 +2,7 @@ DROP TYPE IF EXISTS bidding_status CASCADE;
 DROP TYPE IF EXISTS service_status CASCADE;
 DROP TYPE IF EXISTS requirement_types CASCADE;
 DROP TYPE IF EXISTS accommodation_status CASCADE;
+
 DROP TABLE IF EXISTS Users CASCADE;
 DROP TABLE IF EXISTS Pets CASCADE;
 DROP TABLE IF EXISTS CareTakers CASCADE;
@@ -13,6 +14,8 @@ DROP TABLE IF EXISTS Services CASCADE;
 DROP TABLE IF EXISTS BiddingStatus CASCADE;
 DROP TABLE IF EXISTS SpecialRequirements CASCADE;
 DROP TABLE IF EXISTS Comment CASCADE;
+DROP TABLE IF EXISTS Login CASCADE;
+DROP TABLE IF EXISTS Area CASCADE;
 
 
 
@@ -24,19 +27,19 @@ CREATE TYPE bidding_status AS ENUM(
 
 
 CREATE TYPE service_status AS ENUM(
-	'bided'
+	'bided',
 	'available'
 );
 
 
 CREATE TYPE requirement_types AS ENUM(
-	'walk'
-	'shower'
+	'walk',
+	'shower',
 	'beauty'
 );
 
 CREATE TYPE accommodation_status AS ENUM(
-	'completed'
+	'completed',
 	'sending'
 );
 
@@ -118,20 +121,18 @@ create table Services(
 -- use normal form to explain why this table is required
 CREATE TABLE SpecialRequirements(
 	id				INTEGER,
-	requirement		requirement_types
+	requirement		requirement_types,
 	PRIMARY KEY		(id, requirement)
-)
+);
 
 -- to store the services that the petOwner is interested in
 CREATE TABLE Wishlist(
 	ownerName		VARCHAR(100),
-	hostName		VARCHAR(100),
 	--minBid			NUMERIC,
-	startdate		DATE,
-	enddate			DATE,
-	PRIMARY KEY     (ownerName, hostName), 
+	id				INTEGER,
+	PRIMARY KEY     (id, ownerName), 
 	FOREIGN KEY		(ownerName) REFERENCES PetOwners(username) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY  	(hostName, startdate, enddate)	REFERENCES	Services(hostName, startdate, enddate) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY  	(id)	REFERENCES	Services(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -141,9 +142,9 @@ create table Accommodation(
 	--petName		VARCHAR(100),
 	id			Integer,
 	ownerName	VARCHAR(100),
-	status      accommondation_status DEFAULT 'sending',
+	status      accommodation_status DEFAULT 'sending',
 	rating		NUMERIC,
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
 	FOREIGN KEY (hostName) REFERENCES CareTakers(username),
 	FOREIGN KEY (ownerName) REFERENCES PetOwners(username),
 	FOREIGN KEY (id) REFERENCES Services(id)
@@ -191,5 +192,5 @@ CREATE TABLE Comment(
 	content			TEXT,
 	PRIMARY KEY 	(id, ownerName, content),
 	FOREIGN KEY (id) REFERENCES Services(id),
-	FOREIGN KEY (ownerName) REFERENCES PetOwners(username),
+	FOREIGN KEY (ownerName) REFERENCES PetOwners(username)
 );
