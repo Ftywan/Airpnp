@@ -28,11 +28,9 @@ router.post('/', function (req, res, next) {
 	var password = sha256(req.body.password);
 	var number = req.body.number;
 	var address = req.body.address;
-	var question = req.body.question;
-	var answer = req.body.answer;
-
+	var numpets = req.body.numpets;
 	// Construct Specific SQL Query
-	var insert_query = sql_query + "('" + username + "','" + 10 + "','" + password + "','" + 0 + "','" + address + "','" + number + "','" + question + "','" + answer + "')";
+	var insert_query = sql_query + "('" + username + "'," + 10 + ",'" + password + "'," + numpets + "," + number + ")";
 
 	pool.query(insert_query, (err, data) => {
 		res.redirect('/index')
