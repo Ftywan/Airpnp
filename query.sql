@@ -21,15 +21,6 @@ and petName=%s;
 delete from Users
 where username=%s;
 
--- when an owner adds his pet
-insert into Pets
-values (petName, petType, ownerName...)
-where ownerName=%s; 
-
-update Users
-set numPets=numPets+1
-where username=%s;
-
 -- change password
 update password
 set password=%s
@@ -90,40 +81,6 @@ select * from Accommodation A
 where A.hostName=%s
 and A.status='sending';
 
--- update status for the winning bidder
-update BiddingStatus
-set status='success'
-where ownerName=%s 
-and hostName=%s
-and startdate=%s
-and enddate=%s
-and status='pending';
-
--- update other biddings status
-update BiddingStatus
-set status='fail'
-where hostName=%s
-and hostName<>%s
-and startdate=%s
-and enddate=%s
-and status='pending';
-
--- delete posts
--- delete from Services
--- where hostName=%s
--- and startdate=%s
--- and enddate=%s;
--- 
--- 
--- cancel other biddings 
--- delete from BiddingStatus 
--- where ownerName=%s
--- and hostName<>%s -- bidding winner's name
--- and petName in 
--- 	(select petName from Pets where ownerName=%s)
--- and status='pending'
--- ;
-
 
 -- when payment is made
 update Accommodation A
@@ -138,19 +95,15 @@ select * from Services
 
 --2. the specific view about a particular service after they select a specific services
 with maxBid as(
-	select hostName, max(bids) as max_bid, count(*) as total_num
+	select id, max(bids) as max_bid, count(*) as total_num
 	from BiddingStatus
-	where hostname=%s
-	and startdate=%s
-	and enddate=%s
+	group by id
+	having id=%s
 )
-select s.hostName, s.startdate, s.enddate, s.minBid, u.location, 
+select s.hostName, s.startdate, s.enddate, s.minBid, a.areaName, 
 	s.capacity, M.max_bid, M.total_num
-from (Services s left join Users u on s.hostName = u.username) 
-	left join maxBid M on M.hostName = s.hostname
-where s.hostName = %s
-and s.startdate=%s
-and s.enddate=%s;
+from (Services S left join Area A on s.hostName = a.username) 
+	left join maxBid M on M.id=S.id;
 
 
 
@@ -199,5 +152,34 @@ select BS.ownername, bids, rating
 from BiddingStatus BS left join Users U on BS.hostName=U.username
 where BS.id=%s;
 
+-- Transaction
+-- 1. when you add one more pet, update the Users' profile
+Begin transaction
+insert into Pets
+values (petName, petType, ownerName...)
+where ownerName=%s; 
 
+update Users
+set numPets=numPets+1
+where username=%s;
+commit;
 
+-- 2. After bidding, update status => insert the id into Accommodation
+-- update status for the winning bidder
+BEGIN TRANSACTION
+update BiddingStatus
+set status='success'
+where ownerName=%s 
+and id=%s
+and status='pending';
+
+-- update other biddings status
+update BiddingStatus
+set status='fail'
+where id=%s
+and status='pending';
+
+-- insert into Accommodation
+insert into Accomodation
+values (hostName, id, ownerName, status, rating)
+COMMIT;
