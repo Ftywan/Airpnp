@@ -42,8 +42,8 @@
 		<div class="inner">
 			<br><br>
 			<!-- filtering information -->
-			<h3>Constrains</h3>
-			<form method="post" action="#">
+			<h3>Constraints:</h3>
+			<form method="get" action="/constrain" id="constrain_form">
 				<!-- filtering information -->
 				<div class="field half first">
 					<label>Low Price</label>
@@ -57,12 +57,12 @@
 
 				<div class="field half first">
 					<label>Start Time</label>
-					<input type="text" name="startTime" id="startTime" placeholder="Start Time" />
+					<input type="text" name="startTime" id="startTime" placeholder="MM/DD/YYYY" />
 				</div>
 
 				<div class="field half">
 					<label>End Time</label>
-					<input type="text" name="endTime" id="endTime" placeholder="End Time" />
+					<input type="text" name="endTime" id="endTime" placeholder="MM/DD/YYYY" />
 				</div>
 
 				<div class="field">
@@ -71,21 +71,22 @@
 				</div>
 
 				<!-- search button -->
-				<ul class="actions">
-					<li><input type="submit" value="Send Message" /></li>
+			</form>
+			<ul class="actions">
+					<li><input type="button" value="by money" onclick="priceAddress()"/></li>
+					<li><input type="button" value="by time" onclick="dateAddress()"/></li>
+					<li><input type="button" value="by capacity" onclick="capacityAddress()"/></li>
 					<li><input class="button special" type="reset" value="Reset" /></li>
 				</ul>
-			</form>
-			<br><br>
 			<h3>Sort by:</h3>
 			<div class="table-wrapper">
 				<ul class="actions">
-					<li><input type="submit" value="price" onclick="sortTable(1)" /></li>
-					<li><input type="submit" value="start date" onclick="sortTable(2)" /></li>
-					<li><input type="submit" value="end date" onclick="sortTable(3)" /></li>
-					<li><input type="submit" value="capacity" onclick="sortTable(4)" /></li>
+					<li><input type="button" value="price" onclick="sortTable(1)" /></li>
+					<li><input type="button" value="start date" onclick="dateStartAddress()" /></li>
+					<li><input type="button" value="end date" onclick="dateEndAddress()" /></li>
+					<li><input type="button" value="capacity" onclick="sortTable(4)" /></li>
 				</ul>
-
+				<h3>All services:</h3>
 				<table id="listings">
 					<thead>
 						<tr>
