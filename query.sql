@@ -187,9 +187,9 @@ select * from Wishlist;
 select ownerName, bids from BiddingStatus
 
 -- sorting algo, used when caretaker use our algo to select the winning bidder
-select ownerName from BiddingStatus
+select ownerName
 from BiddingStatus BS left join Users U on BS.ownerName=U.username
-order by BS.bids desc, U.numPets, U.rating desc, BS.created_at desc -- we are changing date data type???
+order by BS.bids desc, U.numPets, U.rating desc, BS.created_at-- we are changing date data type???
 limit 1;
 
 
