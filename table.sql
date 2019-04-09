@@ -27,7 +27,7 @@ CREATE TYPE bidding_status AS ENUM(
 
 
 CREATE TYPE service_status AS ENUM(
-	'bided',
+	'bidded',
 	'available'
 );
 
