@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS BiddingStatus CASCADE;
 DROP TABLE IF EXISTS SpecialBonus CASCADE;
 DROP TABLE IF EXISTS Comment CASCADE;
 DROP TABLE IF EXISTS Login CASCADE;
-DROP TABLE IF EXISTS Area CASCADE;
+DROP TABLE IF EXISTS Location CASCADE;
 
 
 
@@ -44,18 +44,19 @@ CREATE TYPE accommodation_status AS ENUM(
 );
 
 
+-- Users is in BCNF
 create table Users(
 	username	VARCHAR(100),
 	rating		NUMERIC DEFAULT 10,
 	password	VARCHAR(100) NOT NULL,
 	numPets		INTEGER DEFAULT 0,
 	contact_number DECIMAL(10,0),
-	verification_qn VARCHAR(500),
-	answer 		VARCHAR(500),
+	--verification_qn VARCHAR(500),
+	--answer 		VARCHAR(500),
 	PRIMARY KEY (username)
 );
 
-
+-- For website implementation
 create table Login(
 	username 	VARCHAR(100),
 	PRIMARY KEY (username),
@@ -63,13 +64,14 @@ create table Login(
 );
 
 
-CREATE TABLE Area(
-	username	VARCHAR(100),
-	areaName	VARCHAR(100),
-	PRIMARY KEY (username, areaName),
+-- BCNF, for solving deletion anomaly
+CREATE TABLE Location(
+	username		VARCHAR(100),
+	address 		VARCHAR(100),
+	nearest_mrt 	VARCHAR(100),
+	PRIMARY KEY (username),
 	FOREIGN KEY (username) REFERENCES Users(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
 
 
 CREATE TABLE PetOwners(
@@ -95,6 +97,7 @@ create table CareTakers(
 );
 
 
+-- BCNF
 CREATE TABLE Favorite(
 	ownerName		varchar(100),
 	hostName		varchar(100),
@@ -105,6 +108,7 @@ CREATE TABLE Favorite(
 
 
 -- to store the availability of careTakers
+-- BCNF
 create table Services(
 	id			SERIAL,
 	hostName 	VARCHAR(100),
@@ -119,6 +123,7 @@ create table Services(
 );
 
 -- use normal form to explain why this table is required
+-- BCNF
 CREATE TABLE SpecialBonus(
 	id				SERIAL,
 	bonus		bonus_types,
@@ -127,6 +132,7 @@ CREATE TABLE SpecialBonus(
 );
 
 -- to store the services that the petOwner is interested in
+-- BCNF
 CREATE TABLE Wishlist(
 	ownerName		VARCHAR(100),
 	--minBid			NUMERIC,
@@ -138,6 +144,7 @@ CREATE TABLE Wishlist(
 
 
 -- store all the completed services
+-- BCNF
 create table Accommodation(
 	id			SERIAL,
 	hostName	VARCHAR(100),
@@ -173,6 +180,7 @@ create table Accommodation(
 --);
 
 ---to store the all the valid biddding history with status shown as pending, fail, success.
+-- BCNF
 create table BiddingStatus(
 	id 			SERIAL,
 	bids		NUMERIC,
@@ -186,6 +194,7 @@ create table BiddingStatus(
 	--FOREIGN KEY (hostName, startdate,enddate) REFERENCES Services(hostName, startdate,enddate)
 );
 
+-- Full-keyed relation
 CREATE TABLE Comment(
 	id				SERIAL,
 	ownerName		VARCHAR(100),
