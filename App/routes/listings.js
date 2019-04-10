@@ -8,25 +8,31 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'airpnp',
-  password: 'launch',
+  password: 'aaaa990730',
   port: 5432,
 })
 
 var check_login_query = "select username from login";
-var become_caretaker_query = "INSERT INTO caretakers VALUES ('";  
-// Auto become a caretaker upon creating a listing
 var create_listing_query = 'INSERT INTO Services VALUES';
-var initial_query = "select *, username from Services S, login where S.hostName = username;";
+var get_max_id_query = 'select max(id) from services;';
+var initial_query = "select *, username from Services S, login where S.hostName = username and S.status = 'available';";
 var username = '';
+var new_id = 0;
+
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
   pool.query(check_login_query, (err, result) => { // for the use of creating listings
-    pool.query(initial_query, (err, data) => {
-      if (result.rows.length) {
-        username = result.rows[0]["username"];
-      }
-      res.render('listings', { title: 'My listings', data: data.rows });
+    pool.query(get_max_id_query, (err, max_id) => { // for the use of creating listings
+      pool.query(initial_query, (err, data) => {
+        if (result.rows.length) {
+          username = result.rows[0]["username"];
+        }
+        if (max_id.rows.length) {
+          new_id = max_id.rows[0]["max"] + 1;
+        }
+        res.render('listings', { title: 'My listings', data: data.rows, result: result.rows });
+      });
     });
   });
 });
@@ -36,16 +42,22 @@ router.get('/', function (req, res, next) {
 //   res.send(user);
 // });
 
+
+//  Create new listing
 router.post('/', function (req, res, next) {
   var startDate = req.body.startDate;
   var endDate = req.body.endDate;
   var minBid = req.body.minBid;
   var capacity = req.body.capacity;
 
-  var insert_query = become_caretaker_query + username + "');" + create_listing_query + "('" + username + "'," + minBid + ",'" + startDate + "','" + endDate + "'," + capacity + ")";
-  pool.query(insert_query, (err, data) => {
-    console.log(insert_query);
-    res.redirect('/listings')
+  var insert_query = create_listing_query + " (" + new_id + ",'" + username + "'," + minBid + ",'" + startDate + "','" + endDate + "'," + capacity + ");";
+  var become_caretaker_query = "INSERT INTO caretakers VALUES ('" + username + "');";
+
+  pool.query(become_caretaker_query, (err, not_used1) => { // Auto become a caretaker
+    console.log(become_caretaker_query);
+    pool.query(insert_query, (err, not_used2) => {
+      res.redirect('/listings');
+    });
   });
 });
 
