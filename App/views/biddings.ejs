@@ -18,9 +18,9 @@
 				<font size="+3"><strong>Airpnp</strong></font>
 			</a>
 			<nav id="nav">
-				<% if (data.length) {%>
+				<% if (result.length) {%>
 				<!--if no one logged in, do not display-->
-				<a>Logged in as: <%= data[0].username%></a>
+				<a>Logged in as: <%= result[0].username%></a>
 				<% } %>
 				<a href="login">Login</a>
 				<a href="signup">Signup</a>
@@ -48,7 +48,7 @@
 					<th scope="col">Host Username</th>
 					<th scope="col">Start Date</th>
 					<th scope="col">End Date</th>
-					<th scope="col">Stutus</th>
+					<th scope="col">Your bids</th>
 				</tr>
 			</thead>
 			<tbody style: align="left">
@@ -57,7 +57,7 @@
 					<td><%= data[i].hostname%></td>
 					<td><%= data[i].startdate%></td>
 					<td><%= data[i].enddate%></td>
-					<td><%= data[i].status%></td>
+					<td><%= data[i].bids%></td>
 				</tr>
 				<% } %>
 			</tbody>

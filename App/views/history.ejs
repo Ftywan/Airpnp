@@ -19,9 +19,9 @@
 				<font size="+3"><strong>Airpnp</strong></font>
 			</a>
 			<nav id="nav">
-				<% if (owner_data.length) {%>
+				<% if (result.length) {%>
 				<!--if no one logged in, do not display-->
-				<a>Logged in as: <%= owner_data[0].username%></a>
+				<a>Logged in as: <%= result[0].username%></a>
 				<% } %>
 				<a href="login">Login</a>
 				<a href="signup">Signup</a>
@@ -34,7 +34,7 @@
 			<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 		</div>
 	</header>
-	
+
 	<footer id="footer">
 		<div class="inner">
 			<h3>Your past transactions </h3>
@@ -48,6 +48,7 @@
 							<th>Start Date</th>
 							<th>End Date</th>
 							<th>Client Username</th>
+							<th>Status</th>
 						</tr>
 					</thead>
 					<tbody style: align="left">
@@ -56,6 +57,7 @@
 							<td><%= taker_data[i].startdate%></td>
 							<td><%= taker_data[i].enddate%></td>
 							<td><%= taker_data[i].ownername%></td>
+							<td><%= taker_data[i].status%></td>
 						</tr>
 						<% } %>
 					</tbody>
@@ -76,6 +78,7 @@
 							<th>Start Date</th>
 							<th>End Date</th>
 							<th>Host Username</th>
+							<th>Status</th>
 						</tr>
 					</thead>
 					<tbody style: align="left">
@@ -84,6 +87,7 @@
 							<td><%= owner_data[i].startdate%></td>
 							<td><%= owner_data[i].enddate%></td>
 							<td><%= owner_data[i].hostname%></td>
+							<td><%= owner_data[i].status%></td>
 						</tr>
 						<% } %>
 					</tbody>

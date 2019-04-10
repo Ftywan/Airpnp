@@ -52,8 +52,6 @@ create table Users(
 	numPets		INTEGER DEFAULT 0,
 	contact_number DECIMAL(10,0),
 	address	VARCHAR(100) UNIQUE,
-	--verification_qn VARCHAR(500),
-	--answer 		VARCHAR(500),
 	PRIMARY KEY (username)
 );
 
@@ -67,7 +65,6 @@ create table Login(
 
 -- BCNF, for solving deletion anomaly
 CREATE TABLE Location(
-	--username		VARCHAR(100),
 	address 		VARCHAR(100),
 	nearest_mrt 	VARCHAR(100),
 	PRIMARY KEY (address),
@@ -81,6 +78,7 @@ CREATE TABLE PetOwners(
 	FOREIGN KEY 	(username) REFERENCES Users(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+
 --- A week entity
 create table Pets(
 	petName		VARCHAR(100),
@@ -89,6 +87,7 @@ create table Pets(
 	PRIMARY KEY (PetName, ownerName),
 	FOREIGN KEY (ownerName) REFERENCES PetOwners(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 
 -- The ISA satisfies overlap constraints but does not stisfies convering constraints
 create table CareTakers(
@@ -108,7 +107,6 @@ CREATE TABLE Favorite(
 );
 
 
--- to store the availability of careTakers
 -- BCNF
 create table Services(
 	id			SERIAL,
@@ -123,6 +121,7 @@ create table Services(
 	CONSTRAINT "Service end time must be after start time." CHECK (enddate > startdate)
 );
 
+
 -- use normal form to explain why this table is required
 -- BCNF
 CREATE TABLE SpecialBonus(
@@ -131,6 +130,7 @@ CREATE TABLE SpecialBonus(
 	PRIMARY KEY		(id, bonus),
 	FOREIGN KEY 	(id) REFERENCES Services(id)
 );
+
 
 -- to store the services that the petOwner is interested in
 -- BCNF
@@ -144,42 +144,20 @@ CREATE TABLE Wishlist(
 	FOREIGN KEY  	(id)	REFERENCES	Services(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-
--- store all the completed services
+-- store all the accomodation with status shown as 'sending' and 'completed'
 -- BCNF
 create table Accommodation(
 	id			SERIAL,
 	hostName	VARCHAR(100),
 	ownerName	VARCHAR(100),
 	status      accommodation_status DEFAULT 'sending',
-	rating		NUMERIC, DEFAULT 10,
+	rating		NUMERIC DEFAULT 10,
 	PRIMARY KEY (id),
 	FOREIGN KEY (hostName) REFERENCES CareTakers(username),
 	FOREIGN KEY (ownerName) REFERENCES PetOwners(username),
 	FOREIGN KEY (id) REFERENCES Services(id),
-	CONSTRAINT "Rating must be on the scale of 1-10." CHECK (rating >= 1 and rating >= 10)
+	CONSTRAINT "Rating must be on the scale of 1-10." CHECK (rating >= 1 and rating <= 10)
 );
-
-
--- store the services that are about to happen and the ones that are currently going on
--- create table Not_completed_accommodation(
--- 	hostName	VARCHAR(100),
--- 	petName		VARCHAR(100),
--- 	ownerName	VARCHAR(100),
--- 	startdate	DATE,
--- 	enddate		DATE,
--- 	PRIMARY KEY (ownerName, startdate, enddate)
--- 	FOREIGN KEY (ownerName, petName) REFERENCES Pets(ownerName,petName)
--- 	FOREIGN KEY (hostName, startdate, enddate) REFERENCES Services(hostName, startdate, enddate) 
--- );
-
--- to store the capacity of pets
---create table Capacity(
---	hostName	VARCHAR(100) REFERENCES CareTakers(username),
---	num		INTEGER NOT NULL,
---	PRIMARY KEY (hostName),
---	CONSTRAINT "Capacity has to be grater than 0" CHECK (num > 0)
---);
 
 ---to store the all the valid biddding history with status shown as pending, fail, success.
 -- BCNF
@@ -192,8 +170,6 @@ create table BiddingStatus(
 	PRIMARY KEY (id, ownerName, bids),
 	FOREIGN KEY (id) REFERENCES Services(id),
 	FOREIGN KEY (ownerName) REFERENCES PetOwners(username)
-	--FOREIGN KEY (ownerName, petName) REFERENCES Pets(ownerName, petName)
-	--FOREIGN KEY (hostName, startdate,enddate) REFERENCES Services(hostName, startdate,enddate)
 );
 
 -- Full-keyed relation
@@ -205,3 +181,7 @@ CREATE TABLE Comment(
 	FOREIGN KEY (id) REFERENCES Services(id),
 	FOREIGN KEY (ownerName) REFERENCES PetOwners(username)
 );
+
+
+
+
