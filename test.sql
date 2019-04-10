@@ -1,5 +1,4 @@
 -- Users table
-
 insert into Users (username, rating, password, numPets, contact_number, address) values ('Alice', 6, '71oJZpQIHR', 2, '6326062455', '320 Lotheville Pass');
 insert into Users (username, rating, password, numPets, contact_number, address) values ('Bob', 7, 'SaTJYEoPDSa', 3, '5608495262', '86196 Tennyson Place');
 insert into Users (username, rating, password, numPets, contact_number, address) values ('Catherine', 4, '91eh9le', 2, '1878628621', '59 Hagan Lane');
@@ -95,7 +94,6 @@ insert into Favorite (ownerName, hostName) values ('Mary', 'Tyrion');
 
 
 ---Services(done)
-
 insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (1, 'JonSnow',  300, '12/17/2018', '12/31/2018', 4, 'bidded')
 insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (2, 'Arya', 400,'10/4/2018', '10/14/2018', 4, 'bidded')
 insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (3, 'Cersei', 700, '9/6/2018', '9/20/2018', 4, 'bidded')
@@ -126,7 +124,6 @@ insert into Services (id,hostName, minBid, startdate, enddate, capacity, status)
 
 
 -- Wishlist(done)
-
 insert into Wishlist (id,ownerName) values (21, 'Alice');
 insert into Wishlist (id,ownerName) values (22, 'Bob');
 insert into Wishlist (id,ownerName) values (23, 'Catherine');
