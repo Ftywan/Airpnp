@@ -18,9 +18,9 @@
 				<font size="+3"><strong>Airpnp</strong></font>
 			</a>
 			<nav id="nav">
-				<% if (data.length) {%>
+				<% if (result.length) {%>
 				<!--if no one logged in, do not display-->
-				<a>Logged in as: <%= data[0].username%></a>
+				<a>Logged in as: <%= result[0].username%></a>
 				<% } %>
 				<a href="login">Login</a>
 				<a href="signup">Signup</a>

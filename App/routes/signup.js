@@ -30,10 +30,10 @@ router.post('/', function (req, res, next) {
 	var address = req.body.address;
 	var numpets = req.body.numpets;
 	// Construct Specific SQL Query
-	var insert_query = sql_query + "('" + username + "'," + 10 + ",'" + password + "'," + numpets + "," + number + ")";
+	var insert_query = sql_query + "('" + username + "'," + 10 + ",'" + password + "'," + numpets + "," + number + ",'" + address + "');";
 
 	pool.query(insert_query, (err, data) => {
-		res.redirect('/index')
+		res.redirect('/login')
 	});
 });
 

@@ -10,17 +10,15 @@ RETURNS TRIGGER AS $$
 DECLARE
 		count integer;
 BEGIN
+		with newtime as (select s.id as newid, s.startdate as newstart, s.enddate as newend from Services s where s.id = NEW.id)
 		SELECT COUNT(*) INTO count 
-			--need to check the date of new bidding is not within the date of 
-				-- any service that an owner has bidden
-			FROM Accommodation a
-				WHERE a.ownerName=NEW.ownerName and 
-				exists(
-					select 1 from Services s where
-					((s.startdate <= NEW.startdate and s.enddate >= NEW.enddate) 
-						or (s.startdate < NEW.enddate and NEW.enddate <= s.enddate) 
-						or (NEW.startdate > s.startdate and NEW.startdate <= s.enddate))
-						);
+			FROM BiddingStatus b join Services s on s.id = b.id full join newtime n on b.id = n.newid
+				WHERE b.ownerName=NEW.ownerName and
+				b.status = 'success' and
+
+				((s.startdate >= n.newstart and s.enddate <= n.newend) 
+						or (s.startdate <= n.newend and n.newend <= s.enddate) 
+						or (n.newstart >= s.startdate and n.newstart <= s.enddate));
 		If count>0 THEN
 				RAISE EXCEPTION 'This service is confirmed. No further bidding on this service is allowed.';
 				RETURN NULL;
@@ -44,6 +42,7 @@ CREATE OR REPLACE FUNCTION  forbid_little_bids()
 RETURNS TRIGGER AS $$
 DECLARE
 		count integer;
+		
 BEGIN 
 		SELECT COUNT(*) INTO count FROM Services s WHERE NEW.id=s.id and NEW.bids < s.minBid;
 		IF count > 0 THEN 
@@ -66,11 +65,12 @@ EXECUTE PROCEDURE forbid_little_bids();
 CREATE OR REPLACE FUNCTION forbid_over_capacity()
 RETURNS TRIGGER AS $$
 DECLARE 
-		count integer;
+		cap integer;
+		num integer;
 BEGIN
-		SELECT COUNT(*) INTO count FROM Services s, Users u WHERE 
-			s.capacity < u.numPets and NEW.id = s.id;
-		IF count > 0 THEN
+		SELECT u.numPets INTO num FROM Users u where NEW.ownerName = u.username;
+		SELECT s.capacity INTO cap FROM Services s where NEW.id = s.id;
+		IF num > cap THEN
 				RAISE EXCEPTION 'cannot accommodate so many pets.';
 				RETURN NULL;
 		END IF;

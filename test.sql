@@ -23,12 +23,12 @@ insert into Users (username, rating, password, numPets, contact_number, address)
 
 --Login
 insert into Login (username) values ('Alice');
-insert into Login (username) values ('Bob');
-insert into Login (username) values ('Ashley');
-insert into Login (username) values ('Daenerys');
-insert into Login (username) values ('Cersei');
-insert into Login (username) values ('Jorah');
-insert into Login (username) values ('Brienne');
+--insert into Login (username) values ('Bob');
+--nsert into Login (username) values ('Ashley');
+--insert into Login (username) values ('Daenerys');
+--insert into Login (username) values ('Cersei');
+--insert into Login (username) values ('Jorah');
+--insert into Login (username) values ('Brienne');
 
 --Location
 insert into Location (address, nearest_mrt) values ('320 Lotheville Pass', 'Woodlands');
@@ -130,12 +130,12 @@ insert into Favorite (ownerName, hostName) values ('Mary', 'Tyrion');
 insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (1, 'JonSnow',  300, '12/17/2018', '12/31/2018', 4, 'bidded');
 insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (2, 'Arya', 400,'10/4/2018', '10/14/2018', 4, 'bidded');
 insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (3, 'Cersei', 700, '9/6/2018', '9/20/2018', 4, 'bidded');
-insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (4, 'Tyrion', 1000, '4/29/2018', '7/30/2018',4,  'bidded');
+insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (4, 'Tyrion', 991, '4/29/2018', '7/30/2018',4,  'bidded');
 insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (21,'JonSnow', 920, '4/18/2019', '4/21/2019', 5, 'bidded');
 insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (22,'JonSnow', 497, '5/3/2019', '5/10/2019', 5, 'available');
 insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (23,'JonSnow', 681, '5/15/2019', '5/24/2019', 3, 'available');
 insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (24, 'Arya', 956.95, '5/5/2019', '5/16/2019', 2, 'available');
-insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (25, 'Arya', 877.58, '5/24/2019', '5/25/2019', 2, 'bidded');
+insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (25, 'Arya', 877.58, '5/24/2019', '5/25/2019', 4, 'bidded');
 insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (26, 'Cersei', 214.78, '4/22/2019', '4/25/2019', 2, 'available');
 insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (27, 'Tyrion', 355.96, '5/30/2019', '6/19/2019', 6, 'bidded');
 insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (28, 'Tyrion', 455.7, '4/17/2019', '4/26/2019', 6, 'available');
@@ -217,25 +217,25 @@ insert into BiddingStatus (id, ownerName, bids, created_at, status) values (4, '
 insert into BiddingStatus (id, ownerName, bids, created_at, status) values (21, 'Daisy', 950,  '2019-03-29 23:34:46', 'success');
 insert into BiddingStatus (id, ownerName, bids, created_at, status) values (25, 'Linda', 900,  '2019-03-28 13:14:24', 'success');
 insert into BiddingStatus (id, ownerName, bids, created_at, status) values (27, 'Emma',  400, '2018-03-29 1:14:12', 'success');
-insert into BiddingStatus (id, ownerName, bids, created_at, status) values (30, 'Emma', 300.27,  '2019-03-30 5:05:12', 'success');
+insert into BiddingStatus (id, ownerName, bids, created_at, status) values (30, 'Daenerys', 300.27,  '2019-03-30 5:05:12', 'success');
 insert into BiddingStatus (id, ownerName, bids, created_at, status) values (34, 'Ashley', 200, '2019-04-05 22:20:12', 'success');
 insert into BiddingStatus (id, ownerName, bids, created_at, status) values (36, 'Linda', 456.67,  '2019-04-10 13:56:12', 'success');
 insert into BiddingStatus (id, ownerName, bids, created_at, status) values (37, 'Mary', 600.77,  '2019-04-05 9:47:12', 'success');
 
 insert into BiddingStatus (id,ownerName, bids, created_at, status) values (1, 'Catherine', 322.95, '2018-08-25 4:55:12', 'fail');
-insert into BiddingStatus (id,ownerName, bids, created_at, status) values (1, 'Emma', 271.98, '2018-09-15 11:41:12', 'fail');
-insert into BiddingStatus (id,ownerName, bids, created_at, status) values (3, 'Linda', 476.34, '2018-07-28 12:50:12', 'fail');
+insert into BiddingStatus (id,ownerName, bids, created_at, status) values (1, 'Emma', 371.98, '2018-09-15 11:41:12', 'fail');
+insert into BiddingStatus (id,ownerName, bids, created_at, status) values (3, 'Linda', 776.34, '2018-07-28 12:50:12', 'fail');
 insert into BiddingStatus (id,ownerName, bids, created_at, status) values (3, 'Mary', 795.19, '2018-07-29 12:29:12', 'fail');
-insert into BiddingStatus (id,ownerName, bids, created_at, status) values (2, 'Alice', 500.98, '2018-09-25 5:31:24', 'fail');
+--insert into BiddingStatus (id,ownerName, bids, created_at, status) values (2, 'Alice', 500.98, '2018-09-25 5:31:24', 'fail');
 insert into BiddingStatus (id,ownerName, bids, created_at, status) values (2, 'Bob', 490.78,  '2018-09-25 6:21:12', 'fail');
-insert into BiddingStatus (id,ownerName, bids, created_at, status) values (4, 'Daisy', 923.56,  '2018-03-25 19:25:12', 'fail');
-insert into BiddingStatus (id,ownerName, bids, created_at, status) values (4, 'Sansa', 948.09, '2018-03-26 1:42:12', 'fail');
+--insert into BiddingStatus (id,ownerName, bids, created_at, status) values (4, 'Daisy', 923.56,  '2018-03-25 19:25:12', 'fail');
+insert into BiddingStatus (id,ownerName, bids, created_at, status) values (4, 'Sansa', 991, '2018-03-26 1:42:12', 'fail');
 insert into BiddingStatus (id,ownerName, bids, created_at, status) values (21, 'Sansa',  945.98,  '2019-03-28 18:14:12', 'fail');
 insert into BiddingStatus (id,ownerName, bids, created_at, status) values (25, 'Emma', 898.32, '2019-03-27 19:43:12' , 'fail');
-insert into BiddingStatus (id,ownerName, bids, created_at, status) values (27, 'Emma', 389.81,  '2018-03-28 15:32:12', 'fail');
+--insert into BiddingStatus (id,ownerName, bids, created_at, status) values (27, 'Emma', 389.81,  '2018-03-28 15:32:12', 'fail');
 insert into BiddingStatus (id,ownerName, bids, created_at, status) values (30, 'Ashley', 289.70, '2019-03-29 21:23:12', 'fail');
-insert into BiddingStatus (id,ownerName, bids, created_at, status) values (34, 'Ashley', 198.80, '2019-03-27 21:34:12', 'fail');
-insert into BiddingStatus (id,ownerName, bids, created_at, status) values (36, 'Linda', 455.42, '2019-04-09 20:32:12', 'fail');
+--insert into BiddingStatus (id,ownerName, bids, created_at, status) values (34, 'Ashley', 198.80, '2019-03-27 21:34:12', 'fail');
+--insert into BiddingStatus (id,ownerName, bids, created_at, status) values (36, 'Linda', 455.42, '2019-04-09 20:32:12', 'fail');
 insert into BiddingStatus (id,ownerName, bids, created_at, status) values (37, 'Sansa', 598.80, '2019-04-04 21:45:12','fail');
 
 insert into BiddingStatus (id,ownerName, bids, created_at, status) values (22, 'Mary', 500,  '2019-04-15 21:24:12', 'pending');
