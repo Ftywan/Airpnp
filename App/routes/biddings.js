@@ -11,7 +11,7 @@ const pool = new Pool({
     port: 5432,
 })
 
-var initial_query = "select *, username from BiddingStatus b, login where b.ownerName = username and b.status = 'pending';";
+var initial_query = "select l.username, s.hostName, s.startdate, s.enddate, b.bids, b.status from login l, BiddingStatus b left join Services s on b.id = s.id where b.status = 'pending' and b.ownername = username;";
 /* GET home page. */
 router.get('/', function (req, res, next) {
     pool.query(initial_query, (err, data) => {
