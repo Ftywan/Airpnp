@@ -35,7 +35,7 @@
 			<h3>Find out a second home for your pet</h3>
 			<h2>when you are on leave</h2>
 		</div>
-		<form method="POST" action="#"><input type="text" id='query'></form>
+		<input type="hidden" id='query'>
 		
 		<script>	
 		document.getElementById("query").value = getQuery();
@@ -91,26 +91,26 @@
 					<li><input type="button" value="capacity" onclick="sortTable(4)" /></li>
 				</ul>
 				<h3>All services:</h3>
-				<table id="listings">
+				<table id="listings" >
 					<thead>
 						<tr>
-							<th scope="col">Host Name</th>
-							<th scope="col">Minimum Bid</th>
-							<th scope="col">Start Date</th>
-							<th scope="col">End Date</th>
-							<th scope="col">Capacity</th>
+							<th scope="col"><font size="+1">Host Name</font></th>
+							<th scope="col"><font size="+1">Minimum Bid</font></th>
+							<th scope="col"><font size="+1">Start Date</font></th>
+							<th scope="col"><font size="+1">End Date</font></th>
+							<th scope="col"><font size="+1">Capacity</font></th>
 						</tr>
 					</thead>
 					<tbody>
 						<% for(var i=0; i<data.length; i++) { %>
+								
 						<tr>
-							<td><a
-									href=<%= "ownerview?user=" + data[i].hostname + "&start=" + data[i].startdate %>><%= data[i].hostname%></a>
-							</td>
-							<td><%= data[i].minbid%></td>
-							<td><%= data[i].startdate%></td>
-							<td><%= data[i].enddate%></td>
-							<td><%= data[i].capacity%></td>
+							<td><font size="+1"><%= data[i].hostname%></font></td>
+							<td><font size="+1"><%= data[i].minbid%></font></td>
+							<td><font size="+1"><%= data[i].startdate.toString().split(' ').slice(0, 4).join(' ')%></font></td>
+							<td><font size="+1"><%= data[i].enddate.toString().split(' ').slice(0, 4).join(' ')%></font></td>
+							<td><font size="+1"><%= data[i].capacity%></font></td>
+							<td><a href = "https://google.com"class="button special small fit">Check</a></td>
 						</tr>
 
 						<% } %>
