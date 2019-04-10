@@ -37,7 +37,7 @@ function getQuery(req, res, next) {
     var start = req.param("start");
     var end = req.param('end');
     
-    query = "select * from Services S where S.startdate= " + start + " and S.enddate= " + end;
+    query = "select * from Services S where S.startdate< \'" + start + "\' and S.enddate> \'" + end + "\'";
   }
 
   else if (filter == 'capacity') {

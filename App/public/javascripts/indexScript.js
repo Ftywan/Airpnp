@@ -41,6 +41,22 @@ function sortTable(n) {
                     }
                 }
             }
+
+            else if(n == 2) {
+                if (dir == "asc") {
+                    if (new Date(x) > new Date(y)) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (new Date(x) < new Date(y)) {
+                        //if so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
             else {
                 if (dir == "asc") {
                     if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
@@ -148,4 +164,10 @@ function getQueryVariable(variable) {
         if (pair[0] == variable) { return pair[1]; }
     }
     return (false);
+}
+function formatDate(string, id) {
+    var substring = string.split();
+    var formattedDate = substring[0] + ', ' + substring[1] + substring[2] + substring[3];
+
+    document.getElementById(id).innerHTML = formattedDate;
 }

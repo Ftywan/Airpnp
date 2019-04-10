@@ -7,7 +7,7 @@ const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
     database: 'airpnp',
-    password: 'launch',
+    password: 'aaaa990730',
     port: 5432,
 })
 
