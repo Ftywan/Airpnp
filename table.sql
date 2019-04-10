@@ -51,6 +51,7 @@ create table Users(
 	password	VARCHAR(100) NOT NULL,
 	numPets		INTEGER DEFAULT 0,
 	contact_number DECIMAL(10,0),
+	address	VARCHAR(100) UNIQUE,
 	--verification_qn VARCHAR(500),
 	--answer 		VARCHAR(500),
 	PRIMARY KEY (username)
@@ -66,11 +67,11 @@ create table Login(
 
 -- BCNF, for solving deletion anomaly
 CREATE TABLE Location(
-	username		VARCHAR(100),
+	--username		VARCHAR(100),
 	address 		VARCHAR(100),
 	nearest_mrt 	VARCHAR(100),
-	PRIMARY KEY (username),
-	FOREIGN KEY (username) REFERENCES Users(username) ON DELETE CASCADE ON UPDATE CASCADE
+	PRIMARY KEY (address),
+	FOREIGN KEY (address) REFERENCES Users(address) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
