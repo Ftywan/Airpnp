@@ -135,9 +135,10 @@ CREATE TABLE SpecialBonus(
 -- to store the services that the petOwner is interested in
 -- BCNF
 CREATE TABLE Wishlist(
+	id				SERIAL,
 	ownerName		VARCHAR(100),
 	--minBid			NUMERIC,
-	id				SERIAL,
+
 	PRIMARY KEY     (id, ownerName), 
 	FOREIGN KEY		(ownerName) REFERENCES PetOwners(username) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY  	(id)	REFERENCES	Services(id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -151,7 +152,7 @@ create table Accommodation(
 	hostName	VARCHAR(100),
 	ownerName	VARCHAR(100),
 	status      accommodation_status DEFAULT 'sending',
-	rating		NUMERIC,
+	rating		NUMERIC, DEFAULT 10,
 	PRIMARY KEY (id),
 	FOREIGN KEY (hostName) REFERENCES CareTakers(username),
 	FOREIGN KEY (ownerName) REFERENCES PetOwners(username),
@@ -184,8 +185,8 @@ create table Accommodation(
 -- BCNF
 create table BiddingStatus(
 	id 			SERIAL,
-	bids		NUMERIC,
 	ownerName 	VARCHAR(100),
+	bids		NUMERIC,
 	created_at  timestamp DEFAULT current_timestamp,
 	status      bidding_status DEFAULT 'pending',
 	PRIMARY KEY (id, ownerName, bids),
