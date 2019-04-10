@@ -107,6 +107,26 @@ from (Services S left join Area A on s.hostName = a.username)
 
 
 
+with UserLocation as(
+	select C.username, L.address, L.nearest_mrt
+	from CareTakers C left join 
+		(Users U left join Location L on U.address=L.address) on C.username=U.username
+)
+,
+maxBid as(
+	select id, max(bids) as current_max, count(*) as total_num
+	from BiddingStatus
+	group by id
+	having id=%s)
+
+select exists(select * from Favorite where ownername='Alice'), S.hostName, UL.address, 
+UL.nearest_mrt, S.capacity, S.startdate, S.enddate, S.minBid, M.current_max
+from (Services S left join UserLocation UL on S.hostName=UL.username) 
+				 left join maxBid M on S.id=M.id
+where S.id=%s;
+
+
+
 --display a petOwner's current bidding information
 select *
 from BiddingStatus b
@@ -134,7 +154,7 @@ select ownerName, bids from BiddingStatus
 -- sorting algo, used when caretaker use our algo to select the winning bidder
 select ownerName
 from BiddingStatus BS left join Users U on BS.ownerName=U.username
-order by BS.bids desc, U.numPets, U.rating desc, BS.created_at-- we are changing date data type???
+order by BS.bids desc, U.numPets, U.rating desc, BS.created_at
 limit 1;
 
 
@@ -169,7 +189,7 @@ commit;
 BEGIN TRANSACTION
 update BiddingStatus
 set status='success'
-where ownerName=%s 
+where ownerName=%s
 and id=%s
 and status='pending';
 
