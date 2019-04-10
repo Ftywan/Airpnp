@@ -11,8 +11,9 @@ const pool = new Pool({
   port: 5432,
 })
 
-var as_owner_query = "select *, username from accommodated A1, login where A1.ownername = username;";
-var as_taker_query = "select *, username from accommodated A2, login where A2.hostname = username;"
+var as_owner_query = "select l.username, s.startdate, s.enddate, a.ownerName, a.status from login l, Accommodation a join Services s on s.id = a.id where a.id = l.username;";
+var as_taker_query = "select *, username from accommodation A2, login where A2.hostname = username;"
+
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
