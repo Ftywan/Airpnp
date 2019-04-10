@@ -23,12 +23,12 @@ insert into Users (username, rating, password, numPets, contact_number, address)
 
 --Login
 insert into Login (username) values ('Alice');
-insert into Login (username) values ('Bob');
-insert into Login (username) values ('Ashley');
-insert into Login (username) values ('Daenerys');
-insert into Login (username) values ('Cersei');
-insert into Login (username) values ('Jorah');
-insert into Login (username) values ('Brienne');
+--insert into Login (username) values ('Bob');
+--nsert into Login (username) values ('Ashley');
+--insert into Login (username) values ('Daenerys');
+--insert into Login (username) values ('Cersei');
+--insert into Login (username) values ('Jorah');
+--insert into Login (username) values ('Brienne');
 
 --Location
 insert into Location (address, nearest_mrt) values ('320 Lotheville Pass', 'Woodlands');
