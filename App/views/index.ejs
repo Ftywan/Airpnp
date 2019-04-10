@@ -110,7 +110,7 @@
 							<td><font size="+1"><%= data[i].startdate.toString().split(' ').slice(0, 4).join(' ')%></font></td>
 							<td><font size="+1"><%= data[i].enddate.toString().split(' ').slice(0, 4).join(' ')%></font></td>
 							<td><font size="+1"><%= data[i].capacity%></font></td>
-							<td><a href = "https://google.com"class="button special small fit">Check</a></td>
+							<td><a href=<%= "ownerview?id=" + data[i].id%></a>class="button special small fit">Check</a></td>
 						</tr>
 
 						<% } %>
