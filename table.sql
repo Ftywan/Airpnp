@@ -156,7 +156,7 @@ create table Accommodation(
 	FOREIGN KEY (hostName) REFERENCES CareTakers(username),
 	FOREIGN KEY (ownerName) REFERENCES PetOwners(username),
 	FOREIGN KEY (id) REFERENCES Services(id),
-	CONSTRAINT "Rating must be on the scale of 1-10." CHECK (rating >= 1 and rating >= 10)
+	CONSTRAINT "Rating must be on the scale of 1-10." CHECK (rating >= 1 and rating <= 10)
 );
 
 ---to store the all the valid biddding history with status shown as pending, fail, success.

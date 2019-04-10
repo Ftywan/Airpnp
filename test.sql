@@ -182,10 +182,10 @@ insert into Wishlist (id,ownerName) values (24, 'Emma');
 insert into Wishlist (id,ownerName) values (26, 'Ashley');
 insert into Wishlist (id,ownerName) values (30, 'Bob');
 insert into Wishlist (id,ownerName) values (30, 'Linda');
-insert into Wishlist (id,ownerName) values (30, 'Linda');
+insert into Wishlist (id,ownerName) values (31, 'Linda');
 insert into Wishlist (id,ownerName) values (34, 'Mary');
 insert into Wishlist (id,ownerName) values (37, 'Sansa');
-insert into Wishlist (id,ownerName) values (37, 'Sansa');
+insert into Wishlist (id,ownerName) values (38, 'Sansa');
 insert into Wishlist (id,ownerName) values (38, 'Emma');
 insert into Wishlist (id,ownerName) values (38, 'Catherine');
 insert into Wishlist (id,ownerName) values (29, 'Bob');
@@ -201,7 +201,7 @@ insert into Accommodation (id, hostName, ownerName, status, rating) values (4, '
 insert into Accommodation (id, hostName,  ownerName, status, rating) values (21, 'Jamie',  'Daisy', 'sending', 10);
 insert into Accommodation (id, hostName,  ownerName, status, rating) values (25, 'Arya',  'Linda', 'sending', 10);
 insert into Accommodation (id, hostName, ownerName, status, rating) values (27, 'Tyrion',  'Emma', 'sending', 10);
-insert into Accommodation (id, hostName,  ownerName, status, rating) values (30'Jamie', 'Emma', 'sending', 10);
+insert into Accommodation (id, hostName,  ownerName, status, rating) values (30, 'Jamie', 'Emma', 'sending', 10);
 insert into Accommodation (id, hostName, ownerName, status, rating) values (34, 'Brienne', 'Ashley', 'sending', 10);
 insert into Accommodation (id, hostName,  ownerName, status, rating) values (36, 'Theon',  'Linda', 'sending', 10);
 insert into Accommodation (id, hostName,  ownerName, status, rating) values (37, 'Jorah',  'Mary', 'sending', 10);
@@ -211,7 +211,7 @@ insert into Accommodation (id, hostName,  ownerName, status, rating) values (37,
 
 --Bidding Status
 insert into BiddingStatus (id, ownerName, bids, created_at, status) values (1, 'Alice', 714.06, '2018-10-01 5:01:35', 'success');
-insert into BiddingStatus (id, ownerName, bids, created_at, status) values (3, 'Bob',  800, '2018-8-01 19:03:03', 'success',);
+insert into BiddingStatus (id, ownerName, bids, created_at, status) values (3, 'Bob',  800, '2018-8-01 19:03:03', 'success');
 insert into BiddingStatus (id, ownerName, bids, created_at, status) values (2, 'Alice', 529.84,  '2018-10-01 7:58:56','success');
 insert into BiddingStatus (id, ownerName, bids, created_at, status) values (4, 'Catherine', 1000, '2018-03-29 3:18:35', 'success');
 insert into BiddingStatus (id, ownerName, bids, created_at, status) values (21, 'Daisy', 950,  '2019-03-29 23:34:46', 'success');
