@@ -13,6 +13,7 @@ const pool = new Pool({
 
 var as_owner_query = "select l.username, s.startdate, s.enddate, a.ownerName, a.status from login l, Accommodation a join Services s on s.id = a.id where a.id = l.username;";
 var as_taker_query = "select *, username from accommodation A2, login where A2.hostname = username;"
+var check_login_query = "select username from login";
 
 
 /* GET home page. */
