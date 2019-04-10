@@ -51,6 +51,7 @@ create table Users(
 	password	VARCHAR(100) NOT NULL,
 	numPets		INTEGER DEFAULT 0,
 	contact_number DECIMAL(10,0),
+	address	VARCHAR(100) UNIQUE,
 	--verification_qn VARCHAR(500),
 	--answer 		VARCHAR(500),
 	PRIMARY KEY (username)
@@ -66,11 +67,11 @@ create table Login(
 
 -- BCNF, for solving deletion anomaly
 CREATE TABLE Location(
-	username		VARCHAR(100),
+	--username		VARCHAR(100),
 	address 		VARCHAR(100),
 	nearest_mrt 	VARCHAR(100),
-	PRIMARY KEY (username),
-	FOREIGN KEY (username) REFERENCES Users(username) ON DELETE CASCADE ON UPDATE CASCADE
+	PRIMARY KEY (address),
+	FOREIGN KEY (address) REFERENCES Users(address) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -134,9 +135,10 @@ CREATE TABLE SpecialBonus(
 -- to store the services that the petOwner is interested in
 -- BCNF
 CREATE TABLE Wishlist(
+	id				SERIAL,
 	ownerName		VARCHAR(100),
 	--minBid			NUMERIC,
-	id				SERIAL,
+
 	PRIMARY KEY     (id, ownerName), 
 	FOREIGN KEY		(ownerName) REFERENCES PetOwners(username) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY  	(id)	REFERENCES	Services(id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -150,7 +152,7 @@ create table Accommodation(
 	hostName	VARCHAR(100),
 	ownerName	VARCHAR(100),
 	status      accommodation_status DEFAULT 'sending',
-	rating		NUMERIC,
+	rating		NUMERIC, DEFAULT 10,
 	PRIMARY KEY (id),
 	FOREIGN KEY (hostName) REFERENCES CareTakers(username),
 	FOREIGN KEY (ownerName) REFERENCES PetOwners(username),
@@ -183,8 +185,8 @@ create table Accommodation(
 -- BCNF
 create table BiddingStatus(
 	id 			SERIAL,
-	bids		NUMERIC,
 	ownerName 	VARCHAR(100),
+	bids		NUMERIC,
 	created_at  timestamp DEFAULT current_timestamp,
 	status      bidding_status DEFAULT 'pending',
 	PRIMARY KEY (id, ownerName, bids),
