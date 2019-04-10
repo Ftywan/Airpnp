@@ -20,6 +20,39 @@ insert into Users (username, rating, password, numPets, contact_number, address)
 insert into Users (username, rating, password, numPets, contact_number, address) values ('Jorah', 10, 'ChCX876NH5vM', 1, '7427460876', '13 Artisan Street');
 insert into Users (username, rating, password, numPets, contact_number, address) values ('Bran', 6, 'FRRrhumD', 6, '7957476774', '5334 Bartillon Court');
 
+
+--Login
+insert into Login (username) values ('Alice');
+insert into Login (username) values ('Bob');
+insert into Login (username) values ('Ashley');
+insert into Login (username) values ('Daenerys');
+insert into Login (username) values ('Cersei');
+insert into Login (username) values ('Jorah');
+insert into Login (username) values ('Brienne');
+
+--Location
+insert into Location (address, nearest_mrt) values ('320 Lotheville Pass', 'Woodlands');
+insert into Location (address, nearest_mrt) values ('86196 Tennyson Place', 'Kent Ridge');
+insert into Location (address, nearest_mrt) values ('59 Hagan Lane', 'Jurong East');
+insert into Location (address, nearest_mrt) values ('075 Crowley Junction', 'Simei');
+insert into Location (address, nearest_mrt) values ('16 Merry Street', 'Raffles Place');
+insert into Location (address, nearest_mrt) values ('0846 Ridgeview Court', 'Admiralty');
+insert into Location (address, nearest_mrt) values ('4 Rowland Court', 'Clementi');
+insert into Location (address, nearest_mrt) values ('258 Emmet Court', 'Pioneer');
+insert into Location (address, nearest_mrt) values ('50 Reinke Parkway', 'Chinese Garden');
+insert into Location (address, nearest_mrt) values ('7 Myrtle Parkway', 'Bedok');
+insert into Location (address, nearest_mrt) values ('4618 Oak Park', 'Choa Chu Kang');
+insert into Location (address, nearest_mrt) values ('07613 Clarendon Parkway', 'Yio Chu Kang');
+insert into Location (address, nearest_mrt) values ('8 Mitchell Court', 'City Hall');
+insert into Location (address, nearest_mrt) values ('5304 Muir Alley', 'Esplanade');
+insert into Location (address, nearest_mrt) values ('985 8th Avenue', 'Somerset');
+insert into Location (address, nearest_mrt) values ('5 Westerfield Drive', 'Simei');
+insert into Location (address, nearest_mrt) values ('0778 Pleasure Lane', 'Raffles Place');
+insert into Location (address, nearest_mrt) values ('2 Lawn Road', 'City Hall');
+insert into Location (address, nearest_mrt) values ('13 Artisan Street', 'Woodlands');
+insert into Location (address, nearest_mrt) values ('5334 Bartillon Court', 'Bedok');
+
+
 -- PetOwners
 insert into PetOwners (username) values ('Alice');
 insert into PetOwners (username) values ('Bob');
@@ -94,10 +127,10 @@ insert into Favorite (ownerName, hostName) values ('Mary', 'Tyrion');
 
 
 ---Services(done)
-insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (1, 'JonSnow',  300, '12/17/2018', '12/31/2018', 4, 'bidded')
-insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (2, 'Arya', 400,'10/4/2018', '10/14/2018', 4, 'bidded')
-insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (3, 'Cersei', 700, '9/6/2018', '9/20/2018', 4, 'bidded')
-insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (4, 'Tyrion', 1000, '4/29/2018', '7/30/2018',4,  'bidded')
+insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (1, 'JonSnow',  300, '12/17/2018', '12/31/2018', 4, 'bidded');
+insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (2, 'Arya', 400,'10/4/2018', '10/14/2018', 4, 'bidded');
+insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (3, 'Cersei', 700, '9/6/2018', '9/20/2018', 4, 'bidded');
+insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (4, 'Tyrion', 1000, '4/29/2018', '7/30/2018',4,  'bidded');
 insert into Services (id, hostName, minBid, startdate, enddate, capacity, status) values (21,'JonSnow', 920, '4/18/2019', '4/21/2019', 5, 'bidded');
 insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (22,'JonSnow', 497, '5/3/2019', '5/10/2019', 5, 'available');
 insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (23,'JonSnow', 681, '5/15/2019', '5/24/2019', 3, 'available');
@@ -111,7 +144,7 @@ insert into Services (id,hostName, minBid, startdate, enddate, capacity, status)
 insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (31, 'Jamie', 565.05, '5/20/2019', '5/24/2019', 10, 'available');
 insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (32, 'Jamie', 596.98, '4/29/2019', '5/1/2019', 3, 'available');
 insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (33, 'Brienne', 777.33, '4/28/2019', '4/30/2019', 2, 'available');
-insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (34, 'Brienne', 153.69, '5/17/2019', '5/27/2019', 'bidded');
+insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (34, 'Brienne', 153.69, '5/17/2019', '5/27/2019',7, 'bidded');
 insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (35, 'Khal', 260.83, '6/14/2019', '6/20/2019', 1, 'available');
 insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (36, 'Theon', 355.37, '4/30/2019', '5/1/2019', 1, 'bidded');
 insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (37, 'Jorah', 528.38, '5/7/2019', '5/24/2019', 7, 'bidded');
@@ -120,7 +153,25 @@ insert into Services (id,hostName, minBid, startdate, enddate, capacity, status)
 insert into Services (id,hostName, minBid, startdate, enddate, capacity, status) values (40, 'Jorah', 669.57, '4/20/2019', '4/24/2019', 3, 'available');
 
 
-
+--SpecialBonus
+insert into SpecialBonus (id, bonus) values (1, 'walk');
+insert into SpecialBonus (id, bonus) values (1, 'shower');
+insert into SpecialBonus (id, bonus) values (2, 'walk');
+insert into SpecialBonus (id, bonus) values (3, 'shower');
+insert into SpecialBonus (id, bonus) values (4, 'beauty');
+insert into SpecialBonus (id, bonus) values (21, 'beauty');
+insert into SpecialBonus (id, bonus) values (26, 'walk');
+insert into SpecialBonus (id, bonus) values (30, 'shower');
+insert into SpecialBonus (id, bonus) values (32, 'beauty');
+insert into SpecialBonus (id, bonus) values (38, 'walk');
+insert into SpecialBonus (id, bonus) values (40, 'shower');
+insert into SpecialBonus (id, bonus) values (22, 'beauty');
+insert into SpecialBonus (id, bonus) values (32, 'shower');
+insert into SpecialBonus (id, bonus) values (33, 'walk');
+insert into SpecialBonus (id, bonus) values (35, 'beauty');
+insert into SpecialBonus (id, bonus) values (36, 'walk');
+insert into SpecialBonus (id, bonus) values (37, 'beauty');
+insert into SpecialBonus (id, bonus) values (39, 'shower');
 
 
 -- Wishlist(done)
@@ -147,13 +198,13 @@ insert into Accommodation (id, hostName,  ownerName, status, rating) values (1, 
 insert into Accommodation (id, hostName, ownerName, status, rating) values (2, 'Arya', 'Alice', 'completed', 9);
 insert into Accommodation (id, hostName, ownerName, status, rating) values (3, 'Cersei',  'Bob', 'completed', 9);
 insert into Accommodation (id, hostName, ownerName, status, rating) values (4, 'Tyrion', 'Catherine', 'completed',10);
-insert into Accommodation (id, hostName,  ownerName, startdate, enddate) values (21, 'Jamie',  'Daisy', 'sending', 10);
-insert into Accommodation (id, hostName,  ownerName, startdate, enddate) values (25, 'Arya',  'Linda', 'sending', 10);
-insert into Accommodation (id, hostName, ownerName, startdate, enddate) values (27, 'Tyrion',  'Emma', 'sending', 10);
-insert into Accommodation (id, hostName,  ownerName, startdate, enddate) values (30'Jamie', 'Emma', 'sending', 10);
-insert into Accommodation (id, hostName, ownerName, startdate, enddate) values (34, 'Brienne', 'Ashley', 'sending', 10);
-insert into Accommodation (id, hostName,  ownerName, startdate, enddate) values (36, 'Theon',  'Linda', 'sending', 10);
-insert into Accommodation (id, hostName,  ownerName, startdate, enddate) values (37, 'Jorah',  'Mary', 'sending', 10);
+insert into Accommodation (id, hostName,  ownerName, status, rating) values (21, 'Jamie',  'Daisy', 'sending', 10);
+insert into Accommodation (id, hostName,  ownerName, status, rating) values (25, 'Arya',  'Linda', 'sending', 10);
+insert into Accommodation (id, hostName, ownerName, status, rating) values (27, 'Tyrion',  'Emma', 'sending', 10);
+insert into Accommodation (id, hostName,  ownerName, status, rating) values (30'Jamie', 'Emma', 'sending', 10);
+insert into Accommodation (id, hostName, ownerName, status, rating) values (34, 'Brienne', 'Ashley', 'sending', 10);
+insert into Accommodation (id, hostName,  ownerName, status, rating) values (36, 'Theon',  'Linda', 'sending', 10);
+insert into Accommodation (id, hostName,  ownerName, status, rating) values (37, 'Jorah',  'Mary', 'sending', 10);
 
 
 
@@ -193,5 +244,20 @@ insert into BiddingStatus (id,ownerName, bids, created_at, status) values (40, '
 insert into BiddingStatus (id,ownerName, bids, created_at, status) values (40, 'Bob', 766.21,  '2019-04-15 16:32:12', 'pending');
 
 
-
+--Comment
+insert into Comment (id, ownerName, content) values (1, 'Alice', 'Hi');
+insert into Comment (id, ownerName, content) values (3, 'Bob', 'How much');
+insert into Comment (id, ownerName, content) values (2, 'Alice', 'Ok');
+insert into Comment (id, ownerName, content) values (21, 'Daisy', 'Alright');
+insert into Comment (id, ownerName, content) values (25, 'Linda', 'See you');
+insert into Comment (id, ownerName, content) values (27, 'Emma', 'See you there');
+insert into Comment (id, ownerName, content) values (30, 'Ashley', 'where are you');
+insert into Comment (id, ownerName, content) values (34, 'Linda', 'where do you live');
+insert into Comment (id, ownerName, content) values (36, 'Mary', 'where do you live');
+insert into Comment (id, ownerName, content) values (37, 'Catherine', 'hi');
+insert into Comment (id, ownerName, content) values (22, 'Emma', 'I am waiting at');
+insert into Comment (id, ownerName, content) values (25, 'Ashley', 'We are there');
+insert into Comment (id, ownerName, content) values (40, 'Mary', 'See you tmr');
+insert into Comment (id, ownerName, content) values (40, 'Mary', '6pm?');
+insert into Comment (id, ownerName, content) values (40, 'Bob', 'can confirm?');
 
