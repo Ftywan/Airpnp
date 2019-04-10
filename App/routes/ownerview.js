@@ -11,11 +11,17 @@ const pool = new Pool({
     port: 5432,
 })
 
+var loginQuery = "select * from login";
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    pool.query(getInitialQUery(req, res, next), (err, data) => {
-        pool.query(getAddressQuery(req, res, next), (err, addressData) => {
-            res.render('ownerview', { title: 'All about pets', data: data.rows, addressData: addressData.rows })
+    pool.query(loginQuery, (err, loginUser) => {
+        pool.query("select hostname from favorite where ownername = loginuser = " + loginUser[0].username, (err, favouriteData) => {
+            pool.query(getInitialQUery(req, res, next), (err, data) => {
+                pool.query(getAddressQuery(req, res, next), (err, addressData) => {
+                    res.render('ownerview', { title: 'All about pets', data: data.rows, addressData: addressData.rows, favouriteData: favouriteData.rows})
+                });
+            });
         });
     });
 });
