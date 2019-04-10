@@ -23,7 +23,7 @@ router.get('/', function (req, res, next) {
 
 function getQuery(req, res, next) {
   var filter = req.param("filter");
-  var query = "select * from Services";
+  var query = "select * from Services where status = \'available\'";
 
 
   if (filter == 'price') {
@@ -54,6 +54,14 @@ function getQuery(req, res, next) {
 
     if(value == 'end') {
       query = "select * from Services order by enddate";
+    }
+
+    if(value == 'price') {
+      query = "select * from Services order by minbid";
+    }
+
+    if(value == 'capacity') {
+      query = "select * from Services order by capacity";
     }
   }
 
