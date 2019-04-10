@@ -85,20 +85,21 @@
 			<h3>Sort by:</h3>
 			<div class="table-wrapper">
 				<ul class="actions">
-					<li><input type="button" value="price" onclick="sortTable(1)" /></li>
+					<li><input type="button" value="price" onclick="priceSortAddress()" /></li>
 					<li><input type="button" value="start date" onclick="dateStartAddress()" /></li>
 					<li><input type="button" value="end date" onclick="dateEndAddress()" /></li>
-					<li><input type="button" value="capacity" onclick="sortTable(4)" /></li>
+					<li><input type="button" value="capacity" onclick="capacitySortAddress()" /></li>
 				</ul>
 				<h3>All services:</h3>
 				<table id="listings" >
 					<thead>
 						<tr>
 							<th scope="col"><font size="+1">Host Name</font></th>
-							<th scope="col"><font size="+1">Minimum Bid</font></th>
+							<th scope="col"><font size="+1"></font>Minimum Bid</font></th>
 							<th scope="col"><font size="+1">Start Date</font></th>
 							<th scope="col"><font size="+1">End Date</font></th>
 							<th scope="col"><font size="+1">Capacity</font></th>
+							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -110,7 +111,7 @@
 							<td><font size="+1"><%= data[i].startdate.toString().split(' ').slice(0, 4).join(' ')%></font></td>
 							<td><font size="+1"><%= data[i].enddate.toString().split(' ').slice(0, 4).join(' ')%></font></td>
 							<td><font size="+1"><%= data[i].capacity%></font></td>
-							<td><a href=<%= "ownerview?id=" + data[i].id%></a>class="button special small fit">Check</a></td>
+							<td><a href=<%= "ownerview?id=" + data[i].id + "&host=" + data[i].hostname%> class="button special small fit">Check it out!</a></td>
 						</tr>
 
 						<% } %>

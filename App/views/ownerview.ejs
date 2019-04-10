@@ -41,25 +41,27 @@
 	<section id="three" class="wrapper align-left">
 		<div class="inner">
 			<h3>Host information</h3>
-			<br />
-			<a>Favourite Host:</a>
-			<br />
-			<a>Host Name:</a>
-			<br />
-			<a>Host Address:</a>
-			<br />
-			<a>Host Capacity:</a>
-			<br />
-			<a>Minimum Bidding:</a>
-			<br />
+			<h4>Favourite Host:</h4>
+			<h4>Host Name: <%= data[0].hostname%></h4>			
+			<h4>Host Address: <%= addressData[0].address%></h4>
+			<h4>Host Capacity: <%=data[0].capacity%>pets</h4>
+			<h4>Start Date: <%=data[0].startdate%></h4>
+			<h4>End Date: <%= data[0].enddate%></h4>
+			<h4>Minimum Bidding: $<%=data[0].minbid%></h4>
 
 		</div>
 		<div class="wrapper align-center">
 			<form method="post" action="#">
 				<ul class="actions">
-					<li><input type="submit" value="Add to Wishlist" /></li>
+					<li><input type="submit" value="Add Service to Wishlist" /></li>
 				</ul>
 			</form>
+
+			<form method="post" action="#">
+					<ul class="actions">
+						<li><input type="submit" value="Add Care Taker to Favourite" /></li>
+					</ul>
+				</form>
 		</div>
 
 
@@ -76,7 +78,7 @@
 			</div>
 
 			<ul class="actions">
-				<li><input value="Place bidding" class="button alt" type="submit"></li>
+				<li><input value="Decided? Place bidding" class="button alt" type="submit"></li>
 			</ul>
 
 		</form>
