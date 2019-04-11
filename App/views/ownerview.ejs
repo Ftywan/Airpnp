@@ -50,21 +50,35 @@
 				<h2>Host information</h2>
 			</div>
 			<%if (result.length){%>
-				<h4>Favourite Host: <%= (data[0].exists == 't')%></h4>
+				<h4>Favourite Host: <%= (data[0].exists == true)%></h4>
 				<%}%>
 				<input type="hidden" id="id" value=<%=data[0].id%>>
-			<h4>Host Name: <%= data[0].hostname%></h4>
+				<h4>Host Name: <%= data[0].hostname%></h4>
 				<h4>Host Address: <%= data[0].address%></h4>
 				<h4>Host Capacity: <%=data[0].capacity%> pets</h4>
 				<h4>Start Date: <%=data[0].startdate.toString().split(' ').slice(0, 4).join(' ')%></h4>
 				<h4>End Date: <%= data[0].enddate.toString().split(' ').slice(0, 4).join(' ')%></h4>
-				<h4>Minimum Bidding: $<%=data[0].minbid%></h4>
+				<h4>Minimum Bidding: $<a id='min'><%=data[0].minbid%></a></h4>
 				<h4>Nearest MRT Station: <%= data[0].nearest_mrt%></h4>
+				<% if (data[0].current_max){%>
+				<h4>Current Max Bidding: <%= data[0].current_max%></h4>
+				<%} else{%>
+				<br />
+				<h4>Seems no one have bidded...</h4>
+				<%}%>
 				<div class="align-center">
-					<a class="button" href=<%= "ownerview?id=" + data[0].id + "&action=add"%>>Add to wishlist</a>
-					<a class="button"
-						href=<%= "ownerview?id=" + data[0].id + "&user=" + data[0].hostname + "&action=like"%>>Like this
-						host</a>
+					<% if (!wishlist.length) {%>
+				<a class="button" href=<%= "ownerview?id=" + data[0].id + "&action=add"%>>Add to wishlist</a>
+				<%}else {%>
+				<h4>This post has been added to wishlist!</h4>
+				<%}%>
+					<% if (! data[0].exists) {%>
+				<a class="button"
+					href=<%= "ownerview?id=" + data[0].id + "&user=" + data[0].hostname + "&action=like"%>>Like this
+					host</a>
+				<%}else {%>
+				<h4>This user has been added to favourite!</h4>
+				<%}%>
 				</div>
 		</div>
 		</section>
@@ -78,9 +92,13 @@
 					<input type="text" name="bidding" id="bidding" placeholder="Bidding" />
 				</div>
 			</form>
-			<ul class="actions">
-				<li><input class="button alt" value="by money" onclick="bidAddress()" /></li>
-			</ul>
+			<%if (!bidded.length) {%>
+				<ul class="actions">
+					<li><input class="button alt" value="by money" onclick="bidAddress()" /></li>
+				</ul>
+				<%}else {%>
+				<h4>Seems you have bidded for this service.</h4>
+				<%}%>
 			<!-- <script>
 				function bidAddress() {
 					return location.href = "ownerview?id=" + document.getElementById('id').value + "&bid=" + document.getElementById("bidding").value + "&action=bid";
