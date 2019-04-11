@@ -8,7 +8,7 @@
 	<title>Login Page</title> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel='stylesheet' href='/stylesheets/style.css' />
-
+	<script src="javascripts/ownerviewScript.js"></script>
 </head>
 <!--comments here-->
 
@@ -19,7 +19,13 @@
 				<font size="+3"><strong>Airpnp</strong></font>
 			</a>
 			<nav id="nav">
+				<% if (result.length) {%>
+				<!--if no one logged in, do not display-->
+				<a>Logged in as: <%= result[0].username%></a>
+				<a href='index?action=logout'>Logout</a>
+				<% } else { %>
 				<a href="login">Login</a>
+				<%}%>
 				<a href="signup">Signup</a>
 				<a href="listings">My listings</a>
 				<a href="biddings">My biddings</a>
@@ -43,50 +49,44 @@
 			<div class="align-center">
 				<h2>Host information</h2>
 			</div>
-			<%if (loginData.length){%>
-			<h4>Favourite Host: <%= (data[0].exists == 't')%></h4>
-			<%}%>
+			<%if (result.length){%>
+				<h4>Favourite Host: <%= (data[0].exists == 't')%></h4>
+				<%}%>
+				<input type="hidden" id="id" value=<%=data[0].id%>>
 			<h4>Host Name: <%= data[0].hostname%></h4>
-			<h4>Host Address: <%= data[0].address%></h4>
-			<h4>Host Capacity: <%=data[0].capacity%> pets</h4>
-			<h4>Start Date: <%=data[0].startdate.toString().split(' ').slice(0, 4).join(' ')%></h4>
-			<h4>End Date: <%= data[0].enddate.toString().split(' ').slice(0, 4).join(' ')%></h4>
-			<h4>Minimum Bidding: $<%=data[0].minbid%></h4>
-			<h4>Nearest MRT Station: <%= data[0].nearest_mrt%></h4>
-
+				<h4>Host Address: <%= data[0].address%></h4>
+				<h4>Host Capacity: <%=data[0].capacity%> pets</h4>
+				<h4>Start Date: <%=data[0].startdate.toString().split(' ').slice(0, 4).join(' ')%></h4>
+				<h4>End Date: <%= data[0].enddate.toString().split(' ').slice(0, 4).join(' ')%></h4>
+				<h4>Minimum Bidding: $<%=data[0].minbid%></h4>
+				<h4>Nearest MRT Station: <%= data[0].nearest_mrt%></h4>
+				<div class="align-center">
+					<a class="button" href=<%= "ownerview?id=" + data[0].id + "&action=add"%>>Add to wishlist</a>
+					<a class="button"
+						href=<%= "ownerview?id=" + data[0].id + "&user=" + data[0].hostname + "&action=like"%>>Like this
+						host</a>
+				</div>
 		</div>
-		<div class="wrapper align-center">
-			<form method="post" action="#">
-				<ul class="actions">
-					<li><input type="submit" value="Add Service to Wishlist" /></li>
-				</ul>
-			</form>
-
-			<form method="post" action="#">
-				<ul class="actions">
-					<li><input type="submit" value="Add Care Taker to Favourite" /></li>
-				</ul>
-			</form>
-		</div>
-
-
-	</section>
-
-	<footer id="footer">
-		<div class="inner">
-			<h3>Place your bidding</h3>
-		</div>
-		<form method="post" action="#">
-			<div class="field half">
-				<label>Place your bidding here:</label>
-				<input type="text" name="bidding" id="bidding" placeholder="Bidding" />
+		</section>
+		<footer id="footer">
+			<div class="inner">
+				<h3>Place your bidding</h3>
 			</div>
-
+			<form method="post" action="#">
+				<div class="field half">
+					<label>Place your bidding here:</label>
+					<input type="text" name="bidding" id="bidding" placeholder="Bidding" />
+				</div>
+			</form>
 			<ul class="actions">
-				<li><input value="Decided? Place bidding" class="button alt" type="submit"></li>
+				<li><input class="button alt" value="by money" onclick="bidAddress()" /></li>
 			</ul>
-
-		</form>
-	</footer>
+			<!-- <script>
+				function bidAddress() {
+					return location.href = "ownerview?id=" + document.getElementById('id').value + "&bid=" + document.getElementById("bidding").value + "&action=bid";
+				}
+			</script> -->
+		</footer>
+</body>
 
 </html>
