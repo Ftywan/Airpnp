@@ -28,12 +28,16 @@ router.post('/', function (req, res, next) {
 	var password = sha256(req.body.password);
 	var number = req.body.number;
 	var address = req.body.address;
-	var numpets = req.body.numpets;
+	var mrt = req.body.mrt;
+	var numpets = 0;
 	// Construct Specific SQL Query
 	var insert_query = sql_query + "('" + username + "'," + 10 + ",'" + password + "'," + numpets + "," + number + ",'" + address + "');";
+	var insert_location_query = ("insert into location values ('") + address + "','" + mrt + "');";
 
-	pool.query(insert_query, (err, data) => {
-		res.redirect('/login')
+	pool.query(insert_query, (err, not_used1) => {
+		pool.query(insert_location_query, (err, not_used2) => {
+			res.redirect('/login')
+		});
 	});
 });
 
