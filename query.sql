@@ -203,3 +203,26 @@ and status='pending';
 insert into Accomodation
 values (hostName, id, ownerName, status, rating)
 COMMIT;
+
+
+
+with UserLocation as(
+ select C.username, L.address, L.nearest_mrt
+ from CareTakers C left join 
+  (Users U left join Location L on U.address=L.address) on C.username=U.username
+)
+,
+maxBid as(
+ select id, max(bids) as current_max, count(*) as total_num
+ from BiddingStatus
+ group by id
+ having id=24)
+
+select exists(select * from Favorite where ownerName='Alice'), S.hostName, UL.address, 
+UL.nearest_mrt, S.capacity, S.startdate, S.enddate, S.minBid, M.current_max
+from (Services S left join UserLocation UL on S.hostName=UL.username) 
+     left join maxBid M on S.id=M.id
+where S.id=24;
+
+
+

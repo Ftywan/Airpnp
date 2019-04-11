@@ -40,14 +40,17 @@
 
 	<section id="three" class="wrapper align-left">
 		<div class="inner">
-			<h3>Host information</h3>
-			<h4>Favourite Host:</h4>
+			<div class = "align-center">
+			<h2>Host information</h2>
+			</div>
+			<h4>Favourite Host: <%= (data[0].exists == 't')%></h4>
 			<h4>Host Name: <%= data[0].hostname%></h4>			
-			<h4>Host Address: <%= addressData[0].address%></h4>
-			<h4>Host Capacity: <%=data[0].capacity%>pets</h4>
-			<h4>Start Date: <%=data[0].startdate%></h4>
-			<h4>End Date: <%= data[0].enddate%></h4>
+			<h4>Host Address: <%= data[0].address%></h4>
+			<h4>Host Capacity: <%=data[0].capacity%> pets</h4>
+			<h4>Start Date: <%=data[0].startdate.toString().split(' ').slice(0, 4).join(' ')%></h4>
+			<h4>End Date: <%= data[0].enddate.toString().split(' ').slice(0, 4).join(' ')%></h4>
 			<h4>Minimum Bidding: $<%=data[0].minbid%></h4>
+			<h4>Nearest MRT Station: <%= data[0].nearest_mrt%></h4>
 
 		</div>
 		<div class="wrapper align-center">
