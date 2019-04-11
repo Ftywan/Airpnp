@@ -12,11 +12,14 @@ const pool = new Pool({
   port: 5432,
 })
 
+var check_login_query = "select username from login";
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  pool.query(getQuery(req, res, next), (err, data) => {
-    res.render('index', { title: 'Initial Data', data: data.rows })
+  pool.query(check_login_query, (err, result) => {
+    pool.query(getQuery(req, res, next), (err, data) => {
+      res.render('index', { title: 'Initial Data', data: data.rows, result: result.rows })
+    });
   });
 });
 
@@ -27,16 +30,16 @@ function getQuery(req, res, next) {
 
 
   if (filter == 'price') {
-      var low = req.param('low');
-      var high = req.param('high');
+    var low = req.param('low');
+    var high = req.param('high');
 
-      query = "select * from Services S where S.minBid> " + low + " and S.minBid< " + high;
+    query = "select * from Services S where S.minBid> " + low + " and S.minBid< " + high;
   }
 
   else if (filter == 'time') {
     var start = req.param("start");
     var end = req.param('end');
-    
+
     query = "select * from Services S where S.startdate< \'" + start + "\' and S.enddate> \'" + end + "\'";
   }
 
@@ -48,19 +51,19 @@ function getQuery(req, res, next) {
 
   else if (filter == 'sort') {
     var value = req.param('value');
-    if(value == 'start') {
+    if (value == 'start') {
       query = "select * from Services order by startdate";
     }
 
-    if(value == 'end') {
+    if (value == 'end') {
       query = "select * from Services order by enddate";
     }
 
-    if(value == 'price') {
+    if (value == 'price') {
       query = "select * from Services order by minbid";
     }
 
-    if(value == 'capacity') {
+    if (value == 'capacity') {
       query = "select * from Services order by capacity";
     }
   }

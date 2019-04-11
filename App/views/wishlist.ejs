@@ -19,6 +19,10 @@
 				<font size="+3"><strong>Airpnp</strong></font>
 			</a>
 			<nav id="nav">
+					<% if (result.length) {%>
+						<!--if no one logged in, do not display-->
+						<a>Logged in as: <%= result[0].username%></a>
+						<% } %>
 				<a href="login">Login</a>
 				<a href="signup">Signup</a>
 				<a href="listings">My listings</a>
@@ -46,48 +50,54 @@
 			</div>
 
 			<div class="table-wrapper">
-				<table>
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Description</th>
-							<th>Price</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Item 1</td>
-							<td>Ante turpis integer aliquet porttitor.</td>
-							<td>29.99</td>
-						</tr>
-						<tr>
-							<td>Item 2</td>
-							<td>Vis ac commodo adipiscing arcu aliquet.</td>
-							<td>19.99</td>
-						</tr>
-						<tr>
-							<td>Item 3</td>
-							<td> Morbi faucibus arcu accumsan lorem.</td>
-							<td>29.99</td>
-						</tr>
-						<tr>
-							<td>Item 4</td>
-							<td>Vitae integer tempus condimentum.</td>
-							<td>19.99</td>
-						</tr>
-						<tr>
-							<td>Item 5</td>
-							<td>Ante turpis integer aliquet porttitor.</td>
-							<td>29.99</td>
-						</tr>
-					</tbody>
-					<tfoot>
-						<tr>
-							<td colspan="2"></td>
-							<td>100.00</td>
-						</tr>
-					</tfoot>
-				</table>
+					<table id="listings">
+							<thead>
+								<tr>
+									<th scope="col">
+										<font size="+1">Host Name</font>
+									</th>
+									<th scope="col">
+										<font size="+1"></font>Minimum Bid</font>
+									</th>
+									<th scope="col">
+										<font size="+1">Start Date</font>
+									</th>
+									<th scope="col">
+										<font size="+1">End Date</font>
+									</th>
+									<th scope="col">
+										<font size="+1">Capacity</font>
+									</th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<% for(var i=0; i<data.length; i++) { %>
+		
+								<tr>
+									<td>
+										<font size="+1"><%= data[i].hostname%></font>
+									</td>
+									<td>
+										<font size="+1"><%= data[i].minbid%></font>
+									</td>
+									<td>
+										<font size="+1"><%= data[i].startdate.toString().split(' ').slice(0, 4).join(' ')%>
+										</font>
+									</td>
+									<td>
+										<font size="+1"><%= data[i].enddate.toString().split(' ').slice(0, 4).join(' ')%></font>
+									</td>
+									<td>
+										<font size="+1"><%= data[i].capacity%></font>
+									</td>
+									<td><a href=<%= "ownerview?id=" + data[i].id + "&host=" + data[i].hostname%>
+											class="button special small fit">Check it out!</a></td>
+								</tr>
+		
+								<% } %>
+							</tbody>
+						</table>
 			</div>
 		</div>
 	</section>

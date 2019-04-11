@@ -4,8 +4,8 @@
 <head>
 	<title>Airpnp</title>
 	<meta charset="UTF-8">
-	  <meta name="discription" content="Something about pets">
-		<title>Login Page</title>
+	<meta name="discription" content="Something about pets">
+	<title>Login Page</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<script src="javascripts/indexScript.js"></script>
@@ -18,6 +18,10 @@
 				<font size="+3"><strong>Airpnp</strong></font>
 			</a>
 			<nav id="nav">
+				<% if (result.length) {%>
+				<!--if no one logged in, do not display-->
+				<a>Logged in as: <%= result[0].username%></a>
+				<% } %>
 				<a href="login">Login</a>
 				<a href="signup">Signup</a>
 				<a href="listings">My listings</a>
@@ -36,9 +40,9 @@
 			<h2>when you are on leave</h2>
 		</div>
 		<input type="hidden" id='query'>
-		
-		<script>	
-		document.getElementById("query").value = getQuery();
+
+		<script>
+			document.getElementById("query").value = getQuery();
 		</script>
 	</footer>
 
@@ -77,11 +81,11 @@
 				<!-- search button -->
 			</form>
 			<ul class="actions">
-					<li><input type="button" value="by money" onclick="priceAddress()"/></li>
-					<li><input type="button" value="by time" onclick="dateAddress()"/></li>
-					<li><input type="button" value="by capacity" onclick="capacityAddress()"/></li>
-					<li><input class="button special" type="reset" value="Reset" /></li>
-				</ul>
+				<li><input type="button" value="by money" onclick="priceAddress()" /></li>
+				<li><input type="button" value="by time" onclick="dateAddress()" /></li>
+				<li><input type="button" value="by capacity" onclick="capacityAddress()" /></li>
+				<li><input class="button special" type="reset" value="Reset" /></li>
+			</ul>
 			<h3>Sort by:</h3>
 			<div class="table-wrapper">
 				<ul class="actions">
@@ -91,27 +95,49 @@
 					<li><input type="button" value="capacity" onclick="capacitySortAddress()" /></li>
 				</ul>
 				<h3>All services:</h3>
-				<table id="listings" >
+				<table id="listings">
 					<thead>
 						<tr>
-							<th scope="col"><font size="+1">Host Name</font></th>
-							<th scope="col"><font size="+1"></font>Minimum Bid</font></th>
-							<th scope="col"><font size="+1">Start Date</font></th>
-							<th scope="col"><font size="+1">End Date</font></th>
-							<th scope="col"><font size="+1">Capacity</font></th>
+							<th scope="col">
+								<font size="+1">Host Name</font>
+							</th>
+							<th scope="col">
+								<font size="+1"></font>Minimum Bid</font>
+							</th>
+							<th scope="col">
+								<font size="+1">Start Date</font>
+							</th>
+							<th scope="col">
+								<font size="+1">End Date</font>
+							</th>
+							<th scope="col">
+								<font size="+1">Capacity</font>
+							</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody>
 						<% for(var i=0; i<data.length; i++) { %>
-								
+
 						<tr>
-							<td><font size="+1"><%= data[i].hostname%></font></td>
-							<td><font size="+1"><%= data[i].minbid%></font></td>
-							<td><font size="+1"><%= data[i].startdate.toString().split(' ').slice(0, 4).join(' ')%></font></td>
-							<td><font size="+1"><%= data[i].enddate.toString().split(' ').slice(0, 4).join(' ')%></font></td>
-							<td><font size="+1"><%= data[i].capacity%></font></td>
-							<td><a href=<%= "ownerview?id=" + data[i].id + "&host=" + data[i].hostname%> class="button special small fit">Check it out!</a></td>
+							<td>
+								<font size="+1"><%= data[i].hostname%></font>
+							</td>
+							<td>
+								<font size="+1"><%= data[i].minbid%></font>
+							</td>
+							<td>
+								<font size="+1"><%= data[i].startdate.toString().split(' ').slice(0, 4).join(' ')%>
+								</font>
+							</td>
+							<td>
+								<font size="+1"><%= data[i].enddate.toString().split(' ').slice(0, 4).join(' ')%></font>
+							</td>
+							<td>
+								<font size="+1"><%= data[i].capacity%></font>
+							</td>
+							<td><a href=<%= "ownerview?id=" + data[i].id + "&host=" + data[i].hostname%>
+									class="button special small fit">Check it out!</a></td>
 						</tr>
 
 						<% } %>
