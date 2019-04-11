@@ -16,18 +16,29 @@ var check_login_query = "select username from login";
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  pool.query(check_login_query, (err, result) => {
-    pool.query(getQuery(req, res, next), (err, data) => {
-      res.render('index', { title: 'Initial Data', data: data.rows, result: result.rows })
+  pool.query(checkLogout(req, res, next), (err, logoutData) => {
+    pool.query(check_login_query, (err, result) => {
+      pool.query(getQuery(req, res, next), (err, data) => {
+        res.render('index', { title: 'Initial Data', data: data.rows, result: result.rows })
+      });
     });
   });
 });
 
+function checkLogout(req, res, next) {
+  var query = 'select * from login';
+  var action = req.param('action');
 
+  if (action == 'logout') {
+    query = 'delete from login';
+  }
+
+  return query;
+
+}
 function getQuery(req, res, next) {
-  var filter = req.param("filter");
   var query = "select * from Services where status = \'available\'";
-
+  var filter = req.param("filter");
 
   if (filter == 'price') {
     var low = req.param('low');
