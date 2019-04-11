@@ -23,8 +23,10 @@
                 <% if (result.length) {%>
                 <!--if no one logged in, do not display-->
                 <a>Logged in as: <%= result[0].username%></a>
-                <% } %>
+                <a href='index?action=logout'>Logout</a>
+                <% } else { %>
                 <a href="login">Login</a>
+                <%}%>
                 <a href="signup">Signup</a>
                 <a href="listings">My listings</a>
                 <a href="biddings">My biddings</a>
@@ -36,122 +38,136 @@
         </div>
     </header>
 
-    <!--Manage pets here-->
-    <footer id="footer">
-        <input type="hidden" id='query'>
+    <% if (!result.length) {%>
+                <h4>You have not log in yet. Please log in first.</h4>
 
-        <script>
-            document.getElementById("query").value = getQuery();
-        </script>
-        <div class="inner">
-            <h3><strong>Manage your pets and account</strong> </h3>
+                <% } else {%>
 
-            <!--Favourites-->
-            <h3>Your favourite care takers</h3>
+                <!--Manage pets here-->
+                <footer id="footer">
+                    <input type="hidden" id='query'>
 
-            <div class="table-wrapper" , style="padding-left:20%; padding-right:20%; color:black">
-                <br />
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Care taker's username</th>
-                        </tr>
-                    </thead>
-                    <tbody style="text-align: left">
-                        <% for(var i=0; i< get_favorite.length; i++) { %>
-                        <tr>
-                            <td><%= get_favorite[i].petname%></td>
-                            <td><%= get_favorite[i].pettype%></td>
-                        </tr>
-                        <% } %>
-                    </tbody>
-                </table>
-            </div>
+                    <script>
+                        document.getElementById("query").value = getQuery();
+                    </script>
+                    <div class="inner">
+                        <h3><strong>Manage your pets and account</strong> </h3>
 
+                        <!--Favourites-->
+                        <h3>Your favourite care takers</h3>
+                        <% if (!get_favorite.length) {%>
+                        <h4>Haven't you find any good partner? Favorite a care taker when viewing their listings.</h4>
+                        <br />
+                        <br />
+                        <% } else {%>
+                        <div class="table-wrapper" , style="padding-left:20%; padding-right:20%; color:black">
+                            <br />
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Care taker's username</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="text-align: left">
+                                    <% for(var i=0; i< get_favorite.length; i++) { %>
+                                    <tr>
+                                        <td><%= get_favorite[i].petname%></td>
+                                        <td><%= get_favorite[i].pettype%></td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <%}%>
             <h3>Here are all your pets</h3>
 
             <!--List all pets here-->
+            <% if (!get_pet.length) {%>
+                        <h4>Haven't you add your pets? Add them below!</h4>
+                        <br />
+                        <br />
+                        <% } else {%>
+                        <div class="table-wrapper" , style="padding-left:5%; padding-right:5%">
+                            <br />
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Pet name</th>
+                                        <th>Pet type</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="text-align: left">
+                                    <% for(var i=0; i< get_pet.length; i++) { %>
+                                    <tr>
+                                        <td><%= get_pet[i].petname%></td>
+                                        <td><%= get_pet[i].pettype%></td>
+                                    </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <%}%>
+                <!--add or delete pet here-->
 
-            <div class="table-wrapper" , style="padding-left:5%; padding-right:5%">
+                <h3>Add a new pet here</h3>
+
+                <form action="#" method="post">
+                    <div class="first field half">
+                        <label for="petName">Pet Name</label>
+                        <input name="petName" id="petName" type="text" placeholder="Pet name">
+                    </div>
+
+                    <div class="field half">
+                        <label for="type">Type</label>
+                        <input name="type" id="type" type="text" placeholder="Type of your pet. e.g. Cat, Dog">
+                    </div>
+
+                    <br />
+                </form>
+                <ul class="actions">
+                    <li><input type="button" value="Add" class="button alt" onclick="addAddress()" /></li>
+                </ul>
+
+
+                <br /><br />
+                <h3>Or, remove a pet from your account</h3>
+                <form action="#" method="post">
+                    <div class="first field">
+                        <label for="petName2">Pet Name</label>
+                        <input name="petName2" id="petName2" type="text"
+                            placeholder="Type the name of the pet you want to remove, we will not remove if the name is incorrect">
+                    </div>
+                    <br />
+                </form>
+                <ul class="actions">
+                    <li><input type="button" value="Remove" class="button alt" onclick="deleteAddress()"></li>
+                </ul>
+
+                <br /><br />
+
+                <!--Change password-->
+                <h3>Change your password here</h3>
+                <form action="#" method="post">
+                    <div class="first field half">
+                        <label for="oldP">Old password</label>
+                        <input name="oldP" id="oldP" type="text" placeholder="Old password">
+                    </div>
+
+                    <div class="field half">
+                        <label for="newP">New password</label>
+                        <input name="newP" id="newP" type="text" placeholder="New password">
+                    </div>
+                </form>
                 <br />
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Pet name</th>
-                            <th>Pet type</th>
-                        </tr>
-                    </thead>
-                    <tbody style="text-align: left">
-                        <% for(var i=0; i< get_pet.length; i++) { %>
-                        <tr>
-                            <td><%= get_pet[i].petname%></td>
-                            <td><%= get_pet[i].pettype%></td>
-                        </tr>
-                        <% } %>
-                    </tbody>
-                </table>
-            </div>
+                <ul class="actions">
+                    <li><input type="button" value="Change" class="button alt" onclick="changeAddress()"></li>
+                </ul>
 
-            <!--add or delete pet here-->
-
-            <h3>Add a new pet here</h3>
-
-            <form action="#" method="post">
-                <div class="first field half">
-                    <label for="petName">Pet Name</label>
-                    <input name="petName" id="petName" type="text" placeholder="Pet name">
-                </div>
-
-                <div class="field half">
-                    <label for="type">Type</label>
-                    <input name="type" id="type" type="text" placeholder="Type of your pet. e.g. Cat, Dog">
-                </div>
-
-                <br />
-            </form>
-            <ul class="actions">
-                <li><input type="button" value="Add" class="button alt" onclick="addAddress()" /></li>
-            </ul>
-
-
-            <br /><br />
-            <h3>Or, remove a pet from your account</h3>
-            <form action="#" method="post">
-                <div class="first field">
-                    <label for="petName2">Pet Name</label>
-                    <input name="petName2" id="petName2" type="text"
-                        placeholder="Type the name of the pet you want to remove, we will not remove if the name is incorrect">
-                </div>
-                <br />
-            </form>
-            <ul class="actions">
-                <li><input type="button" value="Remove" class="button alt" onclick="deleteAddress()"></li>
-            </ul>
-
-            <br /><br />
-
-            <!--Change password-->
-            <h3>Change your password here</h3>
-            <form action="#" method="post">
-                <div class="first field half">
-                    <label for="oldP">Old password</label>
-                    <input name="oldP" id="oldP" type="text" placeholder="Old password">
-                </div>
-
-                <div class="field half">
-                    <label for="newP">New password</label>
-                    <input name="newP" id="newP" type="text" placeholder="New password">
-                </div>
-            </form>
-            <br />
-            <ul class="actions">
-                <li><input type="button" value="Change" class="button alt" onclick="changeAddress()"></li>
-            </ul>
-
-            <br /><br />
+                <br /><br />
 
         </div>
-    </footer>
+        </footer>
+        <%}%>
 </body>
 
 </html>

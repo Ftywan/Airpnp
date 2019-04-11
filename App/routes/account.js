@@ -27,6 +27,7 @@ var become_petowner_query = "insert into petowners values ('";
 function getQuery(req, res, next) {
   var query = "select * from pets";
   var process = req.param("process");
+
   if (process == 'add') {
     var petName = req.param('petName');
     var type = req.param('type');
@@ -59,12 +60,16 @@ function getQuery(req, res, next) {
 /* GET home page. */
 router.get('/', function (req, res, next) {
   pool.query(check_login_query, (err, result) => {
-    username = result.rows[0]["username"]; // for adding to petowners
+    if (result.rows.length) {
+      username = result.rows[0]["username"];
+    } // for adding to petowners
     var get_numpets_query_2 = get_numpets_query + username + "';";
     var become_petowner_query_2 = become_petowner_query + username + "');";
     var get_password_query_2 = get_password_query + username + "';";
     pool.query(get_password_query_2, (err, pass) => {
-      password = pass.rows[0]["password"];
+      if (result.rows.length) {
+        password = pass.rows[0]["password"];
+      }
       pool.query(get_numpets_query_2, (err, num) => {
         numpets = num.rows[0]['count'];
         pool.query(become_petowner_query_2, (err, added_account) => {
