@@ -1,9 +1,8 @@
 function bidAddress() {
-    var bid = document.getElementById("bidding").value;
+    var bid = Number(document.getElementById("bidding").value);
     var min = Number(document.getElementById('min').innerHTML);
 
-    console.log(bid)
-    console.log(min);
+
 
     if(bid == "" || bid <= min) {
         alert("Please input a valid value");
