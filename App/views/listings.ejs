@@ -86,6 +86,9 @@
 							<thead>
 								<tr>
 									<th scope="col">
+										<font size="+1">ID (For server use)</font>
+									</th>
+									<th scope="col">
 										<font size="+1">Minimum Bid</font>
 									</th>
 									<th scope="col">
@@ -103,6 +106,9 @@
 							<tbody>
 								<% for(var i=0; i<data.length; i++) { %>
 								<tr>
+									<td>
+										<font size="+1"><%= data[i].id%></font>
+									</td>
 									<td>
 										<font size="+1"><%= data[i].minbid%></font>
 									</td>

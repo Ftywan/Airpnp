@@ -45,9 +45,6 @@ function getQuery(req, res, next) {
   if (process == 'change') {
     var oldP = sha256(req.param('oldP'));
     var newP = sha256(req.param('newP'));
-    console.log(oldP);
-    console.log(newP);
-    console.log(password);
     if (oldP == password) {
       query = "update users set password = '" + newP + "' where username = '" + username + "';";
     }

@@ -16,7 +16,13 @@
 				<font size="+3"><strong>Airpnp</strong></font>
 			</a>
 			<nav id="nav">
+				<% if (result.length) {%>
+				<!--if no one logged in, do not display-->
+				<a>Logged in as: <%= result[0].username%></a>
+				<a href='index?action=logout'>Logout</a>
+				<% } else { %>
 				<a href="login">Login</a>
+				<%}%>
 				<a href="signup">Signup</a>
 				<a href="listings">My listings</a>
 				<a href="biddings">My biddings</a>
@@ -28,30 +34,44 @@
 
 		</div>
 	</header>
+	<% if (!result.length) {%>
+				<h4>You have not log in yet. Please log in first.</h4>
 
-	<footer id="footer">
-		<div class="inner">
-			<h3>
-				<font size="+3">Bidding information</font>
-			</h3>
-		</div>
-	</footer>
+				<% } else {%>
+				<footer id="footer">
+					<div class="inner">
+						<h3>
+							<font size="+3">Bidding information</font>
+						</h3>
+					</div>
+				</footer>
 
-	<div class="table-wrapper" , style="padding-left:5%; padding-right:5%">
-		<br />
-		<table>
-			<thead>
-				<tr>
-					<th>Ranking</th>
-					<th>Price</th>
-					<th>Time of bidding</th>
-				</tr>
-			</thead>
-			<tbody>
-				
-			</tbody>
-		</table>
-	</div>
+				<% if (!data.length) {%>
+				<h4>No on going bidding. Please go to history to view past transcations.</h4>
+				<% } else {%>
+				<div class="table-wrapper" , style="padding-left:5%; padding-right:5%">
+					<br />
+					<table>
+						<thead>
+							<tr>
+								<th>Bidder username</th>
+								<th>Bids</th>
+							</tr>
+						</thead>
+						<tbody style="text-align: left">
+							<% for(var i=0; i< data.length; i++) { %>
+							<tr>
+								<td><%= data[i].ownername%></td>
+								<td><%= data[i].bids%></td>
+							</tr>
+							<td><a href=<%= "takerview?process=assign&id=" + data[i].id + "&ownername=" + data[i].ownername%>
+									class="button special small fit"> Assign to this user!</a></td>
+							<% } %>
+						</tbody>
+					</table>
+				</div>
+				<%}%>
+				<%}%>
 </body>
 
 </html>
