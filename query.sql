@@ -64,9 +64,9 @@ where S.hostName=%s;
 insert into Services S
 values (input1,input2,input3....);
 
--- history
+-- My biddings
 select * from BiddingStatus
-where status='succeed';
+where status='success' and status='pending';
 
 -- all the accommodation that he has provided
 select * from Accommodation A
@@ -94,19 +94,6 @@ select * from Services
 
 
 --2. the specific view about a particular service after they select a specific services
-with maxBid as(
-	select id, max(bids) as max_bid, count(*) as total_num
-	from BiddingStatus
-	group by id
-	having id=%s
-)
-select s.hostName, s.startdate, s.enddate, s.minBid, a.areaName, 
-	s.capacity, M.max_bid, M.total_num
-from (Services S left join Area A on s.hostName = a.username) 
-	left join maxBid M on M.id=S.id;
-
-
-
 with UserLocation as(
 	select C.username, L.address, L.nearest_mrt
 	from CareTakers C left join 
@@ -119,12 +106,11 @@ maxBid as(
 	group by id
 	having id=%s)
 
-select exists(select * from Favorite where ownername='Alice'), S.hostName, UL.address, 
+select exists(select * from Favorite where ownerName=%s and S.hostName=%s), S.hostName, UL.address, 
 UL.nearest_mrt, S.capacity, S.startdate, S.enddate, S.minBid, M.current_max
 from (Services S left join UserLocation UL on S.hostName=UL.username) 
 				 left join maxBid M on S.id=M.id
 where S.id=%s;
-
 
 
 --display a petOwner's current bidding information
