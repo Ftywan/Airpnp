@@ -158,6 +158,9 @@ values (input1, input2...);
 
 select * from Wishlist;
 
+select W.id, S.hostName, S.minBid, S.startdate, S.enddate, S.capacity, S.status, W.ownerName
+from Services S right join Wishlist W on S.id=W.id
+where W.ownerName=%s;
 
 -- list of bidders
 select ownerName, bids from BiddingStatus
