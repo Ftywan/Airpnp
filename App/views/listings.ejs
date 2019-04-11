@@ -69,30 +69,54 @@
 
 	<br><br>
 	<!-- Show listings here -->
-	<div class="wrapper align-center">
-		<h3>
-			<font size="+3">Your active listings</font>
-		</h3>
-		<div class="table-wrapper" , style="padding-left: 100px; padding-right: 100px">
-			<table>
+	<div class="inner">
+		<div class="align-center">
+			<h3>
+				<font size="+3">Your active listings</font>
+			</h3>
+		</div>
+		<!-- <div class="table-wrapper" , style="padding-left: 100px; padding-right: 100px"> -->
+		<div class="table-wrapper">
+			<table id="listings">
 				<thead>
 					<tr>
-						<th scope="col">Minimum Bid</th>
-						<th scope="col">Start Date</th>
-						<th scope="col">End Date</th>
-						<th scope="col">Capacity</th>
+						<th scope="col">
+							<font size="+1">Minimum Bid</font>
+						</th>
+						<th scope="col">
+							<font size="+1">Start Date</font>
+						</th>
+						<th scope="col">
+							<font size="+1">End Date</font>
+						</th>
+						<th scope="col">
+							<font size="+1">Capacity</font>
+						</th>
+						<th scope="col"></th>
 					</tr>
 				</thead>
-				<tbody style: align="left">
+				<tbody>
 					<% for(var i=0; i<data.length; i++) { %>
 					<tr>
-						<td><%= data[i].minbid%></td>
-						<td><%= data[i].startdate%></td>
-						<td><%= data[i].enddate%></td>
-						<td><%= data[i].capacity%></td>
+						<td>
+							<font size="+1"><%= data[i].minbid%></font>
+						</td>
+						<td>
+							<font size="+1"><%= data[i].startdate.toString().split(' ').slice(0, 4).join(' ')%></font>
+						</td>
+						<td>
+							<font size="+1"><%= data[i].enddate.toString().split(' ').slice(0, 4).join(' ')%></font>
+						</td>
+						<td>
+							<font size="+1"><%= data[i].capacity%></font>
+						</td>
+						<td><a href=<%= "takerview?id=" + data[i].id%> class="button special small fit">Check it
+								out!</a></td>
 					</tr>
+
 					<% } %>
 				</tbody>
+			</table>
 			</table>
 		</div>
 	</div>

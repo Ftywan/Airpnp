@@ -42,7 +42,7 @@ router.post('/', function (req, res, next) {
           if (data.rows[i]["password"] == password) {
             flag = 1;
             pool.query(set_login_query, (err, data) => {
-              res.redirect("/login");
+              res.redirect("/index");
             });
           }
         }
