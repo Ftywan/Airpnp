@@ -211,10 +211,11 @@ and status='pending';
 update BiddingStatus
 set status='fail'
 where id=%s
+and ownerName<>%s
 and status='pending';
 
 -- insert into Accommodation
-insert into Accomodation
+insert into Accommodation
 values (hostName, id, ownerName, status, rating)
 COMMIT;
 
