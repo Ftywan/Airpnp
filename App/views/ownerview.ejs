@@ -50,9 +50,9 @@
 				<h2>Host information</h2>
 			</div>
 			<%if (result.length){%>
-				<h4>Favourite Host: <%= (data[0].exists == 't')%></h4>
+				<h4>Favourite Host: <%= (data[0].exists == true)%></h4>
 				<%}%>
-				<input type="hidden" id="id" value=<%=data[0].id%>>
+				<input type="text" id="id" value=<%=data[0].exists%>>
 			<h4>Host Name: <%= data[0].hostname%></h4>
 				<h4>Host Address: <%= data[0].address%></h4>
 				<h4>Host Capacity: <%=data[0].capacity%> pets</h4>

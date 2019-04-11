@@ -19,7 +19,7 @@ router.get('/', function (req, res, next) {
         var id = req.param("id");
         if (result.rows.length) {
             username = result.rows[0]["username"];
-            var contentQuery = "with UserLocation as( select C.username, L.address, L.nearest_mrt from CareTakers C left join(Users U left join Location L on U.address=L.address) on C.username=U.username), maxBid as( select id, max(bids) as current_max, count(*) as total_num from BiddingStatus group by id having id=" + id + ") select exists(select * from Favorite where ownerName=\'" + username + "\' and hostName = S.hostName), S.hostName, UL.address, UL.nearest_mrt, S.capacity, S.startdate, S.enddate, S.minBid, M.current_max from (Services S left join UserLocation UL on S.hostName=UL.username) left join maxBid M on S.id=M.id where S.id=" + id;
+            var contentQuery = "with UserLocation as( select C.username, L.address, L.nearest_mrt from CareTakers C left join(Users U left join Location L on U.address=L.address) on C.username=U.username), maxBid as( select id, max(bids) as current_max, count(*) as total_num from BiddingStatus group by id having id=" + id + ") select exists(select * from Favorite where ownerName=\'" + username + "\' and hostName = S.hostName), S.id, S.hostName, UL.address, UL.nearest_mrt, S.capacity, S.startdate, S.enddate, S.minBid, M.current_max from (Services S left join UserLocation UL on S.hostName=UL.username) left join maxBid M on S.id=M.id where S.id=" + id;
         } else {
             var contentQuery = "with UserLocation as (select C.username, L.address, L.nearest_mrt from CareTakers C left join(Users U left join Location L on U.address = L.address) on C.username = U.username), maxBid as (select id, max(bids) as current_max, count(*) as total_num from BiddingStatus group by id having id =" + id + ") select S.id, S.hostName, UL.address, UL.nearest_mrt, S.capacity, S.startdate, S.enddate, S.minBid, M.current_max from(Services S left join UserLocation UL on S.hostName = UL.username) left join maxBid M on S.id = M.id where S.id =" + id;
         }
@@ -35,20 +35,21 @@ function getActionQuery(req, res, next, result) {
     var action = req.param("action");
     var user = result.rows[0]['username'];
 
-    if (action == "") return "select * from services";
+    var query = "select * from services";
 
     if (action == "add") {
         var id = req.param('id');
 
-        return "insert into wishlist values (" + id + ", \'" + user + "\'";
+        query = "insert into wishlist values (" + id + ", \'" + user + "\')";
     }
 
-    if (action == 'like') {
+    else if (action == 'like') {
         var host = req.param('user');
 
-        return "insert into favorite values (\'" + user + "\', \'" + host + "\'";
+        query = "insert into favorite values (\'" + user + "\', \'" + host + "\')";
     }
 
+    return query;
 }
 
 module.exports = router;
