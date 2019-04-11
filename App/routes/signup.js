@@ -33,6 +33,7 @@ router.post('/', function (req, res, next) {
 	// Construct Specific SQL Query
 	var insert_query = sql_query + "('" + username + "'," + 10 + ",'" + password + "'," + numpets + "," + number + ",'" + address + "');";
 	var insert_location_query = ("insert into location values ('") + address + "','" + mrt + "');";
+	console.log(insert_query);
 
 	pool.query(insert_query, (err, not_used1) => {
 		pool.query(insert_location_query, (err, not_used2) => {
