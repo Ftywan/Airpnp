@@ -33,10 +33,13 @@ router.post('/', function (req, res, next) {
 	// Construct Specific SQL Query
 	var insert_query = sql_query + "('" + username + "'," + 10 + ",'" + password + "'," + numpets + "," + number + ",'" + address + "');";
 	var insert_location_query = ("insert into location values ('") + address + "','" + mrt + "');";
+	var insert_petowner_query = "insert into petowners values (\'" + username + "\')"
 
 	pool.query(insert_query, (err, not_used1) => {
 		pool.query(insert_location_query, (err, not_used2) => {
-			res.redirect('/login')
+			pool.query(insert_petowner_query, (err, not_used3) => {
+				res.redirect('/login')
+			});
 		});
 	});
 });
