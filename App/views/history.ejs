@@ -12,7 +12,7 @@
 </head>
 <!--comments here-->
 
-<body class="subpage" , style="background-color: #6cc091">
+<body class="subpage">
 	<header id="header">
 		<div class="inner">
 			<a href="index" class="logo">
@@ -22,8 +22,10 @@
 				<% if (result.length) {%>
 				<!--if no one logged in, do not display-->
 				<a>Logged in as: <%= result[0].username%></a>
-				<% } %>
+				<a href='index?action=logout'>Logout</a>
+				<% } else { %>
 				<a href="login">Login</a>
+				<%}%>
 				<a href="signup">Signup</a>
 				<a href="listings">My listings</a>
 				<a href="biddings">My biddings</a>
@@ -34,69 +36,72 @@
 			<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 		</div>
 	</header>
+	<% if (!result.length) {%>
+				<h4>You have not log in yet. Please log in first.</h4>
 
-	<footer id="footer">
-		<div class="inner">
-			<h3>Your past transactions </h3>
-			<!-- As taker -->
-			<h2>You as care taker</h2>
-			<div class="table-wrapper" , style="padding-left:5%; padding-right:5%">
-				<br />
-				<table>
-					<thead>
-						<tr>
-							<th>Start Date</th>
-							<th>End Date</th>
-							<th>Client Username</th>
-							<th>Status</th>
-						</tr>
-					</thead>
-					<tbody style: align="left">
-						<% for(var i=0; i<taker_data.length; i++) { %>
-						<tr>
-							<td><%= taker_data[i].startdate%></td>
-							<td><%= taker_data[i].enddate%></td>
-							<td><%= taker_data[i].ownername%></td>
-							<td><%= taker_data[i].status%></td>
-						</tr>
-						<% } %>
-					</tbody>
-				</table>
-			</div>
+				<% } else {%>
+				<footer id="footer">
+					<div class="inner">
+						<h3>Your past transactions </h3>
+						<!-- As taker -->
+						<h2>You as care taker</h2>
+						<div class="table-wrapper" , style="padding-left:5%; padding-right:5%">
+							<br />
+							<table>
+								<thead>
+									<tr>
+										<th>Start Date</th>
+										<th>End Date</th>
+										<th>Client Username</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody style: align="left">
+									<% for(var i=0; i<taker_data.length; i++) { %>
+									<tr>
+										<td><%= taker_data[i].startdate%></td>
+										<td><%= taker_data[i].enddate%></td>
+										<td><%= taker_data[i].ownername%></td>
+										<td><%= taker_data[i].status%></td>
+									</tr>
+									<% } %>
+								</tbody>
+							</table>
+						</div>
 
 
-			<br /><br />
+						<br /><br />
 
 
-			<!-- As owner -->
-			<h2>You as pet owner</h2>
-			<div class="table-wrapper" , style="padding-left:5%; padding-right:5%">
-				<br />
-				<table>
-					<thead>
-						<tr>
-							<th>Start Date</th>
-							<th>End Date</th>
-							<th>Host Username</th>
-							<th>Status</th>
-						</tr>
-					</thead>
-					<tbody style: align="left">
-						<% for(var i=0; i<owner_data.length; i++) { %>
-						<tr>
-							<td><%= owner_data[i].startdate%></td>
-							<td><%= owner_data[i].enddate%></td>
-							<td><%= owner_data[i].hostname%></td>
-							<td><%= owner_data[i].status%></td>
-						</tr>
-						<% } %>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<br /><br /><br /><br />
-	</footer>
-
+						<!-- As owner -->
+						<h2>You as pet owner</h2>
+						<div class="table-wrapper" , style="padding-left:5%; padding-right:5%">
+							<br />
+							<table>
+								<thead>
+									<tr>
+										<th>Start Date</th>
+										<th>End Date</th>
+										<th>Host Username</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody style: align="left">
+									<% for(var i=0; i<owner_data.length; i++) { %>
+									<tr>
+										<td><%= owner_data[i].startdate%></td>
+										<td><%= owner_data[i].enddate%></td>
+										<td><%= owner_data[i].hostname%></td>
+										<td><%= owner_data[i].status%></td>
+									</tr>
+									<% } %>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<br /><br /><br /><br />
+				</footer>
+				<%}%>
 </body>
 
 </html>

@@ -22,8 +22,10 @@
 				<% if (result.length) {%>
 				<!--if no one logged in, do not display-->
 				<a>Logged in as: <%= result[0].username%></a>
-				<% } %>
+				<a href='index?action=logout'>Logout</a>
+				<% } else { %>
 				<a href="login">Login</a>
+				<%}%>
 				<a href="signup">Signup</a>
 				<a href="listings">My listings</a>
 				<a href="biddings">My biddings</a>
@@ -34,75 +36,82 @@
 			<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 		</div>
 	</header>
+	<% if (!result.length) {%>
+				<h4>You have not log in yet. Please log in first.</h4>
 
-	<footer id="footer">
-		<div class="inner">
-			<h3>把可人儿的帖子加入心愿单</h3>
-			<h2>别让等待成为遗憾</h2>
-		</div>
-	</footer>
+				<% } else {%>
+				<footer id="footer">
+					<div class="inner">
+						<h3>把可人儿的帖子加入心愿单</h3>
+						<h2>别让等待成为遗憾</h2>
+					</div>
+				</footer>
 
-	<section id="three">
-		<div class="inner">
-			<div class="wrapper align-center">
-				<br />
-				<h3>Wishlist</h3>
-			</div>
-			<%if(data.length) {%>
-			<div class="table-wrapper">
-				<table id="listings">
-					<thead>
-						<tr>
-							<th scope="col">
-								<font size="+1">Host Name</font>
-							</th>
-							<th scope="col">
-								<font size="+1"></font>Minimum Bid</font>
-							</th>
-							<th scope="col">
-								<font size="+1">Start Date</font>
-							</th>
-							<th scope="col">
-								<font size="+1">End Date</font>
-							</th>
-							<th scope="col">
-								<font size="+1">Capacity</font>
-							</th>
-							<th scope="col"></th>
-						</tr>
-					</thead>
-					<tbody>
-						<% for(var i=0; i<data.length; i++) { %>
+				<section id="three">
+					<div class="inner">
+						<div class="wrapper align-center">
+							<br />
+							<h3>Wishlist</h3>
+						</div>
+						<%if(data.length) {%>
+						<div class="table-wrapper">
+							<table id="listings">
+								<thead>
+									<tr>
+										<th scope="col">
+											<font size="+1">Host Name</font>
+										</th>
+										<th scope="col">
+											<font size="+1"></font>Minimum Bid</font>
+										</th>
+										<th scope="col">
+											<font size="+1">Start Date</font>
+										</th>
+										<th scope="col">
+											<font size="+1">End Date</font>
+										</th>
+										<th scope="col">
+											<font size="+1">Capacity</font>
+										</th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<% for(var i=0; i<data.length; i++) { %>
 
-						<tr>
-							<td>
-								<font size="+1"><%= data[i].hostname%></font>
-							</td>
-							<td>
-								<font size="+1"><%= data[i].minbid%></font>
-							</td>
-							<td>
-								<font size="+1"><%= data[i].startdate.toString().split(' ').slice(0, 4).join(' ')%>
-								</font>
-							</td>
-							<td>
-								<font size="+1"><%= data[i].enddate.toString().split(' ').slice(0, 4).join(' ')%></font>
-							</td>
-							<td>
-								<font size="+1"><%= data[i].capacity%></font>
-							</td>
-							<td><a href=<%= "ownerview?id=" + data[i].id + "&host=" + data[i].hostname%>
-									class="button special small fit">Check it out!</a></td>
-						</tr>
+									<tr>
+										<td>
+											<font size="+1"><%= data[i].hostname%></font>
+										</td>
+										<td>
+											<font size="+1"><%= data[i].minbid%></font>
+										</td>
+										<td>
+											<font size="+1">
+												<%= data[i].startdate.toString().split(' ').slice(0, 4).join(' ')%>
+											</font>
+										</td>
+										<td>
+											<font size="+1">
+												<%= data[i].enddate.toString().split(' ').slice(0, 4).join(' ')%>
+											</font>
+										</td>
+										<td>
+											<font size="+1"><%= data[i].capacity%></font>
+										</td>
+										<td><a href=<%= "ownerview?id=" + data[i].id + "&host=" + data[i].hostname%>
+												class="button special small fit">Check it out!</a></td>
+									</tr>
 
-						<% } %>
-					</tbody>
-				</table>
-			</div>
-			<%} else {%>
-			<h2>Not interested? Click <a href="index">here</a> to find out more!</h2>
-			<%}%>
+									<% } %>
+								</tbody>
+							</table>
+						</div>
+						<%} else {%>
+						<h2>Not interested? Click <a href="index">here</a> to find out more!</h2>
+						<%}%>
 		</div>
 	</section>
+	<%}%>
 
 </html>
