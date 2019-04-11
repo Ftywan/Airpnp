@@ -21,8 +21,10 @@
 				<% if (result.length) {%>
 				<!--if no one logged in, do not display-->
 				<a>Logged in as: <%= result[0].username%></a>
-				<% } %>
+				<a href='index?action=logout'>Logout</a>
+				<% } else { %>
 				<a href="login">Login</a>
+				<%}%>
 				<a href="signup">Signup</a>
 				<a href="listings">My listings</a>
 				<a href="biddings">My biddings</a>
@@ -33,36 +35,41 @@
 			<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 		</div>
 	</header>
+	<% if (!result.length) {%>
+				<h4>You have not log in yet. Please log in first.</h4>
 
-	<footer id="footer">
-		<div class="inner">
-			<h3> Your active biddings </h3>
-		</div>
-	</footer>
+				<% } else {%>
 
-	<br /><br />
-	<div class="table-wrapper" , style="padding-left: 100px; padding-right: 100px">
-		<table>
-			<thead>
-				<tr>
-					<th scope="col">Host Username</th>
-					<th scope="col">Start Date</th>
-					<th scope="col">End Date</th>
-					<th scope="col">Your bids</th>
-				</tr>
-			</thead>
-			<tbody style: align="left">
-				<% for(var i=0; i<data.length; i++) { %>
-				<tr>
-					<td><%= data[i].hostname%></td>
-					<td><%= data[i].startdate%></td>
-					<td><%= data[i].enddate%></td>
-					<td><%= data[i].bids%></td>
-				</tr>
-				<% } %>
-			</tbody>
-		</table>
-	</div>
+				<footer id="footer">
+					<div class="inner">
+						<h3> Your active biddings </h3>
+					</div>
+				</footer>
+
+				<br /><br />
+				<div class="table-wrapper" , style="padding-left: 100px; padding-right: 100px">
+					<table>
+						<thead>
+							<tr>
+								<th scope="col">Host Username</th>
+								<th scope="col">Start Date</th>
+								<th scope="col">End Date</th>
+								<th scope="col">Your bids</th>
+							</tr>
+						</thead>
+						<tbody style: align="left">
+							<% for(var i=0; i<data.length; i++) { %>
+							<tr>
+								<td><%= data[i].hostname%></td>
+								<td><%= data[i].startdate%></td>
+								<td><%= data[i].enddate%></td>
+								<td><%= data[i].bids%></td>
+							</tr>
+							<% } %>
+						</tbody>
+					</table>
+				</div>
+				<%}%>
 </body>
 
 </html>
