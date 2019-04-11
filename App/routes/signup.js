@@ -16,8 +16,8 @@ var sql_query = 'INSERT INTO Users VALUES';
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-	pool.query(check_login_query, (err, data) => {
-		res.render('signup', { title: 'Sign up your account!', data: data.rows });
+	pool.query(check_login_query, (err, result) => {
+		res.render('signup', { title: 'Sign up your account!', result: result.rows });
 	});
 });
 
