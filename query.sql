@@ -3,6 +3,7 @@
 -- login page
 select * from Login L;
 
+delete from Login;
 
 -- sign up page (without data)
 insert into Users
@@ -64,13 +65,19 @@ where S.hostName=%s;
 insert into Services S
 values (input1,input2,input3....);
 
--- My biddings
+-- My biddings: shows the current bidding
 select * from BiddingStatus
-where status='success' and status='pending';
+where ownername=%s and status='pending';
 
--- all the accommodation that he has provided
-select * from Accommodation A
-where A.hostName=%s; --input name
+-- My history
+-- as pet owner
+select * from Accommodation
+where ownerName=%s;
+
+-- as a caretaker 
+select * from Accommodation
+where hostName=%s;
+
 
 -- completed service
 select * from Accommodation A
@@ -108,6 +115,24 @@ maxBid as(
 
 select exists(select * from Favorite where ownerName=%s and S.hostName=%s), S.hostName, UL.address, 
 UL.nearest_mrt, S.capacity, S.startdate, S.enddate, S.minBid, M.current_max
+from (Services S left join UserLocation UL on S.hostName=UL.username) 
+				 left join maxBid M on S.id=M.id
+where S.id=%s;
+
+-- the specific view without loggin in
+with UserLocation as(
+	select C.username, L.address, L.nearest_mrt
+	from CareTakers C left join 
+		(Users U left join Location L on U.address=L.address) on C.username=U.username
+)
+,
+maxBid as(
+	select id, max(bids) as current_max, count(*) as total_num
+	from BiddingStatus
+	group by id
+	having id=%s)
+
+select S.hostName, UL.address, UL.nearest_mrt, S.capacity, S.startdate, S.enddate, S.minBid, M.current_max
 from (Services S left join UserLocation UL on S.hostName=UL.username) 
 				 left join maxBid M on S.id=M.id
 where S.id=%s;
