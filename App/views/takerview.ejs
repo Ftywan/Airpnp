@@ -63,10 +63,17 @@
 							<tr>
 								<td><%= data[i].ownername%></td>
 								<td><%= data[i].bids%></td>
+
+								<td><a href=<%= "takerview?process=assign&id=" + data[i].id + "&ownername=" + data[i].ownername%>
+										class="button special small fit"> Assign to this user!</a></td>
+
 							</tr>
-							<td><a href=<%= "takerview?process=assign&id=" + data[i].id + "&ownername=" + data[i].ownername%>
-									class="button special small fit"> Assign to this user!</a></td>
-							<% } %>
+							<tr>
+								<td> </td>
+								<td> </td>
+								<td><a href=<%= "takerview?process=system&id=" +data[i].id%>
+										class="button special small fit">Decide by system</a></td><% } %>
+							</tr>
 						</tbody>
 					</table>
 				</div>
