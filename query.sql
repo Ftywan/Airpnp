@@ -211,7 +211,7 @@ commit;
 
 -- 2. After bidding, update status => insert the id into Accommodation
 -- update status for the winning bidder
-BEGIN TRANSACTION
+BEGIN TRANSACTION;
 update BiddingStatus
 set status='success'
 where ownerName=%s
@@ -232,7 +232,7 @@ where id=%s;
 
 -- insert into Accommodation
 insert into Accommodation
-values (hostName, id, ownerName, status, rating)
+values (hostName, id, ownerName, status, rating);
 COMMIT;
 
 
