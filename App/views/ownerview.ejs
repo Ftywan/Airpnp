@@ -54,18 +54,27 @@
 				<h2>Host information</h2>
 			</div>
 			<%if (result.length){%>
-				<h4>Favourite Host: <%= (data[0].exists == true)%></h4>
+				<%if (data[0].exists == true) {%>
+					<h4>You have marked the host as your favourite!</h4>
+				<%}else {%>
+					<h4>The host is not your favourite host, for now :)</h4>
+				<%}%>
 				<%}%>
 				<input type="hidden" id="id" value=<%=data[0].id%>>
 				<h4>Host Name: <%= data[0].hostname%></h4>
 				<h4>Host Address: <%= data[0].address%></h4>
+				<h4>Nearest MRT Station: <%= data[0].nearest_mrt%></h4>
 				<h4>Host Capacity: <%=data[0].capacity%> pets</h4>
+				<h4>Contact number: <%=data[0].contact_number%></h4>
+				<%if(data[0].bonus != "") {%>
+				<h4>Special Bonus: <%=data[0].bonus%></h4>
+				<%}%>
 				<h4>Start Date: <%=data[0].startdate.toString().split(' ').slice(0, 4).join(' ')%></h4>
 				<h4>End Date: <%= data[0].enddate.toString().split(' ').slice(0, 4).join(' ')%></h4>
 				<h4>Minimum Bidding: $<a id='min'><%=data[0].minbid%></a></h4>
-				<h4>Nearest MRT Station: <%= data[0].nearest_mrt%></h4>
+				
 				<% if (data[0].current_max){%>
-				<h4>Current Max Bidding: <%= data[0].current_max%></h4>
+				<h4>Current Max Bidding: $<%= data[0].current_max%></h4>
 				<%} else{%>
 				<h4>Bidding status: Seems no one have bidded...</h4>
 				<%}%>

@@ -49,9 +49,11 @@ router.post('/', function (req, res, next) {
   var endDate = req.body.endDate;
   var minBid = req.body.minBid;
   var capacity = req.body.capacity;
+  var bonus = req.body.bonus;
 
   var insert_query = create_listing_query + " (" + new_id + ",'" + username + "'," + minBid + ",'" + startDate + "','" + endDate + "'," + capacity + ");";
   var become_caretaker_query = "INSERT INTO caretakers VALUES ('" + username + "');";
+  var bonus_query = 
 
   pool.query(become_caretaker_query, (err, not_used1) => { // Auto become a caretaker
     console.log(become_caretaker_query);
