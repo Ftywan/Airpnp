@@ -251,3 +251,34 @@ where S.id=24;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+with UserLocation as( select C.username, U.contact_number, L.address, L.nearest_mrt from CareTakers C left join (Users U left join Location L on U.address=L.address) on C.username=U.username), maxBid as(select id, max(bids) as current_max, count(*) as total_num from BiddingStatus group by id having id=23),
+ServicesWithBonus as(
+ select S.id, S.hostName, S.minBid, S.startdate, S.enddate, S.capacity, SB.bonus
+ from Services S left join SpecialBonus SB on S.id=SB.id)
+
+select exists(select * from Favorite where ownerName='test' and SWB.hostName='test'), SWB.hostName, 
+     UL.address, UL.nearest_mrt, SWB.capacity, SWB.startdate,
+     SWB.enddate, SWB.minBid, M.current_max, SWB.bonus, UL.contact_number
+from (ServicesWithBonus SWB left join UserLocation UL on SWB.hostName=UL.username) 
+     left join maxBid M on SWB.id=M.id
+where SWB.id=23;
