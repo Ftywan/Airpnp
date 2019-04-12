@@ -117,7 +117,7 @@ ServicesWithBonus as(
 	select S.id, S.hostName, S.minBid, S.startdate, S.enddate, S.capacity, SB.bonus
 	from Services S left join SpecialBonus SB on S.id=SB.id)
 
-select exists(select * from Favorite where ownerName=%s and SWB.hostName=%s), SWB.hostName, 
+select SWB.id, exists(select * from Favorite where ownerName=%s and SWB.hostName=%s), SWB.hostName, 
 			  UL.address, UL.nearest_mrt, SWB.capacity, SWB.startdate,
 			  SWB.enddate, SWB.minBid, M.current_max, SWB.bonus, UL.contact_number
 from (ServicesWithBonus SWB left join UserLocation UL on SWB.hostName=UL.username) 
@@ -136,11 +136,16 @@ maxBid as(
 	from BiddingStatus
 	group by id
 	having id=%s)
+,
+ServicesWithBonus as(
+	select S.id, S.hostName, S.minBid, S.startdate, S.enddate, S.capacity, SB.bonus
+	from Services S left join SpecialBonus SB on S.id=SB.id)
 
-select S.hostName, UL.address, UL.nearest_mrt, S.capacity, S.startdate, S.enddate, S.minBid, M.current_max
-from (Services S left join UserLocation UL on S.hostName=UL.username) 
-				 left join maxBid M on S.id=M.id
-where S.id=%s;
+select SWB.id, SWB.hostName, UL.address, UL.nearest_mrt, SWB.capacity, SWB.startdate,
+			  SWB.enddate, SWB.minBid, M.current_max, SWB.bonus, UL.contact_number
+from (ServicesWithBonus SWB left join UserLocation UL on SWB.hostName=UL.username) 
+				 left join maxBid M on SWB.id=M.id
+where SWB.id=%s;
 
 
 --display a petOwner's current bidding information
