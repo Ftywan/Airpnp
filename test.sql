@@ -1,24 +1,24 @@
 -- Users table
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Alice', 6, '71oJZpQIHR', 2, '6326062455', '320 Lotheville Pass');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Bob', 7, 'SaTJYEoPDSa', 3, '5608495262', '86196 Tennyson Place');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Catherine', 4, '91eh9le', 2, '1878628621', '59 Hagan Lane');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Daisy', 7, 'd8UWFJp', 1, '3114314284', '075 Crowley Junction');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Emma', 6, 'UDtaen19Y', 4, '5739770769', '16 Merry Street');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Ashley', 9, 'LqBHqq', 1, '6287553911', '0846 Ridgeview Court');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Linda', 10, 'YSq3zvEXHv', 1, '4864745813', '4 Rowland Court');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Mary', 8, 'wXfeDnd', 2, '2095797714', '258 Emmet Court');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Sansa', 3, 'AuoND4', 3, '6853374155', '50 Reinke Parkway');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Daenerys', 3, 'GyDtI1UX9gLm', 1, '1888500912', '7 Myrtle Parkway');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('JonSnow', 3, 'BFYzHvCr8bwf', 10, '5826298909', '4618 Oak Park');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Arya', 5, 'NzgF59', 6, '3861417769', '07613 Clarendon Parkway');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Cersei', 8, 'rY2wcu6iqB', 5, '6861099773', '8 Mitchell Court');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Tyrion', 5, 'e3N3f7JmsM', 4, '2346335952', '5304 Muir Alley');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Jamie', 5, 'lIYJA4DhO', 4, '6075463911', '985 8th Avenue');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Brienne', 4, 'U2N4FK', 10, '7881672777', '5 Westerfield Drive');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Khal', 10, '5YzqvsO7', 5, '6607882939', '0778 Pleasure Lane');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Theon', 7, 'lRQIG0OJmgM', 1, '5117255545', '2 Lawn Road');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Jorah', 10, 'ChCX876NH5vM', 1, '7427460876', '13 Artisan Street');
-insert into Users (username, rating, password, numPets, contact_number, address) values ('Bran', 6, 'FRRrhumD', 6, '7957476774', '5334 Bartillon Court');
+insert into Users (username,  password, numPets, contact_number, address) values ('Alice', '71oJZpQIHR', 2, '6326062455', '320 Lotheville Pass');
+insert into Users (username,  password, numPets, contact_number, address) values ('Bob',  'SaTJYEoPDSa', 3, '5608495262', '86196 Tennyson Place');
+insert into Users (username,  password, numPets, contact_number, address) values ('Catherine',  '91eh9le', 2, '1878628621', '59 Hagan Lane');
+insert into Users (username,  password, numPets, contact_number, address) values ('Daisy',  'd8UWFJp', 1, '3114314284', '075 Crowley Junction');
+insert into Users (username,  password, numPets, contact_number, address) values ('Emma',  'UDtaen19Y', 4, '5739770769', '16 Merry Street');
+insert into Users (username,  password, numPets, contact_number, address) values ('Ashley', 'LqBHqq', 1, '6287553911', '0846 Ridgeview Court');
+insert into Users (username,  password, numPets, contact_number, address) values ('Linda', 'YSq3zvEXHv', 1, '4864745813', '4 Rowland Court');
+insert into Users (username,  password, numPets, contact_number, address) values ('Mary',  'wXfeDnd', 2, '2095797714', '258 Emmet Court');
+insert into Users (username,  password, numPets, contact_number, address) values ('Sansa', 'AuoND4', 3, '6853374155', '50 Reinke Parkway');
+insert into Users (username,  password, numPets, contact_number, address) values ('Daenerys',  'GyDtI1UX9gLm', 1, '1888500912', '7 Myrtle Parkway');
+insert into Users (username,  password, numPets, contact_number, address) values ('JonSnow', 'BFYzHvCr8bwf', 10, '5826298909', '4618 Oak Park');
+insert into Users (username,  password, numPets, contact_number, address) values ('Arya',  'NzgF59', 6, '3861417769', '07613 Clarendon Parkway');
+insert into Users (username,  password, numPets, contact_number, address) values ('Cersei', 'rY2wcu6iqB', 5, '6861099773', '8 Mitchell Court');
+insert into Users (username,  password, numPets, contact_number, address) values ('Tyrion',  'e3N3f7JmsM', 4, '2346335952', '5304 Muir Alley');
+insert into Users (username,  password, numPets, contact_number, address) values ('Jamie',  'lIYJA4DhO', 4, '6075463911', '985 8th Avenue');
+insert into Users (username,  password, numPets, contact_number, address) values ('Brienne',  'U2N4FK', 10, '7881672777', '5 Westerfield Drive');
+insert into Users (username,  password, numPets, contact_number, address) values ('Khal',  '5YzqvsO7', 5, '6607882939', '0778 Pleasure Lane');
+insert into Users (username,  password, numPets, contact_number, address) values ('Theon', 'lRQIG0OJmgM', 1, '5117255545', '2 Lawn Road');
+insert into Users (username,  password, numPets, contact_number, address) values ('Jorah',  'ChCX876NH5vM', 1, '7427460876', '13 Artisan Street');
+insert into Users (username,  password, numPets, contact_number, address) values ('Bran',  'FRRrhumD', 6, '7957476774', '5334 Bartillon Court');
 
 
 --Login
@@ -194,17 +194,17 @@ insert into Wishlist (id,ownerName) values (29, 'Bob');
 
 
 ---accommodation(done)
-insert into Accommodation (id, hostName,  ownerName, status, rating) values (1, 'JonSnow',  'Alice', 'completed', 10);
-insert into Accommodation (id, hostName, ownerName, status, rating) values (2, 'Arya', 'Alice', 'completed', 9);
-insert into Accommodation (id, hostName, ownerName, status, rating) values (3, 'Cersei',  'Bob', 'completed', 9);
-insert into Accommodation (id, hostName, ownerName, status, rating) values (4, 'Tyrion', 'Catherine', 'completed',10);
-insert into Accommodation (id, hostName,  ownerName, status, rating) values (21, 'Jamie',  'Daisy', 'sending', 10);
-insert into Accommodation (id, hostName,  ownerName, status, rating) values (25, 'Arya',  'Linda', 'sending', 10);
-insert into Accommodation (id, hostName, ownerName, status, rating) values (27, 'Tyrion',  'Emma', 'sending', 10);
-insert into Accommodation (id, hostName,  ownerName, status, rating) values (30, 'Jamie', 'Emma', 'sending', 10);
-insert into Accommodation (id, hostName, ownerName, status, rating) values (34, 'Brienne', 'Ashley', 'sending', 10);
-insert into Accommodation (id, hostName,  ownerName, status, rating) values (36, 'Theon',  'Linda', 'sending', 10);
-insert into Accommodation (id, hostName,  ownerName, status, rating) values (37, 'Jorah',  'Mary', 'sending', 10);
+insert into Accommodation (id, hostName,  ownerName, status) values (1, 'JonSnow',  'Alice', 'completed');
+insert into Accommodation (id, hostName, ownerName, status) values (2, 'Arya', 'Alice', 'completed');
+insert into Accommodation (id, hostName, ownerName, status) values (3, 'Cersei',  'Bob', 'completed');
+insert into Accommodation (id, hostName, ownerName, status) values (4, 'Tyrion', 'Catherine', 'completed');
+insert into Accommodation (id, hostName,  ownerName, status) values (21, 'Jamie',  'Daisy', 'sending');
+insert into Accommodation (id, hostName,  ownerName, status) values (25, 'Arya',  'Linda', 'sending');
+insert into Accommodation (id, hostName, ownerName, status) values (27, 'Tyrion',  'Emma', 'sending');
+insert into Accommodation (id, hostName,  ownerName, status) values (30, 'Jamie', 'Emma', 'sending');
+insert into Accommodation (id, hostName, ownerName, status) values (34, 'Brienne', 'Ashley', 'sending');
+insert into Accommodation (id, hostName,  ownerName, status) values (36, 'Theon',  'Linda', 'sending');
+insert into Accommodation (id, hostName,  ownerName, status) values (37, 'Jorah',  'Mary', 'sending');
 
 
 
@@ -260,4 +260,6 @@ insert into Comment (id, ownerName, content) values (25, 'Ashley', 'We are there
 insert into Comment (id, ownerName, content) values (40, 'Mary', 'See you tmr');
 insert into Comment (id, ownerName, content) values (40, 'Mary', '6pm?');
 insert into Comment (id, ownerName, content) values (40, 'Bob', 'can confirm?');
+
+
 
