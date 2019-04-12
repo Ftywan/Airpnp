@@ -12,14 +12,12 @@ const pool = new Pool({
   port: 5432,
 })
 
-var get_numpets_query = "select count(*) from pets where ownername ='";
 var check_login_query = "select username from login";
 var get_favorite_query = "select l.username, f.hostname from login l, favorite f where f.ownername = l.username;";
 var get_pet_query = "select l.username, p.petname, p.pettype from login l, pets p where p.ownername = l.username;";
 var get_password_query = "select password from users where username = '";
 var username = '';
 var password = '';
-var numpets = 0;
 var become_petowner_query = "insert into petowners values ('";
 // Auto become petowner upon adding pet
 
@@ -32,14 +30,12 @@ function getQuery(req, res, next) {
     var petName = req.param('petName');
     var type = req.param('type');
 
-    numpets += 1;
-    query = "insert into pets values ('" + petName + "', '" + type + "', '" + username + "'); update users set numpets = " + numpets + "where username = '" + username + "';";
+    query = "begin transaction; insert into pets values ('" + petName + "', '" + type + "', '" + username + "'); update users set numpets = numpets + 1 where username = '" + username + "'; commit;";
   }
 
   if (process == 'delete') {
     var petName = req.param('petName');
-    numpets -= 1;
-    query = "delete from pets p where p.petname = '" + petName + "' and p.ownername = '" + username + "'; update users set numpets = " + numpets + "where username = '" + username + "';";
+    query = "begin transaction; delete from pets p where p.petname = '" + petName + "' and p.ownername = '" + username + "'; update users set numpets = numpets - 1 where username = '" + username + "'; commit;";
   }
 
   if (process == 'change') {
@@ -60,21 +56,17 @@ router.get('/', function (req, res, next) {
     if (result.rows.length) {
       username = result.rows[0]["username"];
     } // for adding to petowners
-    var get_numpets_query_2 = get_numpets_query + username + "';";
     var become_petowner_query_2 = become_petowner_query + username + "');";
     var get_password_query_2 = get_password_query + username + "';";
     pool.query(get_password_query_2, (err, pass) => {
       if (result.rows.length) {
         password = pass.rows[0]["password"];
       }
-      pool.query(get_numpets_query_2, (err, num) => {
-        numpets = num.rows[0]['count'];
-        pool.query(become_petowner_query_2, (err, added_account) => {
-          pool.query(getQuery(req, res, next), (err, addded) => { //for processes
-            pool.query(get_favorite_query, (err, get_favorite) => {
-              pool.query(get_pet_query, (err, get_pet) => {
-                res.render('account', { title: 'My account', result: result.rows, get_favorite: get_favorite.rows, get_pet: get_pet.rows });
-              });
+      pool.query(become_petowner_query_2, (err, added_account) => {
+        pool.query(getQuery(req, res, next), (err, addded) => { //for processes
+          pool.query(get_favorite_query, (err, get_favorite) => {
+            pool.query(get_pet_query, (err, get_pet) => {
+              res.render('account', { title: 'My account', result: result.rows, get_favorite: get_favorite.rows, get_pet: get_pet.rows });
             });
           });
         });

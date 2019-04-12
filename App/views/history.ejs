@@ -37,7 +37,7 @@
 		</div>
 	</header>
 	<% if (!result.length) {%>
-				<h4>You have not log in yet. Please log in first.</h4>
+				<h4><center>You have not log in yet. Please log in first.</center></h4>
 
 				<% } else {%>
 				<footer id="footer">
@@ -149,7 +149,7 @@
 										</td>
 										<td><a href=<%= "ownerview?id=" + owner_data[i].id%> class="button alt">Check it out!</a></td>
 										<%if (owner_data[i].status != "completed") {%>
-										<td><a href=<%= "history?id=" + owner_data[i].id + "?action=finish"%> class="button alt">Finish Deal</a></td>
+										<td><a href=<%= "history?id=" + owner_data[i].id + "&action=finish"%> class="button alt">Finish Deal</a></td>
 										<%}%>
 									</tr>
 									<% } %>

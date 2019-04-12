@@ -87,7 +87,6 @@ function getQuery(req, res, next) {
 router.post('/', function (req, res, next) {
   // Construct Specific SQL Query
   var price_query = "select * from Services order by minBid " + priceOrder;
-  var rating_query = "select * from Services S left join Users U on S.hostName=U.username order by U.rating";
   var favourite_query = "select * from Services S where S.hostName in( select hostName from Favourite )";
   var pricefilter_query = "select * from Services S where S.minBid= " + lowPrice + " and S.mindBid= " + highPrice;
   var timefilter_query = "select * from Services S where S.startdate= " + startTime + " and S.enddate= " + endTime;

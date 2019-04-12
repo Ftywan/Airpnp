@@ -31,7 +31,7 @@ router.post('/', function (req, res, next) {
 	var mrt = req.body.mrt;
 	var numpets = 0;
 	// Construct Specific SQL Query
-	var insert_query = sql_query + "('" + username + "'," + 10 + ",'" + password + "'," + numpets + "," + number + ",'" + address + "');";
+	var insert_query = sql_query + "(\'" + username + "\',\'" +  password + "\'," + numpets + "," + number + ",\'" + address + "\');";
 	var insert_location_query = ("insert into location values ('") + address + "','" + mrt + "');";
 	var insert_petowner_query = "insert into petowners values (\'" + username + "\')"
 
