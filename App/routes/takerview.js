@@ -23,7 +23,7 @@ function getQuery(req, res, next) {
         var id = req.param('id');
         var ownername = req.param('ownername');
         // a_id = a_id + 1;
-        query = "update BiddingStatus set status='success' where ownerName='" + ownername + "' and id = " + id + " and status='pending'; update BiddingStatus set status='fail' where id=" + id + "and ownername <> '" + ownername + "' and status='pending'; insert into Accommodation values (" + id + ",'" + username + "', '" + ownername + "', 'sending', 10);";
+        query = "update BiddingStatus set status='success' where ownerName='" + ownername + "' and id = " + id + " and status='pending'; update BiddingStatus set status='fail' where id=" + id + "and ownername <> '" + ownername + "' and status='pending'; insert into Accommodation values (" + id + ",'" + username + "', '" + ownername + "', 'sending');";
         // res.redirect('/history');
     }
 
@@ -31,7 +31,7 @@ function getQuery(req, res, next) {
     if (process == "system") {
 
         var id = req.param('id');
-        query = "update BiddingStatus set status='success' where ownerName='" + system_id + "' and id = " + id + " and status='pending'; update BiddingStatus set status='fail' where id=" + id + "and ownername <> '" + system_id + "' and status='pending'; insert into Accommodation values (" + id + ",'" + username + "', '" + system_id + "', 'sending', 10);";
+        query = "update BiddingStatus set status='success' where ownerName='" + system_id + "' and id = " + id + " and status='pending'; update BiddingStatus set status='fail' where id=" + id + "and ownername <> '" + system_id + "' and status='pending'; insert into Accommodation values (" + id + ",'" + username + "', '" + system_id + "', 'sending');";
         console.log(query);
 
         // res.redirect('/history');
