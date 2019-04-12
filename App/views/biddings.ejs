@@ -18,7 +18,7 @@
 				<font size="+3"><strong>Airpnp</strong></font>
 			</a>
 			<nav id="nav">
-				<% if (result.length) {%>
+				<% if (result.length) {%>	
 				<!--if no one logged in, do not display-->
 				<a>Logged in as: <%= result[0].username%></a>
 				<a href='index?action=logout'>Logout</a>
@@ -48,29 +48,37 @@
 				<br/><br /><br />
 				<div class="inner">
 					<div class="align-center">
-						<h3>Update your bidding here:</h3>
+						<h3>Update Your Biddings Here</h3>
 					</div>
-					<form method="POST" action="#">
+					<form method="post" action="#">
 						<div class="row">
+							<input type="hidden" id="check" value="unchecked">
+
 							<div class="field half first">
-								<input type="text" value="Post ID" id='id'>
+								<input type="text" placeholder="Post ID" id='id' name="id">
 							</div>
 							<div class="field half">
-								<input type="text" value="New Bidding" id="bidding">
+								<input type="text" placeholder="New Bidding" id="bidding" name="bidding">
 							</div>
 
+							<% if (result.length) {%>
+							<input type="hidden" id="user" name="user" value=<%= result[0].username%> >
+							<%}%>
 						</div>
 						<div class="align-center">
+							
 							<ul class="actions">
+								<li><a class="button" onclick="func()">Check Validaty</a></li>
 								<li><input value="Update" class="button" type="submit"></li>
 							</ul>
+							
 						</div>
 					</form>
 
 
 					<br /><br />
 				<div class="align-center">
-					<h3>Enrolled Bidding:</h3>
+					<h3>Enrolled Bidding</h3>
 				</div>
 					<div class="table-wrapper">
 						<table>
@@ -91,12 +99,16 @@
 									<th scope="col">
 										<font size="+1">Your bids</font>
 									</th>
+									<th scope="col">
+										<font size="+1">Minimum bid</font>
+									</th>
 									<th scope="col"></th>
 								</tr>
 							</thead>
 
 							<tbody style: align="left">
 								<% for(var i=0; i<data.length; i++) { %>
+									<input type="hidden" id=<%= data[i].id%> value=<%= data[i].minbid%>>
 								<tr>
 									<td>
 										<font size="+1"><%= data[i].id%></font>
@@ -117,6 +129,9 @@
 									<td>
 										<font size="+1"><%= data[i].bids%></font>
 									</td>
+									<td>
+										<font size="+1"><%= data[i].minbid%></font>
+									</td>
 									<td><a href=<%= "ownerview?id=" + data[i].id%>
 											class="button special small fit">Check it
 											out!</a></td>
@@ -124,9 +139,25 @@
 								<% } %>
 							</tbody>
 						</table>
+						
+						
 					</div>
 					<%}%>
 				</div>
+				<script>
+							function func() {
+								console.log(document.getElementById('id').value);
+								console.log(document.getElementById('user').value);
+								var bidding = document.getElementById('bidding').value
+								var min = document.getElementById(document.getElementById('id').value).value;
+
+								if(bidding < min) {
+									alert("This bidding is invalid!");
+								} else {
+									alert("This bidding is valid!")
+								}
+							}
+						</script>
 </body>
 
 </html>

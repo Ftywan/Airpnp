@@ -12,7 +12,7 @@ const pool = new Pool({
 })
 
 var check_login_query = "select username from login";
-var initial_query = "select b.id, l.username, s.hostName, s.startdate, s.enddate, b.bids, b.status from login l, BiddingStatus b left join Services s on b.id = s.id where b.status = 'pending' and b.ownername = username;";
+var initial_query = "select s.minbid, b.id, l.username, s.hostName, s.startdate, s.enddate, b.bids, b.status from login l, BiddingStatus b left join Services s on b.id = s.id where b.status = 'pending' and b.ownername = username;";
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -23,4 +23,16 @@ router.get('/', function (req, res, next) {
     });
 });
 
+
+router.post('/', function (req, res, next) {
+    var id = req.body.id;
+    var bid = req.body.bidding;
+    var user = req.body.user;
+
+    var query = "update BiddingStatus set bids = "+ bid +" where id = "+ id + " and ownerName = \'" + user + "\'";
+
+    pool.query(query, (err, data) =>{
+        res.redirect('biddings')
+    });
+});
 module.exports = router;

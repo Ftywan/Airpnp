@@ -23,11 +23,14 @@ router.get('/', function (req, res, next) {
 
         var wishStatusQuery = "select id from wishlist where id=" + id + " and ownername = \'" + username + "\'";
         var bidStatusQuery = "select * from biddingstatus where ownername = \'" + username + "\' and id=" + id;
+        var commentQuery = "select * from comment where id = " + id + " and ownername=\'" + username + "\'";
         pool.query(getActionQuery(req, res, next, result), (err, unused1) => {
             pool.query(wishStatusQuery, (err, wishlist) => {
                 pool.query(bidStatusQuery, (err, bidded) => {
                     pool.query(contentQuery, (err, data) => {
-                        res.render('ownerview', { title: 'All about pets', data: data.rows, result: result.rows, unused1: unused1.rows, wishlist: wishlist.rows, bidded: bidded.rows})
+                        pool.query(commentQuery, (err, comment) => {
+                            res.render('ownerview', { title: 'All about pets', data: data.rows, result: result.rows, unused1: unused1.rows, wishlist: wishlist.rows, bidded: bidded.rows, comment: comment.rows })
+                        });
                     });
                 });
             });
@@ -60,6 +63,13 @@ function getActionQuery(req, res, next, result) {
 
         query = "insert into biddingstatus values (" + id + ", \'" + user + "\', " + bid + ", DEFAULT" + ", DEFAULT)";
 
+    }
+
+    else if (action == 'comment') {
+        var id = req.param('id');
+        var text = req.param('text');
+
+        query = "insert into comment values (" + id + ", \'" + user + "\', \'" + text + "\')"
     }
 
     return query;

@@ -13,3 +13,16 @@ function bidAddress() {
 
     return location.href=address;
 }
+
+function commentAddress() {
+    var text = document.getElementById('comment').value;
+    var id = document.getElementById('id').value;
+
+    if(text == '') {
+        alert("Please input before comment!");
+        return 0;
+    }
+
+    var address = "ownerview?id=" + id + "&action=comment" + "&text=" + text;
+    return location.href=address;
+}

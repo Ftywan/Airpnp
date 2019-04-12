@@ -80,30 +80,76 @@
 				<h4>This user has been added to favourite!</h4>
 				<%}%>
 				</div>
-		</div>
-		</section>
-		<footer id="footer">
-			<div class="inner">
-				<h3>Place your bidding</h3>
-			</div>
-			<form method="post" action="#">
-				<div class="field half">
-					<label>Place your bidding here:</label>
-					<input type="text" name="bidding" id="bidding" placeholder="Bidding" />
-				</div>
-			</form>
-			<%if (!bidded.length) {%>
+				<br/><br /><br /><br /><br />
+				<div class="inner">
+					<div class="align-center">
+						<h3>Place your bidding</h3>
+							<form method="post" action="#">
+								<div class="field half">
+									<input type="text" name="bidding" id="bidding" placeholder="Bidding" />
+								</div>
+							</form>
+							<%if (!bidded.length) {%>
 				<ul class="actions">
-					<li><input class="button alt" value="by money" onclick="bidAddress()" /></li>
+					<li><input class="button" value="bid" onclick="bidAddress()" /></li>
 				</ul>
 				<%}else {%>
 				<h4>Seems you have bidded for this service.</h4>
 				<%}%>
-			<!-- <script>
-				function bidAddress() {
-					return location.href = "ownerview?id=" + document.getElementById('id').value + "&bid=" + document.getElementById("bidding").value + "&action=bid";
-				}
-			</script> -->
+				</div>
+				</div>	
+
+		</div>
+		</section>
+		<footer id="footer">
+			<div class="inner">
+				<h3>Any Questions? Comment Here!</h3>
+				<div class="row">
+					<input type="text" id="comment" placeholder="Comment and Questions">
+				</div>
+			</div>
+			<br/>
+			<ul class="actions">
+				<li><input class="button alt" value="Comment" onclick="commentAddress()" /></li>
+			</ul>
+
+
+
+			
+			<br/><br />
+
+			<h3>All Comments</h3>
+			<div class="inner">
+			<div class="align-left">
+			<table id="comments">
+				<thead>
+					<tr>
+						<th scope="col">
+							<font size="+1">Pet Owner</font>
+						</th>
+						<th scope="col">
+							<font size="+1">Comments</font>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for(var i=0; i<comment.length; i++) { %>
+			
+					<tr>
+						<td>
+							<font size="+1"><%= comment[i].ownername%></font>
+						</td>
+						<td>
+							<font size="+1"><%= comment[i].content%></font>
+						</td>
+					</tr>
+			
+					<% } %>
+				</tbody>
+			</table>
+			</div>
+			</div>
+			
 		</footer>
 </body>
 
