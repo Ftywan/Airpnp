@@ -15,12 +15,12 @@ var login_query = "select username from login";
 var get_max_query = "select ownername, bids from biddingstatus where id =";
 var username = '';
 var system_id;
+var id;
 
 function getQuery(req, res, next) {
     var query = "select * from users"; //no use
     var process = req.param("process");
     if (process == 'assign') {
-        var id = req.param('id');
         var ownername = req.param('ownername');
         // a_id = a_id + 1;
         query = "update BiddingStatus set status='success' where ownerName='" + ownername + "' and id = " + id + " and status='pending'; update BiddingStatus set status='fail' where id=" + id + "and ownername <> '" + ownername + "' and status='pending'; insert into Accommodation values (" + id + ",'" + username + "', '" + ownername + "', 'sending');";
@@ -45,7 +45,7 @@ router.get('/', function (req, res, next) {
 
     pool.query(login_query, (err, result) => {
         var process = req.param("process");
-        var id = req.param("id");
+        id = req.param("id");
         if (result.rows.length) {
             username = result.rows[0]["username"];
         }
@@ -53,6 +53,7 @@ router.get('/', function (req, res, next) {
         pool.query(listing_query, (err, data) => {
             var get_max_query_2 = get_max_query + id + " order by bids desc;";
             pool.query(get_max_query_2, (err, by_system) => {
+                console.log(get_max_query_2);
                 if (by_system.rows.length) {
                     system_id = by_system.rows[0]["ownername"];// the user with max bid
                 }

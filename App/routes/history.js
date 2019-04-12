@@ -12,8 +12,8 @@ const pool = new Pool({
 })
 
 
-var as_owner_query = "select l.username, s.startdate, s.id, s.enddate, a.hostname, b.bids, a.status from login l, Accommodation a join Services s on s.id = a.id left join BiddingStatus b on s.id = b.id where a.ownername = l.username;";
-var as_taker_query = "select l.username, s.startdate, s.id, s.enddate, a2.ownername, b.bids, a2.status from login l, accommodation a2 join services s on s.id = a2.id left join BiddingStatus b on b.id = a2.id where a2.hostname = l.username;"
+var as_owner_query = "select l.username, s.startdate, s.id, s.enddate, a.hostname, b.bids, a.status from login l, Accommodation a join Services s on s.id = a.id left join BiddingStatus b on s.id = b.id where a.ownername = l.username and b.status = 'success';";
+var as_taker_query = "select l.username, s.startdate, s.id, s.enddate, a2.ownername, b.bids, a2.status from login l, accommodation a2 join services s on s.id = a2.id join BiddingStatus b on b.id = a2.id where a2.hostname = l.username and b.status = 'success';"
 var check_login_query = "select username from login";
 
 function getQuery(req, res, next) {

@@ -58,25 +58,28 @@
 							</tr>
 						</thead>
 						<tbody style="text-align: left">
+							<% var id; %>
 							<% for(var i=0; i< data.length; i++) { %>
 							<tr>
 								<td><%= data[i].ownername%></td>
 								<td><%= data[i].bids%></td>
 
-								<td><a href=<%= "takerview?process=assign&id=" + data[i].id + "&ownername=" + data[i].ownername%>
+								<td><a href=<%= "takerview?process=assign&ownername=" + data[i].ownername + "&id= + data[i].id"%>
 										class="button special small fit"> Assign to this user!</a></td>
 
-							</tr>
+								<% id = data[i].id %>
+								<%}%>
+									</tr>
 							<tr>
 								<td> </td>
 								<td> </td>
-								<td><a href=<%= "takerview?process=system&id=" +data[i].id%>
-										class="button special small fit">Decide by system</a></td><% } %>
+								<td><a href=<%= "takerview?process=system" + "&id=" + id%>
+								class="button special small fit">Decide by system</a></td><% } %>
 							</tr>
 						</tbody>
 					</table>
 				</div>
-				<%}%>
+
 
 </body>
 
