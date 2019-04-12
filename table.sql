@@ -47,7 +47,6 @@ CREATE TYPE accommodation_status AS ENUM(
 -- Users is in BCNF
 create table Users(
 	username	VARCHAR(100),
-	rating		NUMERIC DEFAULT 10,
 	password	VARCHAR(100) NOT NULL,
 	numPets		INTEGER DEFAULT 0,
 	contact_number DECIMAL(10,0),
@@ -151,12 +150,10 @@ create table Accommodation(
 	hostName	VARCHAR(100),
 	ownerName	VARCHAR(100),
 	status      accommodation_status DEFAULT 'sending',
-	rating		NUMERIC DEFAULT 10,
 	PRIMARY KEY (id),
 	FOREIGN KEY (hostName) REFERENCES CareTakers(username),
 	FOREIGN KEY (ownerName) REFERENCES PetOwners(username),
-	FOREIGN KEY (id) REFERENCES Services(id),
-	CONSTRAINT "Rating must be on the scale of 1-10." CHECK (rating >= 1 and rating <= 10)
+	FOREIGN KEY (id) REFERENCES Services(id)
 );
 
 ---to store the all the valid biddding history with status shown as pending, fail, success.

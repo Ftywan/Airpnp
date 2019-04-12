@@ -102,7 +102,7 @@ select * from Services
 
 --2. the specific view about a particular service after they select a specific services
 with UserLocation as(
-	select C.username, L.address, L.nearest_mrt
+	select C.username, U.contact_number, L.address, L.nearest_mrt
 	from CareTakers C left join 
 		(Users U left join Location L on U.address=L.address) on C.username=U.username
 )
@@ -112,12 +112,18 @@ maxBid as(
 	from BiddingStatus
 	group by id
 	having id=%s)
+,
+ServicesWithBonus as(
+	select S.id, S.hostName, S.minBid, S.startdate, S.enddate, S.capacity, SB.bonus
+	from Services S left join SpecialBonus SB on S.id=SB.id)
 
-select exists(select * from Favorite where ownerName=%s and S.hostName=%s), S.hostName, UL.address, 
-UL.nearest_mrt, S.capacity, S.startdate, S.enddate, S.minBid, M.current_max
-from (Services S left join UserLocation UL on S.hostName=UL.username) 
-				 left join maxBid M on S.id=M.id
-where S.id=%s;
+select SWB.id, exists(select * from Favorite where ownerName=%s and 
+		 hostName=(select S.hostName from Services S where S.id=%s)), 
+			SWB.hostName, UL.address, UL.nearest_mrt, SWB.capacity, SWB.startdate,
+			  SWB.enddate, SWB.minBid, M.current_max, SWB.bonus, UL.contact_number
+from (ServicesWithBonus SWB left join UserLocation UL on SWB.hostName=UL.username) 
+				 left join maxBid M on SWB.id=M.id
+where SWB.id=%s;
 
 -- the specific view without loggin in
 with UserLocation as(
@@ -131,11 +137,16 @@ maxBid as(
 	from BiddingStatus
 	group by id
 	having id=%s)
+,
+ServicesWithBonus as(
+	select S.id, S.hostName, S.minBid, S.startdate, S.enddate, S.capacity, SB.bonus
+	from Services S left join SpecialBonus SB on S.id=SB.id)
 
-select S.hostName, UL.address, UL.nearest_mrt, S.capacity, S.startdate, S.enddate, S.minBid, M.current_max
-from (Services S left join UserLocation UL on S.hostName=UL.username) 
-				 left join maxBid M on S.id=M.id
-where S.id=%s;
+select SWB.id, SWB.hostName, UL.address, UL.nearest_mrt, SWB.capacity, SWB.startdate,
+			  SWB.enddate, SWB.minBid, M.current_max, SWB.bonus, UL.contact_number
+from (ServicesWithBonus SWB left join UserLocation UL on SWB.hostName=UL.username) 
+				 left join maxBid M on SWB.id=M.id
+where SWB.id=%s;
 
 
 --display a petOwner's current bidding information
@@ -200,7 +211,7 @@ commit;
 
 -- 2. After bidding, update status => insert the id into Accommodation
 -- update status for the winning bidder
-BEGIN TRANSACTION
+BEGIN TRANSACTION;
 update BiddingStatus
 set status='success'
 where ownerName=%s
@@ -214,9 +225,14 @@ where id=%s
 and ownerName<>%s
 and status='pending';
 
+-- update status in Service
+update Services
+set status='bidded'
+where id=%s;
+
 -- insert into Accommodation
 insert into Accommodation
-values (hostName, id, ownerName, status, rating)
+values (hostName, id, ownerName, status, rating);
 COMMIT;
 
 
@@ -241,34 +257,3 @@ where S.id=24;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-with UserLocation as( select C.username, U.contact_number, L.address, L.nearest_mrt from CareTakers C left join (Users U left join Location L on U.address=L.address) on C.username=U.username), maxBid as(select id, max(bids) as current_max, count(*) as total_num from BiddingStatus group by id having id=23), ServicesWithBonus as(select S.id, S.hostName, S.minBid, S.startdate, S.enddate, S.capacity, SB.bonus from Services S left join SpecialBonus SB on S.id=SB.id) select exists(select * from Favorite where ownerName='Alice' and SWB.hostName='Alice'), SWB.id, SWB.hostName, UL.address, UL.nearest_mrt, SWB.capacity, SWB.startdate, SWB.enddate, SWB.minBid, M.current_max, SWB.bonus, UL.contact_number from (ServicesWithBonus SWB left join UserLocation UL on SWB.hostName=UL.username) left join maxBid M on SWB.id=M.id where SWB.id=23;
-
-
-
-
-Begin transaction;
-insert into Services 
-values (43, 'test', 200, '5/6/2019', '5/10/2019', 10, pending);
-insert into SpecialBonus
-values (select id from Services where hostName = 'test' and startdate = '5/6/2019' and enddate = '5/10/2019', walk);
-commit;
