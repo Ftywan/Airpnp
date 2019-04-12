@@ -17,24 +17,36 @@ var loginQuery = "select username from login";
 router.get('/', function (req, res, next) {
     pool.query(loginQuery, (err, result) => {
         var id = req.param("id");
-        username = result.rows[0]["username"];
-        var contentQuery = "with UserLocation as( select C.username, L.address, L.nearest_mrt from CareTakers C left join(Users U left join Location L on U.address=L.address) on C.username=U.username), maxBid as( select id, max(bids) as current_max, count(*) as total_num from BiddingStatus group by id having id=" + id + ") select exists(select * from Favorite where ownerName=\'" + username + "\' and hostName = S.hostName), S.id, S.hostName, UL.address, UL.nearest_mrt, S.capacity, S.startdate, S.enddate, S.minBid, M.current_max from (Services S left join UserLocation UL on S.hostName=UL.username) left join maxBid M on S.id=M.id where S.id=" + id;
+
+        if (result.rows.length) {
+            username = result.rows[0]["username"];
+            var contentQuery = "with UserLocation as( select C.username, L.address, L.nearest_mrt from CareTakers C left join(Users U left join Location L on U.address=L.address) on C.username=U.username), maxBid as( select id, max(bids) as current_max, count(*) as total_num from BiddingStatus group by id having id=" + id + ") select exists(select * from Favorite where ownerName=\'" + username + "\' and hostName = S.hostName), S.id, S.hostName, UL.address, UL.nearest_mrt, S.capacity, S.startdate, S.enddate, S.minBid, M.current_max from (Services S left join UserLocation UL on S.hostName=UL.username) left join maxBid M on S.id=M.id where S.id=" + id;
 
 
-        var wishStatusQuery = "select id from wishlist where id=" + id + " and ownername = \'" + username + "\'";
-        var bidStatusQuery = "select * from biddingstatus where ownername = \'" + username + "\' and id=" + id;
-        var commentQuery = "select * from comment where id = " + id + " and ownername=\'" + username + "\'";
-        pool.query(getActionQuery(req, res, next, result), (err, unused1) => {
-            pool.query(wishStatusQuery, (err, wishlist) => {
-                pool.query(bidStatusQuery, (err, bidded) => {
-                    pool.query(contentQuery, (err, data) => {
-                        pool.query(commentQuery, (err, comment) => {
-                            res.render('ownerview', { title: 'All about pets', data: data.rows, result: result.rows, unused1: unused1.rows, wishlist: wishlist.rows, bidded: bidded.rows, comment: comment.rows })
+            var wishStatusQuery = "select id from wishlist where id=" + id + " and ownername = \'" + username + "\'";
+            var bidStatusQuery = "select * from biddingstatus where ownername = \'" + username + "\' and id=" + id;
+            var commentQuery = "select * from comment where id = " + id;
+            pool.query(getActionQuery(req, res, next, result), (err, unused1) => {
+                pool.query(wishStatusQuery, (err, wishlist) => {
+                    pool.query(bidStatusQuery, (err, bidded) => {
+                        pool.query(contentQuery, (err, data) => {
+                            pool.query(commentQuery, (err, comment) => {
+                                res.render('ownerview', { title: 'All about pets', data: data.rows, result: result.rows, unused1: unused1.rows, wishlist: wishlist.rows, bidded: bidded.rows, comment: comment.rows })
+                            });
                         });
                     });
                 });
             });
-        });
+        } else {
+            var contentQuery = "with UserLocation as( select C.username, L.address, L.nearest_mrt from CareTakers C left join(Users U left join Location L on U.address=L.address) on C.username=U.username), maxBid as( select id, max(bids) as current_max, count(*) as total_num from BiddingStatus group by id having id=" + id + ") select S.id, S.hostName, UL.address, UL.nearest_mrt, S.capacity, S.startdate, S.enddate, S.minBid, M.current_max from (Services S left join UserLocation UL on S.hostName=UL.username) left join maxBid M on S.id=M.id where S.id=" + id;
+            var commentQuery = "select * from comment where id = " + id;
+
+            pool.query(contentQuery, (err, data) => {
+                pool.query(commentQuery, (err, comment) => {
+                    res.render('ownerview', { title: 'All about pets', data: data.rows, comment: comment.rows, result: result.rows })
+                });
+            });
+        }
     });
 });
 

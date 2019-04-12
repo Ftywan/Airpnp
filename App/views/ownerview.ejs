@@ -36,7 +36,11 @@
 			<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 		</div>
 	</header>
-
+<% if (result.length) {%>
+				<input type="hidden" id='lgoin' value='true'>
+				<% } else {%>
+				<input type="hidden" id='login' value='false'>
+				<%}%>
 	<footer id="footer">
 		<div class="inner">
 			<h3>Take a look</h3>
@@ -63,57 +67,76 @@
 				<% if (data[0].current_max){%>
 				<h4>Current Max Bidding: <%= data[0].current_max%></h4>
 				<%} else{%>
-				<br />
-				<h4>Seems no one have bidded...</h4>
+				<h4>Bidding status: Seems no one have bidded...</h4>
 				<%}%>
+
+
+<%if (result.length) {%>
 				<div class="align-center">
 					<% if (!wishlist.length) {%>
-				<a class="button" href=<%= "ownerview?id=" + data[0].id + "&action=add"%>>Add to wishlist</a>
-				<%}else {%>
-				<h4>This post has been added to wishlist!</h4>
-				<%}%>
+					<a class="button" href=<%= "ownerview?id=" + data[0].id + "&action=add"%>>Add to wishlist</a>
+					<%}else {%>
+					<h4>This post has been added to wishlist!</h4>
+					<%}%>
 					<% if (! data[0].exists) {%>
-				<a class="button"
-					href=<%= "ownerview?id=" + data[0].id + "&user=" + data[0].hostname + "&action=like"%>>Like this
-					host</a>
-				<%}else {%>
-				<h4>This user has been added to favourite!</h4>
-				<%}%>
+					<a class="button"
+						href=<%= "ownerview?id=" + data[0].id + "&user=" + data[0].hostname + "&action=like"%>>Like this
+						host</a>
+					<%}else {%>
+					<h4>This user has been added to favourite!</h4>
+					<%}%>
+				<%} else {%>
+				<div class="align-center">
+					<br/><br/>
+					<h4>Login to like this host or add service to wishlist...</h4>
 				</div>
-				<br/><br /><br /><br /><br />
-				<div class="inner">
-					<div class="align-center">
-						<h3>Place your bidding</h3>
+					<%}%>
+
+
+				</div>
+				<br/><br /><br />
+
+					<div class="inner">
+						<div class="align-center">
+							<h3>Place your bidding</h3>
 							<form method="post" action="#">
 								<div class="field half">
 									<input type="text" name="bidding" id="bidding" placeholder="Bidding" />
 								</div>
 							</form>
+											<% if (result.length) {%>
+
 							<%if (!bidded.length) {%>
-				<ul class="actions">
-					<li><input class="button" value="bid" onclick="bidAddress()" /></li>
-				</ul>
-				<%}else {%>
-				<h4>Seems you have bidded for this service.</h4>
-				<%}%>
+							<ul class="actions">
+								<li><input class="button" value="bid" onclick="bidAddress()" /></li>
+							</ul>
+							<%}else {%>
+							<h4>Seems you have bidded for this service.</h4>
+							<%}%>
 				</div>
 				</div>	
+				<%} else {%>
+							<h4>Login to bid...</h4>
+							<%}%>
 
 		</div>
 		</section>
 		<footer id="footer">
-			<div class="inner">
-				<h3>Any Questions? Comment Here!</h3>
-				<div class="row">
-					<input type="text" id="comment" placeholder="Comment and Questions">
-				</div>
-			</div>
+							<div class="inner">
+								<h3>Any Questions? Comment Here!</h3>
+								<div class="row">
+									<input type="text" id="comment" placeholder="Comment and Questions">
+								</div>
+							</div>
+							
 			<br/>
+			<%if (result.length){%>
 			<ul class="actions">
 				<li><input class="button alt" value="Comment" onclick="commentAddress()" /></li>
 			</ul>
-
-
+			<%} else {%>
+			<h4>Login to comment this service...</h4>
+			<%}%>
 
 			
 			<br/><br />
@@ -134,23 +157,23 @@
 				</thead>
 				<tbody>
 					<% for(var i=0; i<comment.length; i++) { %>
-			
-					<tr>
-						<td>
-							<font size="+1"><%= comment[i].ownername%></font>
-						</td>
-						<td>
-							<font size="+1"><%= comment[i].content%></font>
-						</td>
-					</tr>
-			
-					<% } %>
-				</tbody>
-			</table>
-			</div>
-			</div>
-			
-		</footer>
+
+							<tr>
+								<td>
+									<font size="+1"><%= comment[i].ownername%></font>
+								</td>
+								<td>
+									<font size="+1"><%= comment[i].content%></font>
+								</td>
+							</tr>
+
+							<% } %>
+							</tbody>
+							</table>
+						</div>
+					</div>
+
+					</footer>
 </body>
 
 </html>
