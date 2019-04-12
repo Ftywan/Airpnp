@@ -45,6 +45,7 @@
 						<h3>Your past transactions </h3>
 						<!-- As taker -->
 						<h2>You as care taker</h2>
+						<%if(taker_data.length) {%>
 						<div class="table-wrapper" , style="padding-left:5%; padding-right:5%">
 							<br />
 							<table>
@@ -94,6 +95,9 @@
 								</tbody>
 							</table>
 						</div>
+						<%}else {%>
+							<h4>You haven't taken care of any pets.</h4>
+						<%}%>
 
 
 						<br /><br />
@@ -101,6 +105,7 @@
 
 						<!-- As owner -->
 						<h2>You as pet owner</h2>
+						<%if (owner_data.length) {%>
 						<div class="table-wrapper" , style="padding-left:5%; padding-right:5%">
 							<br />
 							<table>
@@ -156,6 +161,9 @@
 								</tbody>
 							</table>
 						</div>
+						<%}else {%>
+							<h4>You haven't sent your pet out.</h4>
+						<%}%>
 					</div>
 					<br /><br /><br /><br />
 				</footer>

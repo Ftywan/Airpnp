@@ -71,6 +71,8 @@
 								<li><a class="button" onclick="func()">Check Validaty</a></li>
 								<li><input value="Update" class="button" type="submit"></li>
 							</ul>
+
+							<h5>Please check validity before updating!</h5>
 							
 						</div>
 					</form>
@@ -80,6 +82,8 @@
 				<div class="align-center">
 					<h3>Enrolled Bidding</h3>
 				</div>
+
+				<%if(data.length) {%>
 					<div class="table-wrapper">
 						<table>
 							<thead>
@@ -142,19 +146,26 @@
 						
 						
 					</div>
+					<%}else {%>
+						<h4><center>Currently not enrolled in any bidding.</center></h4>
 					<%}%>
+				<%}%>
 				</div>
 				<script>
 							function func() {
 								console.log(document.getElementById('id').value);
 								console.log(document.getElementById('user').value);
-								var bidding = document.getElementById('bidding').value
-								var min = document.getElementById(document.getElementById('id').value).value;
+
+								console.log(document.getElementById('bidding').value)
+								console.log(document.getElementById(document.getElementById('id').value).value);
+
+								bidding = document.getElementById('bidding').value;
+								min = document.getElementById(document.getElementById('id').value).value;
 
 								if(bidding < min) {
-									alert("This bidding is invalid!");
+									alert("Errrrr...  This bidding is invalid!");
 								} else {
-									alert("This bidding is valid!")
+									alert("Yeaaaa!!!  This bidding is valid!")
 								}
 							}
 						</script>

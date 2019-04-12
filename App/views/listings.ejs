@@ -97,7 +97,8 @@
 						</h3>
 					</div>
 					<!-- <div class="table-wrapper" , style="padding-left: 100px; padding-right: 100px"> -->
-					<div class="table-wrapper">
+					<%if(data.length) {%>
+						<div class="table-wrapper">
 						<table id="listings">
 							<thead>
 								<tr>
@@ -155,8 +156,10 @@
 								<% } %>
 							</tbody>
 						</table>
-						</table>
 					</div>
+					<%}else {%>
+						<h4><center>Haven't posted? Try now!</h4>
+					<%}%>
 				</div>
 				<%}%>
 </body>
