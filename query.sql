@@ -199,10 +199,9 @@ where BS.id=%s;
 
 -- Transaction
 -- 1. when you add one more pet, update the Users' profile
-Begin transaction
+Begin transaction;
 insert into Pets
-values (petName, petType, ownerName...)
-where ownerName=%s; 
+values (petName, petType, ownerName...);
 
 update Users
 set numPets=numPets+1
