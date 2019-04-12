@@ -30,10 +30,10 @@ function getQuery(req, res, next) {
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  pool.query(check_login_query, (err, result) => {
-    pool.query(as_owner_query, (err, owner_data) => {
-      pool.query(as_taker_query, (err, taker_data) => {
-        pool.query(getQuery(req, res, next), (err, no_use) => {
+  pool.query(getQuery(req, res, next), (err, no_use) => {
+    pool.query(check_login_query, (err, result) => {
+      pool.query(as_owner_query, (err, owner_data) => {
+        pool.query(as_taker_query, (err, taker_data) => {
           res.render('history', { title: 'Transaction history', result: result.rows, owner_data: owner_data.rows, taker_data: taker_data.rows });
         });
       });

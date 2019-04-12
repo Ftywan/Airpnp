@@ -26,7 +26,7 @@ function getQuery(req, res, next) {
         var ownername = req.param('ownername');
         // a_id = a_id + 1;
         query = "update BiddingStatus set status='success' where ownerName='" + ownername + "' and id = " + id + " and status='pending'; update BiddingStatus set status='fail' where id=" + id + "and ownername <> '" + ownername + "' and status='pending'; insert into Accommodation values (" + id + ",'" + username + "', '" + ownername + "', 'sending', 10);";
-        res.redirect('/history');
+        // res.redirect('/history');
     }
 
 
@@ -35,7 +35,8 @@ function getQuery(req, res, next) {
         var id = req.param('id');
         query = "update BiddingStatus set status='success' where ownerName='" + system_id + "' and id = " + id + " and status='pending'; update BiddingStatus set status='fail' where id=" + id + "and ownername <> '" + system_id + "' and status='pending'; insert into Accommodation values (" + id + ",'" + username + "', '" + system_id + "', 'sending', 10);";
         console.log(query);
-        res.redirect('/history');
+
+        // res.redirect('/history');
     }
 
     return query;
@@ -43,8 +44,9 @@ function getQuery(req, res, next) {
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    
+
     pool.query(login_query, (err, result) => {
+        var process = req.param("process");
         var id = req.param("id");
         if (result.rows.length) {
             username = result.rows[0]["username"];
@@ -58,7 +60,11 @@ router.get('/', function (req, res, next) {
                     system_id = by_system.rows[0]["ownername"];
                 }
                 pool.query(getQuery(req, res, next), (err, no_use) => {
-                    res.render('takerview', { title: 'All about pets', result: result.rows, data: data.rows });
+                    if (process == 'assign' || process == 'system') {
+                        res.redirect('/history');
+                    } else {
+                        res.render('takerview', { title: 'All about pets', result: result.rows, data: data.rows });
+                    }
                 });
             });
         });
