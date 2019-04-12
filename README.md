@@ -11,7 +11,7 @@ taker or automatically selected by the system based on some criteria.
 ## Set up database
 please set up postgreSQL before start the connection.
 
-* open the psql terminal and change the directory to /database
+* open the psql terminal and change the directory to /Database
 * create database airpnp by entering:
  
 ```
