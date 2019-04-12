@@ -102,7 +102,7 @@ select * from Services
 
 --2. the specific view about a particular service after they select a specific services
 with UserLocation as(
-	select C.username, U.contanct_number, L.address, L.nearest_mrt
+	select C.username, U.contact_number, L.address, L.nearest_mrt
 	from CareTakers C left join 
 		(Users U left join Location L on U.address=L.address) on C.username=U.username
 )
@@ -114,7 +114,7 @@ maxBid as(
 	having id=%s)
 ,
 ServicesWithBonus as(
-	select S.hostName, S.minBid, S.startdate, S.enddate, S.capacity, SB.bonus
+	select S.id, S.hostName, S.minBid, S.startdate, S.enddate, S.capacity, SB.bonus
 	from Services S left join SpecialBonus SB on S.id=SB.id)
 
 select exists(select * from Favorite where ownerName=%s and SWB.hostName=%s), SWB.hostName, 
