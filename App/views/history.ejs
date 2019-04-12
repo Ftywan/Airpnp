@@ -50,19 +50,39 @@
 							<table>
 								<thead>
 									<tr>
-										<th>Start Date</th>
-										<th>End Date</th>
-										<th>Client Username</th>
-										<th>Status</th>
+										<th scope="col">
+											<font size="+1">Start Date</font>
+										</th>
+										<th scope="col">
+											<font size="+1">End Date</font>
+										</th>
+										<th scope="col">
+											<font size="+1">Client Name</font>
+										</th>
+										<th scope="col">
+											<font size="+1">Status</font>
+										</th>
 									</tr>
 								</thead>
 								<tbody style: align="left">
 									<% for(var i=0; i<taker_data.length; i++) { %>
 									<tr>
-										<td><%= taker_data[i].startdate%></td>
-										<td><%= taker_data[i].enddate%></td>
-										<td><%= taker_data[i].ownername%></td>
-										<td><%= taker_data[i].status%></td>
+										<td>
+											<font size="+1">
+												<%= taker_data[i].startdate.toString().split(' ').slice(0, 4).join(' ')%>
+											</font>
+										</td>
+										<td>
+											<font size="+1">
+												<%= taker_data[i].enddate.toString().split(' ').slice(0, 4).join(' ')%>
+											</font>
+										</td>
+										<td>
+											<font size="+1"><%= taker_data[i].ownername%></font>
+										</td>
+										<td>
+											<font size="+1"><%= taker_data[i].status%></font>
+										</td>
 									</tr>
 									<% } %>
 								</tbody>
@@ -99,10 +119,14 @@
 									<% for(var i=0; i<owner_data.length; i++) { %>
 									<tr>
 										<td>
-											<font size="+1"><%= owner_data[i].startdate.toString().split(' ').slice(0, 4).join(' ')%></font>
+											<font size="+1">
+												<%= owner_data[i].startdate.toString().split(' ').slice(0, 4).join(' ')%>
+											</font>
 										</td>
 										<td>
-											<font size="+1"><%= owner_data[i].enddate.toString().split(' ').slice(0, 4).join(' ')%></font>
+											<font size="+1">
+												<%= owner_data[i].enddate.toString().split(' ').slice(0, 4).join(' ')%>
+											</font>
 										</td>
 										<td>
 											<font size="+1"><%= owner_data[i].hostname%></font>
