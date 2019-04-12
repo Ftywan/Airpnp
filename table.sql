@@ -36,6 +36,7 @@ CREATE TYPE bonus_types AS ENUM(
 	'walk',
 	'shower',
 	'beauty'
+	'none'
 );
 
 CREATE TYPE accommodation_status AS ENUM(

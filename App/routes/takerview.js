@@ -22,8 +22,8 @@ function getQuery(req, res, next) {
     var process = req.param("process");
     if (process == 'assign') {
         var ownername = req.param('ownername');
-        // a_id = a_id + 1;
-        query = "update BiddingStatus set status='success' where ownerName='" + ownername + "' and id = " + id + " and status='pending'; update BiddingStatus set status='fail' where id=" + id + "and ownername <> '" + ownername + "' and status='pending'; insert into Accommodation values (" + id + ",'" + username + "', '" + ownername + "', 'sending');";
+        var id = req.param('id');
+        query = "begin transaction; update BiddingStatus set status='success' where ownerName='" + ownername + "' and id = " + id + " and status='pending'; update BiddingStatus set status='fail' where id=" + id + "and ownername <> '" + ownername + "' and status='pending'; update services set status = 'bidded' where id = " + id + "; insert into Accommodation values (" + id + ",'" + username + "', '" + ownername + "', 'sending'); commit;";
         // res.redirect('/history');
     }
 
@@ -31,8 +31,7 @@ function getQuery(req, res, next) {
     if (process == "system") {
 
         var id = req.param('id');
-        query = "update BiddingStatus set status='success' where ownerName='" + system_id + "' and id = " + id + " and status='pending'; update BiddingStatus set status='fail' where id=" + id + "and ownername <> '" + system_id + "' and status='pending'; insert into Accommodation values (" + id + ",'" + username + "', '" + system_id + "', 'sending');";
-        console.log(query);
+        query = "begin transaction; update BiddingStatus set status='success' where ownerName='" + system_id + "' and id = " + id + " and status='pending'; update BiddingStatus set status='fail' where id=" + id + "and ownername <> '" + system_id + "' and status='pending'; update services set status = 'bidded' where id = " + id + "; insert into Accommodation values (" + id + ",'" + username + "', '" + system_id + "', 'sending'); commit;";
 
         // res.redirect('/history');
     }
@@ -53,7 +52,6 @@ router.get('/', function (req, res, next) {
         pool.query(listing_query, (err, data) => {
             var get_max_query_2 = get_max_query + id + " order by bids desc;";
             pool.query(get_max_query_2, (err, by_system) => {
-                console.log(get_max_query_2);
                 if (by_system.rows.length) {
                     system_id = by_system.rows[0]["ownername"];// the user with max bid
                 }
