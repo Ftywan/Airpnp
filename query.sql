@@ -102,7 +102,7 @@ select * from Services
 
 --2. the specific view about a particular service after they select a specific services
 with UserLocation as(
-	select C.username, L.address, L.nearest_mrt
+	select C.username, U.contanct_number, L.address, L.nearest_mrt
 	from CareTakers C left join 
 		(Users U left join Location L on U.address=L.address) on C.username=U.username
 )
@@ -112,12 +112,17 @@ maxBid as(
 	from BiddingStatus
 	group by id
 	having id=%s)
+,
+ServicesWithBonus as(
+	select S.hostName, S.minBid, S.startdate, S.enddate, S.capacity, SB.bonus
+	from Services S left join SpecialBonus SB on S.id=SB.id)
 
-select exists(select * from Favorite where ownerName=%s and S.hostName=%s), S.hostName, UL.address, 
-UL.nearest_mrt, S.capacity, S.startdate, S.enddate, S.minBid, M.current_max
-from (Services S left join UserLocation UL on S.hostName=UL.username) 
-				 left join maxBid M on S.id=M.id
-where S.id=%s;
+select exists(select * from Favorite where ownerName=%s and SWB.hostName=%s), SWB.hostName, 
+			  UL.address, UL.nearest_mrt, SWB.capacity, SWB.startdate,
+			  SWB.enddate, SWB.minBid, M.current_max, SWB.bonus, UL.contact_number
+from (ServicesWithBonus SWB left join UserLocation UL on SWB.hostName=UL.username) 
+				 left join maxBid M on SWB.id=M.id
+where SWB.id=%s;
 
 -- the specific view without loggin in
 with UserLocation as(
