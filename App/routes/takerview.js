@@ -13,10 +13,8 @@ const pool = new Pool({
 
 var login_query = "select username from login";
 var get_max_query = "select ownername, bids from biddingstatus where id =";
-// var get_a_id_query = "select max(id) from accommodation;";
 var username = '';
 var system_id;
-// var a_id = 0;
 
 function getQuery(req, res, next) {
     var query = "select * from users"; //no use
@@ -54,10 +52,9 @@ router.get('/', function (req, res, next) {
         var listing_query = "select * from biddingstatus where id = " + id + " and status = 'pending';";
         pool.query(listing_query, (err, data) => {
             var get_max_query_2 = get_max_query + id + " order by bids desc;";
-            console.log(get_max_query_2);
             pool.query(get_max_query_2, (err, by_system) => {
                 if (by_system.rows.length) {
-                    system_id = by_system.rows[0]["ownername"];
+                    system_id = by_system.rows[0]["ownername"];// the user with max bid
                 }
                 pool.query(getQuery(req, res, next), (err, no_use) => {
                     if (process == 'assign' || process == 'system') {
