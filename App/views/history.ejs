@@ -50,19 +50,45 @@
 							<table>
 								<thead>
 									<tr>
-										<th>Start Date</th>
-										<th>End Date</th>
-										<th>Client Username</th>
-										<th>Status</th>
+										<th scope="col">
+											<font size="+1">Start Date</font>
+										</th>
+										<th scope="col">
+											<font size="+1">End Date</font>
+										</th>
+										<th scope="col">
+											<font size="+1">Client Name</font>
+										</th>
+										<th scope="col">
+											<font size="+1">Status</font>
+										</th>
+										<th scope="col">
+											<font size="+1">Bids</font>
+										</th>
 									</tr>
 								</thead>
 								<tbody style: align="left">
 									<% for(var i=0; i<taker_data.length; i++) { %>
 									<tr>
-										<td><%= taker_data[i].startdate%></td>
-										<td><%= taker_data[i].enddate%></td>
-										<td><%= taker_data[i].ownername%></td>
-										<td><%= taker_data[i].status%></td>
+										<td>
+											<font size="+1">
+												<%= taker_data[i].startdate.toString().split(' ').slice(0, 4).join(' ')%>
+											</font>
+										</td>
+										<td>
+											<font size="+1">
+												<%= taker_data[i].enddate.toString().split(' ').slice(0, 4).join(' ')%>
+											</font>
+										</td>
+										<td>
+											<font size="+1"><%= taker_data[i].ownername%></font>
+										</td>
+										<td>
+											<font size="+1"><%= taker_data[i].status%></font>
+										</td>
+										<td>
+											<font size="+1"><%= taker_data[i].bids%></font>
+										</td>
 									</tr>
 									<% } %>
 								</tbody>
@@ -80,19 +106,51 @@
 							<table>
 								<thead>
 									<tr>
-										<th>Start Date</th>
-										<th>End Date</th>
-										<th>Host Username</th>
-										<th>Status</th>
+										<th scope="col">
+											<font size="+1">Start Date</font>
+										</th>
+										<th scope="col">
+											<font size="+1">End Date</font>
+										</th>
+										<th scope="col">
+											<font size="+1">Host Name</font>
+										</th>
+										<th scope="col">
+											<font size="+1">Status</font>
+										</th>
+										<th scope="col">
+											<font size="+1">Bids</font>
+										</th>
+										<th scope="col"></th>
+										<th scope="col"></th>
 									</tr>
 								</thead>
 								<tbody style: align="left">
 									<% for(var i=0; i<owner_data.length; i++) { %>
 									<tr>
-										<td><%= owner_data[i].startdate%></td>
-										<td><%= owner_data[i].enddate%></td>
-										<td><%= owner_data[i].hostname%></td>
-										<td><%= owner_data[i].status%></td>
+										<td>
+											<font size="+1">
+												<%= owner_data[i].startdate.toString().split(' ').slice(0, 4).join(' ')%>
+											</font>
+										</td>
+										<td>
+											<font size="+1">
+												<%= owner_data[i].enddate.toString().split(' ').slice(0, 4).join(' ')%>
+											</font>
+										</td>
+										<td>
+											<font size="+1"><%= owner_data[i].hostname%></font>
+										</td>
+										<td>
+											<font size="+1"><%= owner_data[i].status%></font>
+										</td>
+										<td>
+											<font size="+1"><%= owner_data[i].bids%></font>
+										</td>
+										<td><a href=<%= "ownerview?id=" + owner_data[i].id%> class="button alt">Check it out!</a></td>
+										<%if (owner_data[i].status != "completed") {%>
+										<td><a href=<%= "history?id=" + owner_data[i].id + "?action=finish"%> class="button alt">Finish Deal</a></td>
+										<%}%>
 									</tr>
 									<% } %>
 								</tbody>
