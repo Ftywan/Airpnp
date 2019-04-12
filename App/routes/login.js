@@ -16,10 +16,13 @@ const pool = new Pool({
 router.use(bodyParser.urlencoded({ extended: false }));
 
 var check_login_query = "select username from login";
+var clear_login_query = "delete from login";
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  pool.query(check_login_query, (err, result) => {
-    res.render('login', { title: 'Airpnp-Login', result: result.rows });
+  pool.query(clear_login_query, (err, unused) => {
+    pool.query(check_login_query, (err, result) => {
+      res.render('login', { title: 'Airpnp-Login', result: result.rows });
+    });
   });
 });
 // router.get('/:user', function (req, res, next) {
