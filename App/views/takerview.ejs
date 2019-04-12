@@ -34,10 +34,7 @@
 
 		</div>
 	</header>
-	<% if (!result.length) {%>
-				<h4>You have not log in yet. Please log in first.</h4>
 
-				<% } else {%>
 				<footer id="footer">
 					<div class="inner">
 						<h3>
@@ -47,7 +44,9 @@
 				</footer>
 
 				<% if (!data.length) {%>
-				<h4>No on going bidding. Please go to history to view past transcations.</h4>
+				<h4>
+					<center>This listing does not have a bidder yet. Please wait.</center>
+				</h4>
 				<% } else {%>
 				<div class="table-wrapper" , style="padding-left:5%; padding-right:5%">
 					<br />
@@ -78,7 +77,7 @@
 					</table>
 				</div>
 				<%}%>
-				<%}%>
+
 </body>
 
 </html>

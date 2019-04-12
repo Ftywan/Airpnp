@@ -15,7 +15,7 @@ const pool = new Pool({
 var check_login_query = "select username from login";
 var create_listing_query = 'INSERT INTO Services VALUES';
 var get_max_id_query = 'select max(id) from services;';
-var initial_query = "select *, username from Services S, login where S.hostName = username and S.status = 'available';";
+var initial_query = " select s.id, s.minbid, s.startdate, s.enddate, s.capacity, l.username, b.bonus from services s left join specialbonus B on b.id = s.id, login l where S.hostName = l.username and S.status = 'available';";
 var username = '';
 var new_id = 0;
 
