@@ -53,7 +53,7 @@ router.post('/', function (req, res, next) {
 
   var insert_query = create_listing_query + " (" + new_id + ",'" + username + "'," + minBid + ",'" + startDate + "','" + endDate + "'," + capacity + ");";
   var become_caretaker_query = "INSERT INTO caretakers VALUES ('" + username + "');";
-  // var bonus_query = 
+  // var new_query = Begin transaction; insert into Services values (44, 'test', 200, '5/7/2019', '5/10/2019', 10, 'available'); insert into SpecialBonus values ((select id from Services where hostName = 'test' and startdate = '5/7/2019' and enddate = '5/10/2019'), 'walk'); commit;
 
   pool.query(become_caretaker_query, (err, not_used1) => { // Auto become a caretaker
     console.log(become_caretaker_query);
