@@ -153,14 +153,17 @@
 				</div>
 				<script>
 							function func() {
-								console.log(document.getElementById('id').value);
-								console.log(document.getElementById('user').value);
+								// console.log(document.getElementById('id').value);
+								// console.log(document.getElementById('user').value);
 
-								console.log(document.getElementById('bidding').value)
-								console.log(document.getElementById(document.getElementById('id').value).value);
+								// console.log(document.getElementById('bidding').value)
+								// console.log(document.getElementById(document.getElementById('id').value).value);
 
-								bidding = document.getElementById('bidding').value;
-								min = document.getElementById(document.getElementById('id').value).value;
+								bidding = Number(document.getElementById('bidding').value);
+								min = Number(document.getElementById(document.getElementById('id').value).value);
+
+								console.log(bidding);
+								console.log(min);
 
 								if(bidding < min) {
 									alert("Errrrr...  This bidding is invalid!");

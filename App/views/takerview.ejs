@@ -53,20 +53,29 @@
 					<table>
 						<thead>
 							<tr>
-								<th>Bidder username</th>
-								<th>Bids</th>
+								<th scope="col">
+									<font size="+1">Bidder Username</font>
+								</th>
+								<th scope="col">
+									<font size="+1">Bids</font>
+								</th>
+								<th scope="col"></th>
 							</tr>
 						</thead>
 						<tbody style="text-align: left">
 							<% var id; %>
 							<% for(var i=0; i< data.length; i++) { %>
 							<tr>
-								<td><%= data[i].ownername%></td>
-								<td><%= data[i].bids%></td>
+								<td>
+									<font size="+1"><%= data[i].ownername%></font>
+								</td>
+								<td>
+									<font size="+1"><%= data[i].bids%></font>
+								</td>
 
 								<td><a href=<%= "takerview?process=assign&ownername=" + data[i].ownername + "&id=" + data[i].id%>
 										class="button special small fit"> Assign to this user!</a></td>
-
+								
 								<% id = data[i].id %>
 								<%}%>
 								

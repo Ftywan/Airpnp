@@ -35,7 +35,7 @@ CREATE TYPE service_status AS ENUM(
 CREATE TYPE bonus_types AS ENUM(
 	'walk',
 	'shower',
-	'beauty'
+	'beauty',
 	'none'
 );
 
